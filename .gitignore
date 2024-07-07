@@ -1,0 +1,22 @@
+# Hugo
+/public/
+/resources/_gen/
+/node_modules
+/assets/jsconfig.json
+hugo_stats.json
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# Apple
+.DS_Store
+
+### Code ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Temporary lock file while building
+/.hugo_build.lock
