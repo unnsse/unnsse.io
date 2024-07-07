@@ -15,9 +15,9 @@ license:
 comment: false
 weight: 0
 tags:
-  - draft
+  - hello, kotlin
 categories:
-  - draft
+  - kotlin
 hiddenFromHomePage: false
 hiddenFromSearch: false
 hiddenFromRss: false
@@ -41,6 +41,13 @@ repost:
 ---
 
 # First Heading
+
+```kotlin
+fun main(args: Array<String>) {
+    println("Hello, World!")
+}
+```
+
 
 ## 2nd Level Heading
 
