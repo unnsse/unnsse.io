@@ -2,18 +2,21 @@
 title = 'About'
 date = 2024-07-07T00:55:21-07:00
 draft = false
-menus = ['main', 'footer']
+menus = ['main']
 class = 'center'
 +++
 
-I am a Principal Software Engineer living in San Diego, California, USA specializing on the backend using the JVM (Java,
-Kotlin & Scala). Have provided solutions for many vertical industries (FinTech, PaaS for Real-Time Professional Sports
-Teams & E-commerce) ranging anywhere from Startups to Fortune 100 companies. Co-Organizer of the San Diego Kotlin 
-User Group (SDKotlin) and long term active member of the San Diego Java Users Group (SDJUG) and Agile San Diego 
-(formerly known as eXtreme Programming San Diego).
+My name is Unnsse Khan and am a Principal Software Engineer living in [San Diego, California, USA](https://en.wikipedia.org/wiki/San_Diego) 
+specializing in highly scalable distributed backend systems using Java, Kotlin & Scala. Have provided solutions for many
+vertical industries (FinTech, PaaS for Real-Time Professional Sports Teams & Internet of Things) ranging anywhere from 
+Startups to Fortune 100 companies. Have trained/mentored numerous software engineering teams advanced techniques for 
+best practices and helped many transition to an Agile methodology. 
 
-Have trained/mentored numerous software engineering teams advanced techniques for best practices and helped many 
-transition to an Agile methodology. Am available for consulting and full-time opportunities.
+Am also the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup.com/sd-kotlin/ "San Diego Kotlin Users Group")
+and long term active member of the [San Diego Java Users Group](https://www.meetup.com/San-Diego-Java-Users-Group/) and 
+Agile San Diego (formerly known as eXtreme Programming San Diego).
+
+Am available for consulting and full-time opportunities.
 
 Here's a picture I took of Scripps Pier in La Jolla, California from the Torrey Pines Gliderport:
 

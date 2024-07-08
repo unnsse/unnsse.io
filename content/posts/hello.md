@@ -6,9 +6,9 @@ slug: 583bc6c
 draft: false
 author: 
   name: Unnsse Khan
-  link: https://unnsse.io
+  link: https://www.linkedin.com/in/unnsse
   email: contact@unnsse.io
-  avatar:
+  avatar: 
 description:
 keywords:
 license:
@@ -26,7 +26,7 @@ summary:
 resources:
   - name: featured-image
     src: featured-image.jpg
-  - name: featured-image-preview
+  - name: featured-image-previ
     src: featured-image-preview.jpg
 toc: true
 math: false
