@@ -53,7 +53,7 @@ unsafe = true
 # Table Of Contents settings
 [markup.tableOfContents]
 ordered = false
-startLevel = 2
+startLevel = 1
 endLevel = 6
 
 [outputs]
@@ -92,6 +92,12 @@ avatar = ""
   [params.home.profile]
   enable = true
   social = true
+
+[params.page.toc]
+  enable = true
+  keepStatic = false
+  auto = true
+  position = "left"
 
 [params.footer]
 enable = true

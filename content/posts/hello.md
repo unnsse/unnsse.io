@@ -15,7 +15,7 @@ license:
 comment: false
 weight: 0
 tags:
-  - hello, kotlin
+  - kotlin
 categories:
   - kotlin
 hiddenFromHomePage: false
