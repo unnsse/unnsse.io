@@ -62,7 +62,7 @@ $selection-color-dark: rgba(50, 112, 194, 0.4) !default;
 $header-height: 3.5rem !default;
 
 // Color of the header background
-$header-background-color: #f8f8f8 !default;
+$header-background-color: #33b3ff !default;
 $header-background-color-dark: #252627 !default;
 
 // Font style of the header title
@@ -135,7 +135,7 @@ $code-color: #24292f !default;
 $code-color-dark: #adbac7 !default;
 
 // Color of the code background
-$code-background-color: #f6f8fa !default;
+$code-background-color: #ffffff !default;
 $code-background-color-dark: #2d333b !default;
 
 $code-error-color: #dc3545 !default;
@@ -151,7 +151,7 @@ $code-info-color-dark: #b1b0b0 !default;
 $code-font-size: 0.875rem !default;
 
 // Font family of the code
-$code-font-family: Source Code Pro, Menlo, Consolas, Monaco, monospace, $global-font-family !default;
+$code-font-family: JetBrains Mono, Source Code Pro, Menlo, Consolas, Monaco, monospace, $global-font-family !default;
 // ========== Code ========== //
 
 // ========== GitHub Corners ========== //
