@@ -16,8 +16,11 @@ Am also the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup
 and long term active member of the [San Diego Java Users Group](https://www.meetup.com/San-Diego-Java-Users-Group/) and 
 Agile San Diego (formerly known as eXtreme Programming San Diego).
 
-Am available for consulting and full-time opportunities.
+Am available for consulting and full-time opportunities, both remote or onsite.
 
 Here's a picture I took of Scripps Pier in La Jolla, California from the Torrey Pines Gliderport:
 
 ![](/images/GliderPortView.jpg)
+
+*Disclaimer*: The content on this website is created solely by me and represents my personal opinions and views. It 
+does not reflect the opinions or views of any of my current or previous employers or clients.
