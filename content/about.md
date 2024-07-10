@@ -20,7 +20,7 @@ Am available for consulting and full-time opportunities, both remote or onsite.
 
 Here's a picture I took of Scripps Pier in La Jolla, California from the Torrey Pines Gliderport:
 
-![](/images/GliderPortView.jpg)
+![People hang gliding over La Jolla Cove](/images/GliderPortView.jpg)
 
 *Disclaimer*: The content on this website is created solely by me and represents my personal opinions and views. It 
 does not reflect the opinions or views of any of my current or previous employers or clients.

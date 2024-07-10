@@ -3,6 +3,8 @@ languageCode = 'en-us'
 title = "Modern-Day Software Engineering"
 theme = 'FixIt'
 canonifyURLs = true
+enableRobotsTXT = true
+enableEmoji = true
 
 [menu]
 [[menu.main]]
