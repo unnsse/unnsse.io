@@ -6,21 +6,32 @@ menus = ['main']
 class = 'center'
 +++
 
-My name is Unnsse Khan and am a Principal Software Engineer living in [San Diego, California, USA](https://en.wikipedia.org/wiki/San_Diego) 
-specializing in highly scalable distributed backend systems using Java, Kotlin & Scala. Have provided solutions for many
-vertical industries (FinTech, PaaS for Real-Time Professional Sports Teams & Internet of Things) ranging anywhere from 
-Startups to Fortune 100 companies. Have trained/mentored numerous software engineering teams advanced techniques for 
-best practices and helped many transition to an Agile methodology. 
+# :wave: Hey There!
 
-Am also the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup.com/sd-kotlin/ "San Diego Kotlin Users Group")
-and long term active member of the [San Diego Java Users Group](https://www.meetup.com/San-Diego-Java-Users-Group/) and 
-Agile San Diego (formerly known as eXtreme Programming San Diego).
+My name is Unnsse Khan and am a Principal Software Engineer living in [San Diego, California, USA](https://en.wikipedia.org/wiki/San_Diego) 
+specializing in highly scalable distributed backend systems on the JVM (Java, Kotlin & Scala). Have provided solutions for numerous
+vertical industries, such as FinTech, PaaS, & Internet of Things (IoT) ranging anywhere from Startups to Fortune 100 companies. 
+Have trained/mentored numerous software engineering teams advanced techniques for best practices and helped many transition to an Agile methodology. 
+
+I am currently the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup.com/sd-kotlin/ "San Diego Kotlin Users Group").
+Have also been long term active member of the [San Diego Java Users Group](https://www.meetup.com/San-Diego-Java-Users-Group/), 
+Agile Alliance & Agile San Diego (formerly known as eXtreme Programming San Diego).
 
 Am available for consulting and full-time opportunities, both remote or onsite.
 
 Here's a picture I took of Scripps Pier in La Jolla, California from the Torrey Pines Gliderport:
 
-![People hang gliding over La Jolla Cove](/images/GliderPortView.jpg)
+![Para gliders flying around La Jolla Cove](/images/GliderPortView.jpg)
 
-*Disclaimer*: The content on this website is created solely by me and represents my personal opinions and views. It 
-does not reflect the opinions or views of any of my current or previous employers or clients.
+# Outside Interests
+
+- beaches: :ocean: :beach_umbrella:
+- foodie: :sushi: :hamburger: :pizza: :taco: :burrito: :cut_of_meat: :spaghetti: 
+- live music: :microphone: :guitar: :drum: :musical_note: :notes: :speaker:
+- movies & TV: :movie_camera: :tv:
+- horse racing: :horse_racing: :horse:
+- watching sports: :football: :basketball: :baseball:
+- travel: :airplane: :cityscape: :desert_island: :national_park: :mountain: 
+
+*Disclaimer*: The content on this website is created solely by me and represents my opinions/views. It does not reflect
+the opinions/views of any of my employers or clients, whether current or previous.
