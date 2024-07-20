@@ -1,0 +1,14 @@
+# -------------------------------------------------------------------------------------
+# Output Format Definitions
+# See: https://gohugo.io/templates/output-formats/#output-format-definitions
+# -------------------------------------------------------------------------------------
+
+# Options to make output .md files
+[MarkDown]
+mediaType = "text/markdown"
+isPlainText = true
+isHTML = false
+
+[SearchIndex]
+baseName = "search"
+mediaType = "application/json"

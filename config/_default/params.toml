@@ -1,0 +1,188 @@
+# FixIt theme version
+version = "0.3.8"
+
+# site description
+description = "My take on the current and modern software engineering landscape."
+# site keywords
+keywords = ["Unnsse Khan", "untz", "untzkhan", "Unnsse", "SDKotlin", "Kotlin", "San Diego Java", "San Diego Kotlin",
+    "Java"]
+# site default theme ["light", "dark", "auto"]
+defaultTheme = "auto"
+titleDelimiter = "|"
+indexWithSiteTitle = true
+indexWithSubtitle = true
+dateFormat = "01/02/2006"
+disableThemeInject = false
+
+[breadcrumb]
+enable = true
+sticky = true
+showHome = true
+
+# Author Configuration
+[author]
+name = "Unnsse Khan"
+email = "contact@unnsse.io"
+link = "https://github.com/unnsse"
+avatar = ""
+
+[home]
+[home.profile]
+enable = false
+title="foo"
+subtitle="bar baz"
+social = true
+
+[home.posts]
+enable = true
+paginate = 3
+
+[footer]
+enable = true
+# whether to show copyright info
+copyright = true
+# whether to show the author
+author = true
+# Site creation year
+
+# FixIt 0.2.12 | NEW Public network security only in China (HTML format is supported)
+gov = ""
+# ICP info only in China (HTML format is supported)
+icp = ""
+# license info (HTML format is supported)
+license = ""
+# FixIt 0.3.0 | NEW whether to show Hugo and theme info
+[footer.powered]
+enable = true
+hugoLogo = true
+themeLogo = true
+# FixIt 0.2.17 | CHANGED Site creation time
+[footer.siteTime]
+enable = false
+animate = true
+icon = "fa-solid fa-heartbeat"
+pre = ""
+value = "2021-12-18T16:15:22+08:00" # e.g. "2021-12-18T16:15:22+08:00"
+# FixIt 0.2.17 | NEW footer lines order, optional values: ["first", 0, 1, 2, 3, 4, 5, "last"]
+[footer.order]
+powered = 1
+copyright = 2
+statistics = 0
+visitor = "first"
+beian = 3
+
+[social]
+GitHub = "unnsse"
+Linkedin = "unnsse"
+Twitter = "unnsse_"
+
+[page]
+# FixIt 0.2.18 | NEW whether to enable the author's avatar of the post
+authorAvatar = false
+# whether to hide a page from home page
+hiddenFromHomePage = false
+# whether to hide a page from search results
+hiddenFromSearch = false
+# FixIt 0.3.0 | NEW whether to hide a page from RSS feed
+hiddenFromRss = false
+# FixIt 0.3.0 | NEW whether to hide a page from related posts
+hiddenFromRelated = false
+# whether to enable twemoji
+twemoji = false
+# whether to enable lightgallery
+# FixIt 0.2.18 | CHANGED if set to "force", images in the content will be forced to shown as the gallery.
+lightgallery = false
+# whether to enable the ruby extended syntax
+ruby = true
+# whether to enable the fraction extended syntax
+fraction = true
+# whether to enable the fontawesome extended syntax
+fontawesome = true
+# license info (HTML format is supported)
+license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>'
+# whether to show link to Raw Markdown content of the post
+linkToMarkdown = false
+# FixIt 0.3.0 | NEW whether to show link to view source code of the post
+linkToSource = false
+# FixIt 0.3.0 | NEW whether to show link to edit the post
+linkToEdit = true
+# FixIt 0.3.0 | NEW whether to show link to report issue for the post
+linkToReport = true
+# whether to show the full text content in RSS
+rssFullText = true
+# FixIt 0.2.13 | NEW Page style ["narrow", "normal", "wide", ...]
+pageStyle = "normal"
+# FixIt 0.2.17 | CHANGED Auto Bookmark Support
+# If true, save the reading progress when closing the page.
+autoBookmark = true
+# FixIt 0.2.17 | NEW whether to enable wordCount
+wordCount = false
+# FixIt 0.2.17 | NEW whether to enable readingTime
+readingTime = true
+# FixIt 0.2.17 | NEW end of post flag
+endFlag = ""
+# FixIt 0.2.18 | NEW whether to enable instant.page
+instantPage = false
+# FixIt 0.3.0 | NEW whether to enable collection list at the sidebar
+collectionList = false
+# FixIt 0.3.0 | NEW whether to enable collection navigation at the end of the post
+collectionNavigation = false
+
+[page.toc]
+enable = true
+keepStatic = false
+auto = true
+position = "left"
+
+# Code config
+[page.code]
+# whether to show the copy button of the code block
+copy = true
+# FixIt 0.2.13 | NEW whether to show the edit button of the code block
+edit = false
+# the maximum number of lines of displayed code by default
+maxShownLines = 50
+
+[page.heading]
+# used with `markup.tableOfContents.ordered` parameter
+[page.heading.number]
+# whether to enable auto heading numbering
+enable = false
+# FixIt 0.3.3 | NEW only enable in main section pages (default is posts)
+onlyMainSection = true
+[page.heading.number.format]
+h1 = "{title}"
+h2 = "{h2} {title}"
+h3 = "{h2}.{h3} {title}"
+h4 = "{h2}.{h3}.{h4} {title}"
+h5 = "{h2}.{h3}.{h4}.{h5} {title}"
+h6 = "{h2}.{h3}.{h4}.{h5}.{h6} {title}"
+
+# social share links in post page
+[page.share]
+enable = true
+Twitter = true
+Facebook = true
+Linkedin = true
+Whatsapp = false
+Pinterest = false
+Tumblr = false
+HackerNews = true
+Reddit = true
+VK = false
+Buffer = false
+Xing = false
+Line = false
+Instapaper = false
+Pocket = false
+Flipboard = false
+Weibo = false
+Myspace = false
+Blogger = false
+Baidu = false
+Odnoklassniki = false
+Evernote = false
+Skype = false
+Trello = false
+Mix = false
+RSS = true

@@ -1,0 +1,245 @@
+baseURL = 'https://unnsse.io/'
+languageCode = 'en-us'
+title = "Modern-Day Software Engineering"
+theme = 'FixIt'
+canonifyURLs = true
+enableRobotsTXT = true
+enableEmoji = true
+
+[menu]
+[[menu.main]]
+title = "Articles"
+name = 'Articles'
+url = '/posts'
+weight = 20
+[[menu.main]]
+parent = 'Navigation'
+name = 'Archives'
+url = '/archives/'
+weight = 50
+[[menu.main]]
+parent = 'Navigation'
+name = 'Categories'
+url = '/categories/'
+weight = 50
+[[menu.main]]
+parent = 'Navigation'
+name = 'Tags'
+url = '/tags/'
+weight = 50
+
+[markup]
+# Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+[markup.highlight]
+########## necessary configurations ##########
+# https://github.com/hugo-fixit/FixIt/issues/43
+codeFences = true
+lineNos = true
+lineNumbersInTable = true
+noClasses = false
+########## necessary configurations ##########
+guessSyntax = true
+# Goldmark is from Hugo 0.60 the default library used for Markdown
+[markup.goldmark]
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+[markup.goldmark.renderer]
+# whether to use HTML tags directly in the document
+unsafe = true
+# Table Of Contents settings
+[markup.tableOfContents]
+ordered = false
+startLevel = 1
+endLevel = 6
+
+[outputFormats]
+[SearchIndex]
+baseName = "search"
+mediaType = "application/json"
+
+[outputs]
+home = ["HTML", "RSS", "JSON", "archives", "search"]
+page = ["HTML", "MarkDown"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML"]
+term = ["HTML", "RSS"]
+
+# -------------------------------------------------------------------------------------
+# Theme Core Configuration
+# See: https://fixit.lruihao.cn/documentation/basics/#theme-configuration
+# -------------------------------------------------------------------------------------
+
+[params]
+# FixIt theme version
+version = "0.3.8"
+
+# site description
+description = "My take on the current and modern software engineering landscape."
+# site keywords
+keywords = ["Unnsse Khan", "untz", "untzkhan", "Unnsse", "SDKotlin", "Kotlin", "San Diego Java", "San Diego Kotlin",
+"Java"]
+# site default theme ["light", "dark", "auto"]
+defaultTheme = "auto"
+titleDelimiter = "|"
+indexWithSubtitle = true
+dateFormat = "01/02/2006"
+
+# Author Configuration
+[params.author]
+name = "Unnsse Khan"
+email = "contact@unnsse.io"
+link = "https://github.com/unnsse"
+avatar = ""
+
+[params.home]
+  [params.home.profile]
+  enable = true
+  title="foo"
+  subtitle="bar baz"
+  social = true
+  [params.home.posts]
+  enable = true
+  paginate = 3
+
+[params.page.toc]
+  enable = true
+  keepStatic = false
+  auto = true
+  position = "left"
+
+
+[params.footer]
+enable = true
+# whether to show copyright info
+copyright = true
+# whether to show the author
+author = true
+# Site creation year
+
+# FixIt 0.2.12 | NEW Public network security only in China (HTML format is supported)
+gov = ""
+# ICP info only in China (HTML format is supported)
+icp = ""
+# license info (HTML format is supported)
+license = ""
+# FixIt 0.3.0 | NEW whether to show Hugo and theme info
+[params.footer.powered]
+enable = true
+hugoLogo = true
+themeLogo = true
+# FixIt 0.2.17 | CHANGED Site creation time
+[params.footer.siteTime]
+enable = false
+animate = true
+icon = "fa-solid fa-heartbeat"
+pre = ""
+value = "2021-12-18T16:15:22+08:00" # e.g. "2021-12-18T16:15:22+08:00"
+# FixIt 0.2.17 | NEW footer lines order, optional values: ["first", 0, 1, 2, 3, 4, 5, "last"]
+[params.footer.order]
+powered = 0
+copyright = 0
+statistics = 0
+visitor = 0
+beian = 0
+
+[params.social]
+GitHub = "unnsse"
+Linkedin = "unnsse"
+Twitter = "unnsse_"
+
+[params.page]
+# FixIt 0.2.18 | NEW whether to enable the author's avatar of the post
+authorAvatar = false
+# whether to hide a page from home page
+hiddenFromHomePage = false
+# whether to hide a page from search results
+hiddenFromSearch = false
+# FixIt 0.3.0 | NEW whether to hide a page from RSS feed
+hiddenFromRss = false
+# FixIt 0.3.0 | NEW whether to hide a page from related posts
+hiddenFromRelated = false
+# whether to enable twemoji
+twemoji = false
+# whether to enable lightgallery
+# FixIt 0.2.18 | CHANGED if set to "force", images in the content will be forced to shown as the gallery.
+lightgallery = false
+# whether to enable the ruby extended syntax
+ruby = true
+# whether to enable the fraction extended syntax
+fraction = true
+# whether to enable the fontawesome extended syntax
+fontawesome = true
+# license info (HTML format is supported)
+license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>'
+# whether to show link to Raw Markdown content of the post
+linkToMarkdown = false
+# FixIt 0.3.0 | NEW whether to show link to view source code of the post
+linkToSource = false
+# FixIt 0.3.0 | NEW whether to show link to edit the post
+linkToEdit = true
+# FixIt 0.3.0 | NEW whether to show link to report issue for the post
+linkToReport = true
+# whether to show the full text content in RSS
+rssFullText = false
+# FixIt 0.2.13 | NEW Page style ["narrow", "normal", "wide", ...]
+pageStyle = "normal"
+# FixIt 0.2.17 | CHANGED Auto Bookmark Support
+# If true, save the reading progress when closing the page.
+autoBookmark = false
+# FixIt 0.2.17 | NEW whether to enable wordCount
+wordCount = false
+# FixIt 0.2.17 | NEW whether to enable readingTime
+readingTime = true
+# FixIt 0.2.17 | NEW end of post flag
+endFlag = ""
+# FixIt 0.2.18 | NEW whether to enable instant.page
+instantPage = false
+# FixIt 0.3.0 | NEW whether to enable collection list at the sidebar
+collectionList = false
+# FixIt 0.3.0 | NEW whether to enable collection navigation at the end of the post
+collectionNavigation = false
+
+# social share links in post page
+[params.page.share]
+enable = true
+Twitter = true
+Facebook = true
+Linkedin = true
+Whatsapp = false
+Pinterest = false
+Tumblr = false
+HackerNews = true
+Reddit = true
+VK = false
+Buffer = false
+Xing = false
+Line = false
+Instapaper = false
+Pocket = false
+Flipboard = false
+Weibo = false
+Myspace = false
+Blogger = false
+Baidu = false
+Odnoklassniki = false
+Evernote = false
+Skype = false
+Trello = false
+Mix = false
+RSS = true
+
+# FixIt 0.2.14 | NEW GitHub banner in the top-right or top-left corner
+[githubCorner]
+enable = true
+permalink = "https://github.com/unnsse/unnsse.io"
+title = "Github Repo Watch"
+position = "right" # ["left", "right"]
+
+[footer]
+since = 2025
