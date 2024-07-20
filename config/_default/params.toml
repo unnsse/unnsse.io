@@ -37,7 +37,6 @@ social = true
 enable = true
 paginate = 3
 
-
 [footer]
 enable = true
 # whether to show copyright info
@@ -76,7 +75,6 @@ beian = 3
 GitHub = "unnsse"
 Linkedin = "unnsse"
 Twitter = "unnsse_"
-
 
 [page]
 # FixIt 0.2.18 | NEW whether to enable the author's avatar of the post

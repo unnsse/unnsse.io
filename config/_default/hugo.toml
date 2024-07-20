@@ -6,17 +6,10 @@ canonifyURLs = true
 enableRobotsTXT = true
 enableEmoji = true
 
-
-
-[outputFormats]
-
-
-
 # -------------------------------------------------------------------------------------
 # Theme Core Configuration
 # See: https://fixit.lruihao.cn/documentation/basics/#theme-configuration
 # -------------------------------------------------------------------------------------
-
 
 # FixIt 0.2.14 | NEW GitHub banner in the top-right or top-left corner
 [githubCorner]
