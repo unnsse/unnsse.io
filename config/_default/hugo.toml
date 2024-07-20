@@ -1,0 +1,29 @@
+baseURL = 'https://unnsse.io/'
+languageCode = 'en-us'
+title = "Modern-Day Software Engineering"
+theme = 'FixIt'
+canonifyURLs = true
+enableRobotsTXT = true
+enableEmoji = true
+
+
+
+[outputFormats]
+
+
+
+# -------------------------------------------------------------------------------------
+# Theme Core Configuration
+# See: https://fixit.lruihao.cn/documentation/basics/#theme-configuration
+# -------------------------------------------------------------------------------------
+
+
+# FixIt 0.2.14 | NEW GitHub banner in the top-right or top-left corner
+[githubCorner]
+enable = true
+permalink = "https://github.com/unnsse/unnsse.io"
+title = "Github Repo Watch"
+position = "right" # ["left", "right"]
+
+[footer]
+since = 2025

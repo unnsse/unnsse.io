@@ -16,6 +16,9 @@
 
     {{- /* Content */ -}}
     {{- $content := dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+   <center>
+    {{- partial "social" . -}}
+   </center>
     {{- if $params.password -}}
       {{- $saltLen := strings.RuneCount (trim $params.password "") -}}
       {{- $saltLen = cond (eq (mod $saltLen 2) 0) (add $saltLen 1) $saltLen -}}

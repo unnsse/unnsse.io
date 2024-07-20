@@ -58,8 +58,13 @@ ordered = false
 startLevel = 1
 endLevel = 6
 
+[outputFormats]
+[SearchIndex]
+baseName = "search"
+mediaType = "application/json"
+
 [outputs]
-home = ["HTML", "RSS", "JSON", "archives"]
+home = ["HTML", "RSS", "JSON", "archives", "search"]
 page = ["HTML", "MarkDown"]
 section = ["HTML", "RSS"]
 taxonomy = ["HTML"]
@@ -77,10 +82,12 @@ version = "0.3.8"
 # site description
 description = "My take on the current and modern software engineering landscape."
 # site keywords
-keywords = ["Unnsse Khan", "Unnsse", "SDKotlin", "Kotlin", "Java", "San Diego"]
+keywords = ["Unnsse Khan", "untz", "untzkhan", "Unnsse", "SDKotlin", "Kotlin", "San Diego Java", "San Diego Kotlin",
+"Java"]
 # site default theme ["light", "dark", "auto"]
 defaultTheme = "auto"
-
+titleDelimiter = "|"
+indexWithSubtitle = true
 dateFormat = "01/02/2006"
 
 # Author Configuration
@@ -93,13 +100,19 @@ avatar = ""
 [params.home]
   [params.home.profile]
   enable = true
+  title="foo"
+  subtitle="bar baz"
   social = true
+  [params.home.posts]
+  enable = true
+  paginate = 3
 
 [params.page.toc]
   enable = true
   keepStatic = false
   auto = true
   position = "left"
+
 
 [params.footer]
 enable = true
@@ -108,7 +121,7 @@ copyright = true
 # whether to show the author
 author = true
 # Site creation year
-since = ""
+
 # FixIt 0.2.12 | NEW Public network security only in China (HTML format is supported)
 gov = ""
 # ICP info only in China (HTML format is supported)
@@ -126,7 +139,7 @@ enable = false
 animate = true
 icon = "fa-solid fa-heartbeat"
 pre = ""
-value = "" # e.g. "2021-12-18T16:15:22+08:00"
+value = "2021-12-18T16:15:22+08:00" # e.g. "2021-12-18T16:15:22+08:00"
 # FixIt 0.2.17 | NEW footer lines order, optional values: ["first", 0, 1, 2, 3, 4, 5, "last"]
 [params.footer.order]
 powered = 0
@@ -165,9 +178,9 @@ fontawesome = true
 # license info (HTML format is supported)
 license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>'
 # whether to show link to Raw Markdown content of the post
-linkToMarkdown = true
+linkToMarkdown = false
 # FixIt 0.3.0 | NEW whether to show link to view source code of the post
-linkToSource = true
+linkToSource = false
 # FixIt 0.3.0 | NEW whether to show link to edit the post
 linkToEdit = true
 # FixIt 0.3.0 | NEW whether to show link to report issue for the post
@@ -228,7 +241,5 @@ permalink = "https://github.com/unnsse/unnsse.io"
 title = "Github Repo Watch"
 position = "right" # ["left", "right"]
 
-
 [footer]
-  author = true
-  since = 2024
+since = 2025
