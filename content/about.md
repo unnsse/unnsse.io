@@ -6,16 +6,17 @@ menus = ['main']
 class = 'center'
 +++
 
+{{< social-links >}}
+
 # :wave: Hey there!
 
 My name is Unnsse Khan and am a Principal Software Engineer living in [San Diego, California, USA](https://en.wikipedia.org/wiki/San_Diego) 
 specializing in highly scalable distributed backend systems on the JVM (Java, Kotlin & Scala). 
 
-Have provided solutions for numerous
-vertical industries, such as FinTech, PaaS, & Internet of Things (IoT) ranging anywhere from Startups to Fortune 100 companies. 
-Have trained/mentored numerous software engineering teams advanced techniques for best practices and helped many transition to an Agile methodology. 
+Provided solutions for various vertical industries, including FinTech, Consumer Electronics, PaaS, and IoT, for companies ranging from startups to Fortune 100. Contributed as both an individual contributor on a distributed cross-functional team and as a sole developer handling end-to-end software engineering and implementation, both onsite and remotely. 
+Additionally, trained and mentored numerous software engineering teams in advanced techniques and best practices, facilitating their transition to Agile methodology.
 
-I am currently the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup.com/sd-kotlin/ "San Diego Kotlin Users Group").
+Being community-driven and altruistic, I am currently the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup.com/sd-kotlin/ "San Diego Kotlin Users Group") as a volunteer.
 Have also been long term active member of the [San Diego Java Users Group](https://www.meetup.com/San-Diego-Java-Users-Group/), 
 Agile Alliance & Agile San Diego (formerly known as eXtreme Programming San Diego).
 
@@ -34,4 +35,4 @@ Here's a picture I took of Scripps Pier in La Jolla, California from the [Torrey
 - travel: :airplane: :cityscape: :desert_island: :national_park: :mountain: 
 
 *Disclaimer*: The content on this website is created solely by me and represents my opinions/views. It does not reflect
-the opinions/views of any of my employers or clients, whether current or previous.
+the opinions/views of my employers or clients, whether current or previous.
