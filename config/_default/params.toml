@@ -4,8 +4,8 @@ version = "0.3.8"
 # site description
 description = "My take on the current and modern software engineering landscape."
 # site keywords
-keywords = ["Unnsse Khan", "untz", "untzkhan", "Unnsse", "SDKotlin", "Kotlin", "San Diego Java", "San Diego Kotlin",
-    "Java"]
+keywords = ["Unnsse Khan", "unnsse.io", "untz", "untzkhan", "Unnsse", "SDKotlin", "Kotlin", "San Diego Java", "San Diego Kotlin",
+    "Java", "Java Expert", "Kotlin Expert"]
 # site default theme ["light", "dark", "auto"]
 defaultTheme = "auto"
 titleDelimiter = "|"
@@ -62,10 +62,10 @@ enable = false
 animate = true
 icon = "fa-solid fa-heartbeat"
 pre = ""
-value = "2021-12-18T16:15:22+08:00" # e.g. "2021-12-18T16:15:22+08:00"
+value = "2021-12-18T00:15:22-08:00" # e.g. "2021-12-18T16:15:22+08:00"
 # FixIt 0.2.17 | NEW footer lines order, optional values: ["first", 0, 1, 2, 3, 4, 5, "last"]
 [footer.order]
-powered = 1
+powered = 4
 copyright = 2
 statistics = 0
 visitor = "first"
@@ -75,6 +75,7 @@ beian = 3
 GitHub = "unnsse"
 Linkedin = "unnsse"
 Twitter = "unnsse_"
+email = "contact@unnsse.io"
 
 [page]
 # FixIt 0.2.18 | NEW whether to enable the author's avatar of the post
