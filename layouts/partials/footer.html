@@ -43,7 +43,7 @@
           {{- if ne $footerConfig.author false -}}
             <span class="author" itemprop="copyrightHolder">
               {{ partial "plugin/link.html" (dict "Destination" ($.Site.Params.author.link | default (.Scratch.Get "homeRelPermalink")) "Content" .Site.Params.author.name) -}}
-              {{- partial "social" . -}}
+              {{ partial "custom/social-links" . }}
             </span>
           {{- end -}}
 

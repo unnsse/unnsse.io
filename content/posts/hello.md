@@ -1,12 +1,12 @@
 ---
 title: Hello World
 subtitle:
-date: 2024-07-06T20:13:45-07:00
+date: 2024-08-04T20:13:45-07:00
 slug: 583bc6c
 draft: false
 author: 
   name: Unnsse Khan
-  link: https://www.linkedin.com/in/unnsse
+  link: https://github.com/unnsse
   email: contact@unnsse.io
   avatar: 
 description:
@@ -15,9 +15,9 @@ license:
 comment: false
 weight: 0
 tags:
-  - kotlin
+  - hello world
 categories:
-  - kotlin
+  - intro
 hiddenFromHomePage: false
 hiddenFromSearch: false
 hiddenFromRss: false
@@ -28,7 +28,7 @@ resources:
     src: featured-image.jpg
   - name: featured-image-previ
     src: featured-image-preview.jpg
-toc: true
+toc: false
 math: false
 lightgallery: false
 password:
@@ -40,25 +40,14 @@ repost:
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
 
-## Intro
+Welcome to my first post! Created this blog entitled "Modern-Day Software Engineering" to reflect my opinions regarding
+the quickly changing technical landscape that developers like me face. This site will not only help me document my struggles
+& observations through my journeys but hopefully will help others as well. 
 
-This will serve as a template until I get some real content.
+No first entry by a programmer can be complete without the traditional/canonical Hello World program:
  
 ```kotlin
-fun main(args: Array<String>) {
-    println("Hello, World!")
+fun main() {
+    println("Welcome to Modern-Day Software Engineering!")
 }
 ```
-## Subheading 
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
-aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-## Subheading 
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
