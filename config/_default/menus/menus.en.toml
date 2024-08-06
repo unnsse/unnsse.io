@@ -12,13 +12,27 @@ parent = 'Navigation'
 name = 'Archives'
 url = '/archives/'
 weight = 50
+[main.params]
+icon = "fa-solid fa-archive"
+[[main]]
+identifier = "collections"
+parent = "Navigation"
+name = "Collections"
+url = "/collections/"
+weight = 50
+[main.params]
+icon = "fa-solid fa-layer-group"
 [[main]]
 parent = 'Navigation'
 name = 'Categories'
 url = '/categories/'
 weight = 50
+[main.params]
+icon = "fa-solid fa-folder-tree"
 [[main]]
 parent = 'Navigation'
 name = 'Tags'
 url = '/tags/'
 weight = 50
+[main.params]
+icon = "fa-solid fa-tags"

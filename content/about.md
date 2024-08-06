@@ -13,12 +13,16 @@ class = 'center'
 My name is Unnsse Khan and am a Principal Software Engineer living in [San Diego, California, USA](https://en.wikipedia.org/wiki/San_Diego) 
 specializing in highly scalable distributed backend systems on the JVM (Java, Kotlin & Scala). 
 
-Provided solutions for various vertical industries, including FinTech, Consumer Electronics, PaaS, and IoT, for companies ranging from startups to Fortune 100. Contributed as both an individual contributor on a distributed cross-functional team and as a sole developer handling end-to-end software engineering and implementation, both onsite and remotely. 
-Additionally, trained and mentored numerous software engineering teams in advanced techniques and best practices, facilitating their transition to Agile methodology.
+My career has consisted of providing solutions for a diverse array of vertical industries, including FinTech, Consumer Electronics, PaaS, and IoT, for 
+companies ranging from startups to Fortune 100. Contributed in roles ranging from Lead Software Engineer & Individual
+Contributor to Primary Developer on distributed (domestic & international) cross-functional teams, handling end-to-end software engineering. 
 
-Being community-driven and altruistic, I am currently the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup.com/sd-kotlin/ "San Diego Kotlin Users Group") as a volunteer.
-Have also been long term active member of the [San Diego Java Users Group](https://www.meetup.com/San-Diego-Java-Users-Group/), 
-Agile Alliance & Agile San Diego (formerly known as eXtreme Programming San Diego).
+Additionally, trained and mentored numerous software engineering teams in 
+advanced techniques and best practices, along with facilitating their transition to Agile methodology.
+
+Being community-driven and altruistic, I am currently the Co-Organizer of the [San Diego Kotlin User Group](https://www.meetup.com/sd-kotlin/ "San Diego Kotlin Users Group")
+as a volunteer. Have also been long term active member of the [San Diego Java Users Group](https://www.meetup.com/San-Diego-Java-Users-Group/) and
+[Agile Alliance](https://www.agilealliance.org/_https://www.agilealliance.org/) communities.
 
 Am available for consulting and full-time opportunities, both remote or onsite.
 
