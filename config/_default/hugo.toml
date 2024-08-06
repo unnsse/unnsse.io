@@ -13,10 +13,10 @@ enableEmoji = true
 
 # FixIt 0.2.14 | NEW GitHub banner in the top-right or top-left corner
 [githubCorner]
-enable = true
+enable = false
 permalink = "https://github.com/unnsse/unnsse.io"
 title = "Github Repo Watch"
 position = "right" # ["left", "right"]
 
 [footer]
-since = 2025
+since = 2024
