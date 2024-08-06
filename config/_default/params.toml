@@ -14,6 +14,19 @@ indexWithSubtitle = true
 dateFormat = "01/02/2006"
 disableThemeInject = false
 
+[header]
+desktopMode = "sticky"
+mobileMode = "auto"
+[header.title]
+logo = ""
+name = ""
+pre = ""
+post = ""
+typeit = false
+[header.subtitle]
+name = ""
+typeit = false
+
 [breadcrumb]
 enable = true
 sticky = true
@@ -104,7 +117,7 @@ license = '<a rel="license external nofollow noopener noreferrer" href="https://
 # whether to show link to Raw Markdown content of the post
 linkToMarkdown = false
 # FixIt 0.3.0 | NEW whether to show link to view source code of the post
-linkToSource = false
+linkToSource = true
 # FixIt 0.3.0 | NEW whether to show link to edit the post
 linkToEdit = true
 # FixIt 0.3.0 | NEW whether to show link to report issue for the post
@@ -187,3 +200,27 @@ Skype = false
 Trello = false
 Mix = false
 RSS = true
+
+[backToTop]
+enable = true
+scrollPercent = true
+
+[readingProgress]
+enable = false
+start = "left"
+position = "top"
+reversed = false
+light = ""
+dark = ""
+height = "2px"
+
+[cookieconsent]
+enable = true
+[cookieconsent.content]
+message = ""
+dismiss = ""
+link = ""
+
+[compatibility]
+polyfill = true
+objectFit = true
