@@ -2,7 +2,7 @@
 version = "0.3.8"
 
 # site description
-description = "My take on the current and modern software engineering landscape."
+description = "Modern-Day Software Engineer is Unnsse Khan's modernistic outlook on the current software engineering landscape."
 # site keywords
 keywords = ["Unnsse Khan", "unnsse.io", "untz", "untzkhan", "Unnsse", "SDKotlin", "Kotlin", "San Diego Java", "San Diego Kotlin",
     "Java", "Java Expert", "Kotlin Expert"]
@@ -13,6 +13,9 @@ indexWithSiteTitle = true
 indexWithSubtitle = true
 dateFormat = "01/02/2006"
 disableThemeInject = false
+enablePWA = true
+externalIcon = true
+withSiteTitle=true
 
 [header]
 desktopMode = "sticky"

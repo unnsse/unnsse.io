@@ -16,6 +16,7 @@ comment: false
 weight: 0
 tags:
   - hello world
+  - intro
 categories:
   - intro
 hiddenFromHomePage: false
