@@ -28,7 +28,7 @@ resources:
     src: featured-image.jpg
   - name: featured-image-preview
     src: featured-image-preview.jpg
-toc: false
+toc: true
 math: false
 lightgallery: false
 password:
@@ -40,34 +40,40 @@ repost:
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
 
-Just created a sample HTTP Service using Scala's [Typelevel](https://typelevel.org/) ([http4s](https://http4s.org/), [cats](https://typelevel.org/cats/), [cats-effect](https://typelevel.org/cats-effect/),[circe](https://circe.github.io/circe/), etc) stack 
-which returns specific real-time weather information, based on the latitude and longitude parameters, passed into an HTTP Get endpoint.
+# 1.0 Intro
 
-Acceptance Criteria:
+This articles highlights my experiences when I created a sample HTTP Service using Scala's [Typelevel](https://typelevel.org/) ([http4s](https://http4s.org/), [cats](https://typelevel.org/cats/), [cats-effect](https://typelevel.org/cats-effect/),[circe](https://circe.github.io/circe/), etc) stack 
+which returns specific real-time weather information, based on the latitude and longitude parameters, passed into an HTTP Get endpoint. It also serves as a high level overview of how to use some of Typelevel's projects to quickly setup a working semi
+production ready HTTP Service which parses JSON and is testable in Scala.
+
+## 1.1 Acceptance Criteria
+
+The HTTP Weather Service should adhere to the following requirements:
 
 1. Accepts latitude and longitude coordinates.
 2. Returns the short forecast for that area for Today (“Partly Cloudy” etc).
 3. Categorizes whether the temperature is “hot”, “cold”, or “moderate”.
 4. Uses the [National Weather Service API Web Service](https://www.weather.gov/documentation/services-web-api) as a data source.
 
-This article serves as a high level overview of how to use some of Typelevel's projects to setup a working semi production ready HTTP Service which parses JSON and is testable in Scala.
-
----
+# 2.0 Implementation
 
 The interesting mix of Typelevel's `http4s`, `cats`, and `cats-effect` libraries proved a different experience (and yet
-very rewarding experience) due to the functional programming style and mindset enforced. This contrasts immensely with the 
+a very rewarding experience) due to the functional programming style and mindset enforced. This contrasts immensely with the 
 traditional Java Spring Boot based Microservices codebases for which I have quite extensive professional experience
 designing & developing in.
 
-Used a top level singleton object to contain every method and expression which extend `cats.effect.IOApp`:
+## 2.1 Top-Level Singleton Object
+
+Used a top level singleton object aptly named `WeatherServer`, to contain every method and expression, which extends `cats.effect.IOApp`:
 
 ```scala
 object WeatherServer extends IOApp { 
    // All the magic happens in here
 }
 ```
+## 2.2 HTTP GET Endpoint
 
-To setup as an embedded HTTP service with a specific HTTP Get endpoint, I used `http4s` DSL convention for the routing:
+For the specific HTTP Get endpoint, I used the `http4s` library's DSL convention for the routing:
 
 ```scala
 // Define the weather service route
@@ -85,6 +91,7 @@ To setup as an embedded HTTP service with a specific HTTP Get endpoint, I used `
      }
  }
 ```
+## 2.3 Valid Coordinate
 
 In order, to handle the edge case of invalid longitude & latitude coordinates, created the following helper method:
 
@@ -94,8 +101,9 @@ private def isValidCoordinate(lat: Double, lon: Double): Boolean = {
   lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180
 }
 ```
+## 2.4 Classify Temperature
 
-Wrote the following method to categorize the temparture as cold, moderate or hot:
+Wrote the following helper method to categorize the temperature as cold, moderate or hot:
 
 ```scala
 // Classify temperature into cold, moderate, or hot
@@ -105,8 +113,9 @@ def classifyTemperature(temp: Double): String = {
   else "moderate"
 }
 ```
+## 2.5 Embedded HTTP Server
 
-Used the embedded `EmberServerBuilder` to server this HTTP Get endpoint on port 8080:
+Used the embedded `EmberServerBuilder` to serve this HTTP Get endpoint on port 8080:
 
 ```scala
 // Build and run the server
@@ -123,10 +132,63 @@ override def run(args: List[String]): IO[ExitCode] = {
   } yield ExitCode.Success
 }
 ```
+# 3.0 Compilation & Bootstrap
 
-Also, good software engineering never neglects weeding out all the edge cases through a proper unit / integration test!
+## 3.1 Compile project using sbt
 
-A combination of `cats.effect.IO` and `http4s` inside my `scalatest` helped maked this test coverage not only comprehensive but asynchronous:
+To compile the project, invoke `sbt compile`:
+
+```bash
+ sbt compile
+[info] welcome to sbt 1.10.2 (Oracle Corporation Java 21)
+[info] loading settings for project weatherservice-build-build from metals.sbt ...
+[info] loading project definition from /Users/unnsse/work/WeatherService/project/project
+[info] loading settings for project weatherservice-build from metals.sbt ...
+[info] loading project definition from /Users/unnsse/work/WeatherService/project
+[info] loading settings for project weatherservice from build.sbt ...
+[info] set current project to weatherservice (in build file:/Users/unnsse/work/WeatherService/)
+[info] Executing in batch mode. For better performance use sbt's shell
+[success] Total time: 0 s, completed Oct 4, 2024, 4:35:11 PM
+```
+
+## 3.2 Bootstrap/Run WeatherServer using sbt
+
+To run locally, invoke `sbt run`:
+
+```bash
+[info] welcome to sbt 1.10.2 (Oracle Corporation Java 21)
+[info] loading settings for project weatherservice-build-build from metals.sbt ...
+[info] loading project definition from /Users/unnsse/work/WeatherService/project/project
+[info] loading settings for project weatherservice-build from metals.sbt ...
+[info] loading project definition from /Users/unnsse/work/WeatherService/project
+[info] loading settings for project weatherservice from build.sbt ...
+[info] set current project to weatherservice (in build file:/Users/unnsse/work/WeatherService/)
+[info] running (fork) weather.WeatherServer 
+[info] 00:40:28.776 [io-compute-5] INFO  weather.WeatherServer - Starting Weather Server
+[info] 00:40:29.067 [io-compute-0] INFO  o.h.e.s.EmberServerBuilderCompanionPlatform - Ember-Server service bound to address: [::]:8080
+```
+## 3.3 HTTP GET Endpoint
+
+With the HTTP Service running locally, one can hit the HTTP Get endpoint passing in longitude and latitude for San Francisco:
+
+`http://localhost:8080/weather?latitude=37.7749&longitude=-122.4194`
+
+Which will return the following real-time weather information in JSON format:
+
+```json
+{
+    "forecast": "Mostly Clear",
+    "temperatureType": "moderate"
+}
+```
+
+# 4.0 Testing 
+
+Also, good software engineering never neglects weeding out all the edge cases through a proper unit/integration test!
+
+A combination of `cats.effect.IO` and `http4s` inside my `scalatest` helped make this test coverage not only comprehensive but asynchronous:
+
+## 4.1 Using scalatest
 
 ```scala
 package weather
@@ -168,10 +230,11 @@ class WeatherServerSpec extends AsyncFreeSpec with AsyncIOSpec with Matchers {
   // More test cases covered can be found in Github repo source listing (see below)
 }
 ```
+## 4.2 Running tests using sbt
 
 Now, when  invoking with `sbt test`, seeing the tests passing was very gratifying (after jumping through a bunch of rabbit 
-holes, not only for the acceptance criteria but dealing with the edge/corner cases that can arise) as this was my first foray 
-using the Typelevel stack for working prototype:
+holes, not only for the acceptance criteria, but dealing with the edge/corner cases that arose) as this was my first foray 
+using the Typelevel stack for creating a working prototype:
 
 ```bash
 23:58:15.779 [io-compute-7] INFO  weather.WeatherServer - Processed weather response: WeatherResponse(Mostly Clear,moderate)
@@ -190,40 +253,38 @@ using the Typelevel stack for working prototype:
 [info] Suites: completed 1, aborted 0
 [info] Tests: succeeded 5, failed 0, canceled 0, ignored 0, pending 0
 [info] All tests passed.
-[success] Total time: 2 s, completed Oct 3, 2024, 11:58:16PM
+[success] Total time: 2 s, completed Oct 3, 2024, 11:58:16 PM
 ```
 
-To run locally, invoke `sbt run`:
+# 5.0 Afterthoughts
 
-```bash
-[info] welcome to sbt 1.10.2 (Oracle Corporation Java 21)
-[info] loading settings for project weatherservice-build-build from metals.sbt ...
-[info] loading project definition from /Users/unnsse/work/WeatherService/project/project
-[info] loading settings for project weatherservice-build from metals.sbt ...
-[info] loading project definition from /Users/unnsse/work/WeatherService/project
-[info] loading settings for project weatherservice from build.sbt ...
-[info] set current project to weatherservice (in build file:/Users/unnsse/work/WeatherService/)
-[info] running (fork) weather.WeatherServer 
-[info] 00:40:28.776 [io-compute-5] INFO  weather.WeatherServer - Starting Weather Server
-[info] 00:40:29.067 [io-compute-0] INFO  o.h.e.s.EmberServerBuilderCompanionPlatform - Ember-Server service bound to address: [::]:8080
-```
+This was a good learning experience how Scala's Typelevel stack can be used to create an HTTP API which sends requests
+to external data sources, parses JSON, and returns asynchronous responses. Also, it demonstrates how to test Typelevel
+code using `scalatest` library
 
-With the HTTP Service running locally, one can hit the HTTP Get endpoint passing in longitude and latitude for San Francisco:
+Future design considerations:
 
-`http://localhost:8080/weather?latitude=37.7749&longitude=-122.4194`
+* Refactor by extracting out the helper methods into a `WeatherInfo` trait and then
+extended that with a singleton object (e.g. `RealTimeWeather` extends `WeatherInfo`) from `WeatherServer`. 
 
-Which will return the following real-time weather information in JSON format:
+* Refactor by extracting out the marshalled `circe` response case classes inside the `WeatherServer` into a separate package namespace. 
 
-```json
-{
-    "forecast": "Mostly Clear",
-    "temperatureType": "moderate"
+* Externalized the National Weather Service API url to a configuration file.
+
+* Handle edge case of `ForecastProperties` containing an empty list of `Period` instances using `Option[List[Period]]`.
+
+* Rewrite this using the [Tagless Final](https://typelevel.org/blog/2018/05/09/tagless-final-streaming.html) design pattern.
+
+An example of the `Tagless Final` applied, using the [higher kind](https://typelevel.org/blog/2016/08/21/hkts-moving-forward.html) `F[_]` type for the proposed `WeatherInfo` trait like this algebra:
+
+```scala
+trait WeatherInfo[F[_]] {
+  def isValidCoordinate(lat: Double, lon: Double): F[Boolean]
+  def classifyTemperature(temp: Double): F[Option[String]]
 }
 ```
----
 
-This was a good learning experience how Scala's Typelevel stack can be used to create an HTTP API which sends requests 
-to external data sources, parses JSON, and returns asynchronous responses.
+# 6.0 GitHub Repository
 
 The full code is available here: https://github.com/unnsse/WeatherService
 
