@@ -54,6 +54,7 @@ The HTTP Weather Service should adhere to the following requirements:
 2. Returns the short forecast for that area for Today (“Partly Cloudy” etc).
 3. Categorizes whether the temperature is “hot”, “cold”, or “moderate”.
 4. Uses the [National Weather Service API Web Service](https://www.weather.gov/documentation/services-web-api) as a data source.
+5. Comprehensive code coverage using `scalatest`.
 
 # 2.0 Implementation
 
@@ -91,7 +92,7 @@ For the specific HTTP Get endpoint, I used the `http4s` library's DSL convention
      }
  }
 ```
-## 2.3 Valid Coordinate
+## 2.3 Valid Coordinates
 
 In order, to handle the edge case of invalid longitude & latitude coordinates, created the following helper method:
 
