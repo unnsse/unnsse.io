@@ -42,11 +42,20 @@ repost:
 
 # 1.0 Intro
 
-This articles highlights my experiences when I created a sample HTTP Service using Scala's [Typelevel](https://typelevel.org/) ([http4s](https://http4s.org/), [cats](https://typelevel.org/cats/), [cats-effect](https://typelevel.org/cats-effect/),[circe](https://circe.github.io/circe/), etc) stack 
-which returns specific real-time weather information, based on the latitude and longitude parameters, passed into an HTTP Get endpoint. It also serves as a high level overview of how to use some of Typelevel's projects to quickly setup a working semi
-production ready HTTP Service which parses JSON and is testable in Scala.
+Scala is a statically typed language that seamlessly blends object-oriented and functional programming. Its expressive 
+syntax and functional features, along with its JVM compatibility, make it an attractive choice for developers. Although 
+it has a steep learning curve, mastering Scala can lead to highly performant and stable software, especially in concurrent
+environments. This is what caught my eye many years ago when I came across it.
 
-## 1.1 Acceptance Criteria
+## 1.1. Scala & Typelevel Stack 
+The [Typelevel](https://typelevel.org/) stack is a Scala based ecosystem/framework of modular abstractions that emphasize 
+functional programming and [Category Theory](https://en.wikipedia.org/wiki/Category_theory).
+
+This article shares my experience creating an HTTP service using the Typelevel stack, in particular, [http4s](https://http4s.org/), [cats](https://typelevel.org/cats/), [cats-effect](https://typelevel.org/cats-effect/), and [circe](https://circe.github.io/circe/).
+The service retrieves real-time weather information based on latitude and longitude passed to an HTTP GET endpoint. It also provides a high-level overview of how to leverage Typelevel
+projects to quickly set up a semi-production-ready JSON parsing HTTP service, with integration tests and logging.
+
+# 2.0 Acceptance Criteria
 
 The HTTP Weather Service should adhere to the following requirements:
 
@@ -56,14 +65,14 @@ The HTTP Weather Service should adhere to the following requirements:
 4. Uses the [National Weather Service API Web Service](https://www.weather.gov/documentation/services-web-api) as a data source.
 5. Comprehensive code coverage using `scalatest`.
 
-# 2.0 Implementation
+# 3.0 Implementation
 
 The interesting mix of Typelevel's `http4s`, `cats`, and `cats-effect` libraries proved a different experience (and yet
 a very rewarding experience) due to the functional programming style and mindset enforced. This contrasts immensely with the 
 traditional Java Spring Boot based Microservices codebases for which I have quite extensive professional experience
 designing & developing in.
 
-## 2.1 Top-Level Singleton Object
+## 3.1 Top-Level Singleton Object
 
 Used a top level singleton object aptly named `WeatherServer`, to contain every method and expression, which extends `cats.effect.IOApp`:
 
@@ -72,9 +81,9 @@ object WeatherServer extends IOApp {
    // All the magic happens in here
 }
 ```
-## 2.2 HTTP GET Endpoint
+## 3.2 HTTP GET Endpoint
 
-For the specific HTTP Get endpoint, I used the `http4s` library's DSL convention for the routing:
+For the specific HTTP GET endpoint, I used the `http4s` library's DSL convention for the routing:
 
 ```scala
 // Define the weather service route
@@ -92,7 +101,7 @@ For the specific HTTP Get endpoint, I used the `http4s` library's DSL convention
      }
  }
 ```
-## 2.3 Valid Coordinates
+## 3.3 Valid Coordinates
 
 In order, to handle the edge case of invalid longitude & latitude coordinates, created the following helper method:
 
@@ -102,7 +111,7 @@ private def isValidCoordinate(lat: Double, lon: Double): Boolean = {
   lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180
 }
 ```
-## 2.4 Classify Temperature
+## 3.4 Classify Temperature
 
 Wrote the following helper method to categorize the temperature as cold, moderate or hot:
 
@@ -114,7 +123,7 @@ def classifyTemperature(temp: Double): String = {
   else "moderate"
 }
 ```
-## 2.5 Embedded HTTP Server
+## 3.5 Embedded HTTP Server
 
 Used the embedded `EmberServerBuilder` to serve this HTTP Get endpoint on port 8080:
 
@@ -133,9 +142,9 @@ override def run(args: List[String]): IO[ExitCode] = {
   } yield ExitCode.Success
 }
 ```
-# 3.0 Compilation & Bootstrap
+# 4.0 Compilation & Bootstrap
 
-## 3.1 Compile project using sbt
+## 4.1 Compile project using sbt
 
 To compile the project, invoke `sbt compile`:
 
@@ -152,7 +161,7 @@ To compile the project, invoke `sbt compile`:
 [success] Total time: 0 s, completed Oct 4, 2024, 4:35:11 PM
 ```
 
-## 3.2 Bootstrap/Run WeatherServer using sbt
+## 4.2 Bootstrap/Run WeatherServer using sbt
 
 To run locally, invoke `sbt run`:
 
@@ -168,9 +177,9 @@ To run locally, invoke `sbt run`:
 [info] 00:40:28.776 [io-compute-5] INFO  weather.WeatherServer - Starting Weather Server
 [info] 00:40:29.067 [io-compute-0] INFO  o.h.e.s.EmberServerBuilderCompanionPlatform - Ember-Server service bound to address: [::]:8080
 ```
-## 3.3 HTTP GET Endpoint
+## 4.3 HTTP GET Endpoint
 
-With the HTTP Service running locally, one can hit the HTTP Get endpoint passing in longitude and latitude for San Francisco:
+With the HTTP Service running locally, one can hit the HTTP GET endpoint passing in longitude and latitude for San Francisco:
 
 `http://localhost:8080/weather?latitude=37.7749&longitude=-122.4194`
 
@@ -183,13 +192,13 @@ Which will return the following real-time weather information in JSON format:
 }
 ```
 
-# 4.0 Testing 
+# 5.0 Testing 
 
 Also, good software engineering never neglects weeding out all the edge cases through a proper unit/integration test!
 
 A combination of `cats.effect.IO` and `http4s` inside my `scalatest` helped make this test coverage not only comprehensive but asynchronous:
 
-## 4.1 Using scalatest
+## 5.1 Using scalatest
 
 ```scala
 package weather
@@ -231,7 +240,7 @@ class WeatherServerSpec extends AsyncFreeSpec with AsyncIOSpec with Matchers {
   // More test cases covered can be found in Github repo source listing (see below)
 }
 ```
-## 4.2 Running tests using sbt
+## 5.2 Running tests using sbt
 
 Now, when  invoking with `sbt test`, seeing the tests passing was very gratifying (after jumping through a bunch of rabbit 
 holes, not only for the acceptance criteria, but dealing with the edge/corner cases that arose) as this was my first foray 
@@ -257,7 +266,7 @@ using the Typelevel stack for creating a working prototype:
 [success] Total time: 2 s, completed Oct 3, 2024, 11:58:16 PM
 ```
 
-# 5.0 Afterthoughts
+# 6.0 Afterthoughts
 
 This was a good learning experience how Scala's Typelevel stack can be used to create an HTTP API which sends requests
 to external data sources, parses JSON, and returns asynchronous responses. Also, it demonstrates how to test Typelevel
@@ -276,7 +285,8 @@ extended that with a singleton object (e.g. `RealTimeWeather` extends `WeatherIn
 
 * Rewrite this using the [Tagless Final](https://typelevel.org/blog/2018/05/09/tagless-final-streaming.html) design pattern.
 
-An example of the `Tagless Final` applied, using the [higher kind](https://typelevel.org/blog/2016/08/21/hkts-moving-forward.html) `F[_]` type for the proposed `WeatherInfo` trait like this algebra:
+An example of applying `Tagless Final`, using the [higher kind](https://typelevel.org/blog/2016/08/21/hkts-moving-forward.html) `F[_]`
+type for the proposed `WeatherInfo` trait would resemble this ADT-specific DSL:
 
 ```scala
 trait WeatherInfo[F[_]] {
@@ -284,10 +294,12 @@ trait WeatherInfo[F[_]] {
   def classifyTemperature(temp: Double): F[Option[String]]
 }
 ```
+By using `F[_]`, you allow the caller to decide which effect type to use (e.g., IO, Future, etc.), making the trait 
+abstract over different computational effects. More on Tagless Final later... 
 
-# 6.0 GitHub Repository
+# 7.0 GitHub Repository
 
 The full code is available here: https://github.com/unnsse/WeatherService
 
-Note: By no means, is this code production ready or even should be considered idiomatic Scala, this was just a mere exploratory
-exercise.
+Note: By no means, is this code production ready or even should be considered idiomatic Scala, this was just a mere 
+exploratory exercise.
