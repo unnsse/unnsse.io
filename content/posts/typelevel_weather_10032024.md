@@ -10,14 +10,18 @@ author:
   email: contact@unnsse.io
   avatar:
 description: Sample HTTP Service written in Scala using Typelevel stack which presents weather info based on longitude and latitude.
-keywords: scala, typelevel, http4s, cats, cats-effect
+keywords: Unnsse Khan, untz, scala, scala expert, typelevel, http4s, cats, cats-effect, circe
 license:
 comment: false
 weight: 0
 tags:
-  - scala, typelevel, http4s, cats, cats-effect
+  - scala, 
+  - typelevel
+  - http4s
+  - cats
+  - cats-effect
 categories:
-  - scala, typelevel
+  - scala
 hiddenFromHomePage: false
 hiddenFromSearch: false
 hiddenFromRss: false
@@ -42,10 +46,10 @@ repost:
 
 # 1.0 Intro
 
-Scala is a statically typed language that seamlessly blends object-oriented and functional programming. Its expressive 
-syntax and functional features, along with its JVM compatibility, make it an attractive choice for developers. Although 
-it has a steep learning curve, mastering Scala can lead to highly performant and stable software, especially in concurrent
-environments. This is what caught my eye many years ago when I came across it.
+Scala is a general purpose statically typed language that seamlessly blends object-oriented and functional programming. 
+Its expressive syntax and functional features, along with its JVM compatibility, make it an attractive choice for developers. 
+Although it has a steep learning curve, mastering Scala can lead to highly performant and stable software, especially in concurrent
+environments. All of this is what caught my eye many years ago when I came across this fascinating piece of technology.
 
 ## 1.1. Scala & Typelevel Stack 
 The [Typelevel](https://typelevel.org/) stack is a Scala based ecosystem/framework of modular abstractions that emphasize 
@@ -67,14 +71,15 @@ The HTTP Weather Service should adhere to the following requirements:
 
 # 3.0 Implementation
 
-The interesting mix of Typelevel's `http4s`, `cats`, and `cats-effect` libraries proved a different experience (and yet
-a very rewarding experience) due to the functional programming style and mindset enforced. This contrasts immensely with the 
+The interesting mix of Typelevel's [http4s](https://http4s.org/), [Cats](https://typelevel.org/cats), and [Cats Effect](https://typelevel.org/cats-effect) libraries proved a different (and yet
+a very rewarding) experience due to the functional programming style and mindset enforced. This contrasts immensely with the 
 traditional Java Spring Boot based Microservices codebases for which I have quite extensive professional experience
-designing & developing in.
+designing & developing in. The asynchronous capabilities of `Cats Effect`, combined with the powerful functional abstractions
+in `Cats` (e.g., `Monads`, `Applicatives`, `Show`, `Traverse`, etc), have shown me how to fully leverage Scala with Typelevel for specific distributed backend use cases.
 
 ## 3.1 Top-Level Singleton Object
 
-Used a top level singleton object aptly named `WeatherServer`, to contain every method and expression, which extends `cats.effect.IOApp`:
+Started out by using a top level singleton object aptly named `WeatherServer`, to contain every method and expression, which extends `cats.effect.IOApp`:
 
 ```scala
 object WeatherServer extends IOApp { 
@@ -87,7 +92,7 @@ For the specific HTTP GET endpoint, I used the `http4s` library's DSL convention
 
 ```scala
 // Define the weather service route
- val weatherService: HttpRoutes[IO] = HttpRoutes.of[IO] {
+val weatherService: HttpRoutes[IO] = HttpRoutes.of[IO] {
    case GET -> Root / "weather" :? LatitudeQueryParamMatcher(maybeLat) +& LongitudeQueryParamMatcher(maybeLon) =>
      (maybeLat, maybeLon) match {
        case (Some(lat), Some(lon)) if isValidCoordinate(lat, lon) =>
@@ -125,7 +130,7 @@ def classifyTemperature(temp: Double): String = {
 ```
 ## 3.5 Embedded HTTP Server
 
-Used the embedded `EmberServerBuilder` to serve this HTTP Get endpoint on port 8080:
+Used the embedded `EmberServerBuilder` to serve this HTTP GET endpoint on port 8080:
 
 ```scala
 // Build and run the server
@@ -270,7 +275,7 @@ using the Typelevel stack for creating a working prototype:
 
 This was a good learning experience how Scala's Typelevel stack can be used to create an HTTP API which sends requests
 to external data sources, parses JSON, and returns asynchronous responses. Also, it demonstrates how to test Typelevel
-code using `scalatest` library
+code using the `scalatest` library
 
 Future design considerations:
 
@@ -294,7 +299,7 @@ trait WeatherInfo[F[_]] {
   def classifyTemperature(temp: Double): F[Option[String]]
 }
 ```
-By using `F[_]`, you allow the caller to decide which effect type to use (e.g., IO, Future, etc.), making the trait 
+By using the `F[_]` higher kind type, you allow the caller to decide which effect type to use (e.g., IO, Future, etc.), making the trait 
 abstract over different computational effects. More on Tagless Final later... 
 
 # 7.0 GitHub Repository
