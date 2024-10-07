@@ -287,9 +287,9 @@ Future design considerations:
 extended that with a singleton object (e.g. `RealTimeWeather` extends `WeatherInfo`) from `WeatherServer`. 
 
 * Refactor by extracting out the marshalled `circe` response case classes inside the `WeatherServer` into a separate 
-package namespace. 
+package namespace.
 
-* Externalized the National Weather Service API url to a configuration file.
+* Externalize the National Weather Service API url to a configuration file.
 
 * Handle edge case of `ForecastProperties` containing an empty list of `Period` instances using `Option[List[Period]]`.
 
