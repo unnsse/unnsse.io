@@ -47,7 +47,7 @@ repost:
 # 1.0 Introduction
 
 [Scala](https://www.scala-lang.org) is a general purpose statically typed language that seamlessly blends object-oriented and functional programming. 
-Its expressive syntax and functional features, along with its JVM compatibility, make it an attractive choice for 
+Its expressive syntax and functional features, along with its JVM compatibility, makes it an attractive choice for 
 developers. Although it has a steep learning curve, mastering Scala can lead to highly performant and stable software, 
 especially in concurrent environments. All of this is what caught my eye many years ago when I first came across Scala.
 
@@ -58,7 +58,7 @@ functional programming and [Category Theory](https://en.wikipedia.org/wiki/Categ
 This article shares my experience creating an HTTP service using the Typelevel stack, in particular, [http4s](https://http4s.org/), [cats](https://typelevel.org/cats/), [cats-effect](https://typelevel.org/cats-effect/), and [circe](https://circe.github.io/circe/).
 The service retrieves real-time weather information based on latitude and longitude passed to an HTTP GET endpoint.
 It also provides a high-level overview of how to leverage Typelevel projects to quickly set up a semi-production-ready 
-JSON parsing HTTP service, with integration tests and logging.
+JSON parsing HTTP service with integration tests and logging.
 
 # 2.0 Acceptance Criteria
 
@@ -279,7 +279,7 @@ using the Typelevel stack for creating a working prototype:
 
 This was a good learning experience how Scala's Typelevel stack can be used to create an HTTP API which sends requests
 to external data sources, parses JSON, and returns asynchronous responses. Also, it demonstrates how to test Typelevel
-code using the `scalatest` library
+code using the `scalatest` library.
 
 Future design considerations:
 
