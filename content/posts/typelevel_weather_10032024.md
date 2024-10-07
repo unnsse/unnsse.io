@@ -44,20 +44,21 @@ repost:
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
 
-# 1.0 Intro
+# 1.0 Introduction
 
-Scala is a general purpose statically typed language that seamlessly blends object-oriented and functional programming. 
-Its expressive syntax and functional features, along with its JVM compatibility, make it an attractive choice for developers. 
-Although it has a steep learning curve, mastering Scala can lead to highly performant and stable software, especially in concurrent
-environments. All of this is what caught my eye many years ago when I came across this fascinating piece of technology.
+[Scala](https://www.scala-lang.org) is a general purpose statically typed language that seamlessly blends object-oriented and functional programming. 
+Its expressive syntax and functional features, along with its JVM compatibility, make it an attractive choice for 
+developers. Although it has a steep learning curve, mastering Scala can lead to highly performant and stable software, 
+especially in concurrent environments. All of this is what caught my eye many years ago when I first came across Scala.
 
 ## 1.1. Scala & Typelevel Stack 
 The [Typelevel](https://typelevel.org/) stack is a Scala based ecosystem/framework of modular abstractions that emphasize 
 functional programming and [Category Theory](https://en.wikipedia.org/wiki/Category_theory).
 
 This article shares my experience creating an HTTP service using the Typelevel stack, in particular, [http4s](https://http4s.org/), [cats](https://typelevel.org/cats/), [cats-effect](https://typelevel.org/cats-effect/), and [circe](https://circe.github.io/circe/).
-The service retrieves real-time weather information based on latitude and longitude passed to an HTTP GET endpoint. It also provides a high-level overview of how to leverage Typelevel
-projects to quickly set up a semi-production-ready JSON parsing HTTP service, with integration tests and logging.
+The service retrieves real-time weather information based on latitude and longitude passed to an HTTP GET endpoint.
+It also provides a high-level overview of how to leverage Typelevel projects to quickly set up a semi-production-ready 
+JSON parsing HTTP service, with integration tests and logging.
 
 # 2.0 Acceptance Criteria
 
@@ -72,14 +73,16 @@ The HTTP Weather Service should adhere to the following requirements:
 # 3.0 Implementation
 
 The interesting mix of Typelevel's [http4s](https://http4s.org/), [Cats](https://typelevel.org/cats), and [Cats Effect](https://typelevel.org/cats-effect) libraries proved a different (and yet
-a very rewarding) experience due to the functional programming style and mindset enforced. This contrasts immensely with the 
-traditional Java Spring Boot based Microservices codebases for which I have quite extensive professional experience
-designing & developing in. The asynchronous capabilities of `Cats Effect`, combined with the powerful functional abstractions
-in `Cats` (e.g., `Monads`, `Applicatives`, `Show`, `Traverse`, etc), have shown me how to fully leverage Scala with Typelevel for specific distributed backend use cases.
+a very rewarding) experience due to the functional programming style and mindset enforced. This contrasts immensely with 
+the traditional Java Spring Boot based Microservices codebases for which I have quite extensive professional experience
+designing & developing in. The asynchronous capabilities of `Cats Effect`, combined with the powerful functional 
+abstractions in `Cats` (e.g. `Monads`, `Applicatives`, `Show`, `Traverse`, etc), have shown me how to fully leverage 
+Scala with Typelevel for specific distributed backend use cases.
 
 ## 3.1 Top-Level Singleton Object
 
-Started out by using a top level singleton object aptly named `WeatherServer`, to contain every method and expression, which extends `cats.effect.IOApp`:
+Started out by using a top level singleton object aptly named `WeatherServer`, to contain every method and expression, 
+which extends `cats.effect.IOApp`:
 
 ```scala
 object WeatherServer extends IOApp { 
@@ -201,7 +204,8 @@ Which will return the following real-time weather information in JSON format:
 
 Also, good software engineering never neglects weeding out all the edge cases through a proper unit/integration test!
 
-A combination of `cats.effect.IO` and `http4s` inside my `scalatest` helped make this test coverage not only comprehensive but asynchronous:
+A combination of `cats.effect.IO` and `http4s` inside my `scalatest` helped make this test coverage not only 
+comprehensive but asynchronous:
 
 ## 5.1 Using scalatest
 
@@ -282,13 +286,15 @@ Future design considerations:
 * Refactor by extracting out the helper methods into a `WeatherInfo` trait and then
 extended that with a singleton object (e.g. `RealTimeWeather` extends `WeatherInfo`) from `WeatherServer`. 
 
-* Refactor by extracting out the marshalled `circe` response case classes inside the `WeatherServer` into a separate package namespace. 
+* Refactor by extracting out the marshalled `circe` response case classes inside the `WeatherServer` into a separate 
+package namespace. 
 
 * Externalized the National Weather Service API url to a configuration file.
 
 * Handle edge case of `ForecastProperties` containing an empty list of `Period` instances using `Option[List[Period]]`.
 
-* Rewrite this using the [Tagless Final](https://typelevel.org/blog/2018/05/09/tagless-final-streaming.html) design pattern.
+* Rewrite this using the [Tagless Final](https://typelevel.org/blog/2018/05/09/tagless-final-streaming.html) design 
+pattern.
 
 An example of applying `Tagless Final`, using the [higher kind](https://typelevel.org/blog/2016/08/21/hkts-moving-forward.html) `F[_]`
 type for the proposed `WeatherInfo` trait would resemble this ADT-specific DSL:
@@ -299,8 +305,8 @@ trait WeatherInfo[F[_]] {
   def classifyTemperature(temp: Double): F[Option[String]]
 }
 ```
-By using the `F[_]` higher kind type, you allow the caller to decide which effect type to use (e.g., IO, Future, etc.), making the trait 
-abstract over different computational effects. More on Tagless Final later... 
+By using the `F[_]` higher kind type, you allow the caller to decide which effect type to use (e.g., IO, Future, etc.), 
+making the trait abstract over different computational effects. More on Tagless Final later... 
 
 # 7.0 GitHub Repository
 
