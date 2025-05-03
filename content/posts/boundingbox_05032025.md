@@ -17,6 +17,7 @@ weight: 0
 tags:
   - java
   - java23
+  - Disjoint Set
   - Union-Find
   - DSU
   - Algorithms
@@ -32,7 +33,8 @@ resources:
     src: featured-image.jpg
   - name: featured-image-preview
     src: featured-image-preview.jpg
-toc: true
+#toc: true
+tableOfContents: true
 math: false
 lightgallery: false
 password:
@@ -74,7 +76,7 @@ connected component labeling, and spatial clustering in large datasets or grid-b
 
 • Efficient for large grids (10,000 × 10,000).
 
-# Acceptance Criteria / Requirements
+# Acceptance Criteria
 
 This console app takes input from stdin with the following properties:
 
@@ -306,7 +308,7 @@ other boxes that overlap with it, ensuring that overlapping boxes are excluded f
 This approach guarantees that the returned list contains only distinct, non-overlapping boxes, favoring 
 the earliest ones in the sorted order.
 
-### Time and Space Complexity
+## Time and Space Complexity
 
 |Operation | Time Complexity | Space Complexity |
 | -------- | --------------- | ---------------- |
