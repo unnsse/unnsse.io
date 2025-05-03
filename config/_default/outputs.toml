@@ -3,7 +3,7 @@
 # See: https://gohugo.io/templates/output-formats/#customizing-output-formats
 # -------------------------------------------------------------------------------------
 
-home = ["HTML", "RSS", "JSON", "archives", "search"]
+home = ["HTML", "RSS", "JSON", "archives", "SearchIndex"]
 page = ["HTML", "MarkDown"]
 section = ["HTML", "RSS"]
 taxonomy = ["HTML"]

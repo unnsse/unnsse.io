@@ -1,2 +1,1 @@
-posts = ":year/:month/:filename"
-#posts = "posts/:slugorfilename"
+posts = ":year/:month/:contentbasename/"
