@@ -138,7 +138,8 @@ So, given the file “groups.txt” with the following content:
 -------***--
 ```
 
-Running this program manually (after renaming the compiled class file to `bounding-box` as a Unix executable):
+Running this program manually (after renaming the compiled class file to `bounding-box` and then setting it up as a 
+Unix executable):
 
 ```bash
 ./bounding-box < groups.txt
@@ -237,7 +238,7 @@ returns true. Otherwise, it returns false.
 
 ## DSU/Union-Find Algorithm
 
-Implemented the Disjoint Set data structure and Union-Find algorithm, as follows:
+Implemented the Disjoint Set data structure and Union-Find algorithm as follows:
 
 ```java
 static class DisjointSet {
@@ -276,17 +277,9 @@ using min and max maps, which are updated via updateBounds to track the smallest
 
 ## largestNonOverlappingBox() method
 
-This method went through many refactorings and is the entry point for the data to be processed.
+This method went through many refactorings and is the entry point for all data to be processed.
 The `largestNonOverlappingBox()` method takes a grid (`List<String> lines`) of `*` (1) and `-` (0) characters 
-and a boolean returnAllBoxes. It returns a string describing either the largest non-overlapping bounding box 
-of `*` clusters or all non-overlapping boxes, based on the flag. The method first validates the input grid for
-consistent row lengths and valid characters, returning `Error` if invalid, or an empty string "" if empty. 
-Using a DisjointSet (DSU), it identifies connected components of `*` cells by merging adjacent cells in `O(n`) time 
-(where `n = rows * cols`), then computes bounding boxes for each component. After finding non-overlapping boxes, 
-it either returns the largest box (by area, then top-left coordinates) if `returnAllBoxes` is false (e.g., `(5,5)(6,7)`
-for accompanying `testBiggestBox()` test case), or, if true, returns either the largest non-overlapping box if overlaps
-exist (e.g., `(5,3)(7,4)` for`testValid()` ) or all sorted non-overlapping boxes if there are no overlaps 
-(e.g., `testEqualSizes()` test case), ensuring compliance with test cases like `testNested()` and `testSingleGroup()`.
+and a boolean `returnAllBoxes`.
 
 ```java
 public String largestNonOverlappingBox(List<String> lines, boolean returnAllBoxes) {
@@ -358,6 +351,20 @@ public String largestNonOverlappingBox(List<String> lines, boolean returnAllBoxe
     }
 }
 ```
+It returns a string describing either the largest non-overlapping bounding box
+of `*` clusters or all non-overlapping boxes, based on the `returnAllBoxes` flag. The method first
+validates the input grid for consistent row lengths and valid characters, returning `Error` if invalid, or 
+an empty string `""` if empty. Using a DisjointSet (DSU), it identifies connected components of `*` cells by 
+merging adjacent cells in `O(n`) time (where `n = rows * cols`), then computes bounding boxes for each component. 
+After finding non-overlapping boxes, it either returns the largest box (by area, then top-left coordinates) if 
+`returnAllBoxes` is false (e.g., `(5,5)(6,7)` for accompanying `testBiggestBox()` test case), or, if true, 
+returns either the largest non-overlapping box if overlaps exist (e.g., `(5,3)(7,4)` for `testValid()`) or all 
+sorted non-overlapping boxes if there are no overlaps (e.g., `testEqualSizes()` test case), ensuring compliance 
+with test cases like `testNested()` and `testSingleGroup()`).
+
+*Note*: All the test cases mentioned (`testBiggestBox()`, `testValid()`, `testNested()`, `testSingleGroup()`, etc. can 
+be found inside `BoundingBoxTest.java`). Their corresponding input test files which are read separately are located 
+inside `./src/test/resources`.
 
 ## findNonOverlappingBoxes() method
 
