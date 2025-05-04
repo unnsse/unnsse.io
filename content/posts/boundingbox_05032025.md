@@ -1,6 +1,6 @@
 ---
 title: 2D Matrix Bounding Box Checker using DSU and Union-Find in Java 23 using TDD
-subtitle: High level overview of using DSU / Union-Find Algorithm to efficiently detect bounding boxes in a 2D matrix using Java 23.
+subtitle: High level overview of using Disjoint Set Union-Find (DSU) algorithm to efficiently detect bounding boxes in a 2D matrix using Java 23.
 date: 2025-05-03T14:45:04-07:00
 slug: 0cc3279
 draft: false
@@ -9,8 +9,8 @@ author:
   link: https://github.com/unnsse
   email: contact@unnsse.io
   avatar:
-description: High level overview of using DSU / Union-Find Algorithm to efficiently detect bounding boxes in a 2D matrix using Java 23.
-keywords:  Unnsse Khan, untz, Java, Java Expert, Disjoint Set Union (DSU), Union-Find algorithm, Java 23, 2D Matrix, test driven development
+description: High level overview of using Disjoint Set Union-Find (DSU) algorithm to efficiently detect bounding boxes in a 2D matrix using Java 23.
+keywords:  Unnsse Khan, untz, Java, Java Expert, Disjoint Set Union-Find (DSU), Union-Find algorithm, Java 23, 2D Matrix, Test Driven Development (TDD)
 license:
 comment: false
 weight: 0
@@ -236,7 +236,7 @@ box’s bottom-right corner, implying no overlap.
 If none of these conditions are true, the boxes overlap, so the method
 returns true. Otherwise, it returns false.
 
-## DSU/Union-Find Algorithm
+## Disjoint Set Union-Find (DSU) algorithm
 
 Implemented the Disjoint Set data structure and Union-Find algorithm as follows:
 
@@ -268,11 +268,11 @@ static class DisjointSet {
 }
 ```
 
-This `DisjointSet` class implements a Union-Find (DSU) structure to manage connected components 
+This `DisjointSet` class implements a Union-Find algorithm to manage connected components 
 in a 2D grid. It uses a `Map<Integer, Integer>` to track the parent of each node for path compression 
 in the `find()` method, ensuring efficient lookups. The union method merges two sets by assigning one root
 as the parent of the other. Additionally, it maintains bounding box data for each component 
-using min and max maps, which are updated via updateBounds to track the smallest and largest 
+using `min` and `max` maps, which are updated via updateBounds to track the smallest and largest 
 `Point` coordinates (x, y) associated with each set.
 
 ## largestNonOverlappingBox() method
@@ -354,7 +354,7 @@ public String largestNonOverlappingBox(List<String> lines, boolean returnAllBoxe
 It returns a string describing either the largest non-overlapping bounding box
 of `*` clusters or all non-overlapping boxes, based on the `returnAllBoxes` flag. The method first
 validates the input grid for consistent row lengths and valid characters, returning `Error` if invalid, or 
-an empty string `""` if empty. Using a DisjointSet (DSU), it identifies connected components of `*` cells by 
+an empty string `""` if empty. Using DSU, it identifies connected components of `*` cells by 
 merging adjacent cells in `O(n`) time (where `n = rows * cols`), then computes bounding boxes for each component. 
 After finding non-overlapping boxes, it either returns the largest box (by area, then top-left coordinates) if 
 `returnAllBoxes` is false (e.g., `(5,5)(6,7)` for accompanying `testBiggestBox()` test case), or, if true, 
@@ -363,8 +363,8 @@ sorted non-overlapping boxes if there are no overlaps (e.g., `testEqualSizes()` 
 with test cases like `testNested()` and `testSingleGroup()`).
 
 *Note*: All the test cases mentioned (`testBiggestBox()`, `testValid()`, `testNested()`, `testSingleGroup()`, etc. can 
-be found inside `BoundingBoxTest.java`). Their corresponding input test files which are read separately are located 
-inside `./src/test/resources`.
+be found inside [BoundingBoxTest.java](https://github.com/unnsse/BoundingBox/blob/4f860b4f3b24e345897b0c607de188a514054e6c/app/src/test/java/com/example/BoundingBoxTest.java)). Their corresponding input test files which are read separately are located 
+inside [./src/test/resources](https://github.com/unnsse/BoundingBox/tree/4f860b4f3b24e345897b0c607de188a514054e6c/app/src/test/resources).
 
 ## findNonOverlappingBoxes() method
 
@@ -469,7 +469,7 @@ Was rather straightforward:
 ```
 # Running from Command Line
 
-Since the acceptance criteria required BoundingBox to read input from stdin (e.g., via `./bounding-box < input.txt`),
+Since the Acceptance Criteria required `BoundingBox` to read input from stdin (e.g., via `./bounding-box < input.txt`),
 I implemented this by checking the length of args and using a BufferedReader inside the main() method to read from
 `System.in`:
 
@@ -495,11 +495,11 @@ public static void main(String[] args) {
 # Afterthoughts
 
 Very rewarding experience tackling all the various edge cases as presented in the unit tests. Being provided the input
-test files and using a Test First approach really helped refine the codebase by tackling one unit test at time. The 
-outcome resulted in an extensible and well-organized codebase. The scalability of this program was also evident.
-The DSU data structure with the Union-Find algorithm is essential for efficiently managing and merging disjoint sets, 
-especially in problems involving connected components, clustering, network connectivity, image segmentation, 
-and grid-based region detection.
+test files initially and using a Test First approach really helped refine the codebase incrementally & iteratively by 
+tackling one unit test at time. The outcome resulted in an extensible and well-organized codebase. The scalability of
+this program was also evident. In conclusion, hope this demonstrates a real world example of how DSU algorithm is 
+essential for efficiently managing and merging disjoint sets, especially in problems involving connected components, 
+clustering, network connectivity, image segmentation, and grid-based region detection.
 
 # GitHub Repository
 

@@ -15,7 +15,7 @@ license:
 comment: false
 weight: 0
 tags:
-  - scala, 
+  - scala 
   - typelevel
   - http4s
   - cats
