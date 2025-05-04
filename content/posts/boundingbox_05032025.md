@@ -370,6 +370,30 @@ Was rather straightforward:
       assertEquals("(1,1)(2,2)", boundingBox.largestNonOverlappingBox(lines, false));
   }
 ```
+# Running from Command Line
+
+Since the acceptance criteria required BoundingBox to read input from stdin (e.g., via `./bounding-box < input.txt`),
+I implemented this by checking the length of args and using a BufferedReader inside the main() method to read from
+`System.in`:
+
+```java
+public static void main(String[] args) {
+        if (args.length > 0) {
+            System.err.println("Usage: ./bounding-box < input.txt");
+            System.exit(1);
+        }
+
+        List<String> lines = new BufferedReader(new InputStreamReader(System.in))
+                .lines()
+                .map(String::trim)
+                .filter(line -> !line.isEmpty())
+                .collect(Collectors.toList());
+
+        String result = new BoundingBox().largestNonOverlappingBox(lines, false); // Default: largest box
+        System.out.println(result);
+        System.exit(result.equals("Error") ? 1 : 0);
+    }
+```
 
 # Afterthoughts
 
