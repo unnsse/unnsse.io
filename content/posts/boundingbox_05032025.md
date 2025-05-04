@@ -47,14 +47,14 @@ repost:
 
 # Introduction
 
-Using a Test Driven Development (TDD) approach, I wrote a Java 23 program called `BoundingBox` that reads 
+Using a [Test Driven Development (TDD)](https://en.wikipedia.org/wiki/Test-driven_development) approach, I wrote a Java 23 program called `BoundingBox` that reads 
 a 2D ASCII grid from standard input and detects the largest or all non-overlapping bounding boxes enclosing 
-contiguous regions of asterisks (`*`). It is designed to handle large inputs efficiently and uses a 
+contiguous regions of asterisks (`*`). It is designed to handle large inputs efficiently and uses the 
 [Disjoint Set Union-Find (DSU)](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) data structure algorithm to identify 
 connected components. Each bounding box is defined by the minimum and maximum `x` and `y` coordinates 
 (with 1-based indexing) that surround a connected group of * characters. 
 
-Test-Driven Development was facilitated by reading prewritten input files from my unit tests. The goal was that the
+Test-Driven Development was facilitated by reading data input files from pre-written unit tests. The goal was that the
 `BoundingBox` would be able to accommodate all of these test cases. Lots of refactoring(s) took place as a result. The
 final result was a well-organized and extensible codebase with comprehensive test coverage.
 
@@ -62,9 +62,13 @@ final result was a well-organized and extensible codebase with comprehensive tes
 making it useful in applications such as image processing, object detection, map region analysis, 
 connected component labeling, and spatial clustering in large datasets or grid-based simulations.
 
+*Note*: This article is no means a TDD tutorial... This article doesn't delve step-by-step regarding the TDD paradigm
+of "faking till you make" with a broken test and then fix in its context. Its how I chose to approach the development
+before writing this article.
+
 # Features
 
-• Detects all connected components of * characters using Union-Find.
+• Detects all connected components of `*` characters using Disjoint Set Union-Find.
 
 • Computes the minimum bounding box for each component.
 
@@ -72,7 +76,7 @@ connected component labeling, and spatial clustering in large datasets or grid-b
 
 • Optionally returns all non-overlapping boxes in sorted order.
 
-• Handles malformed input with a clear "Error" output.
+• Handles malformed input with a clear `Error` output.
 
 • Efficient for large grids (10,000 × 10,000).
 
@@ -94,7 +98,7 @@ and the fifth character on line 3 will have the coordinates `(3,5)`.
 
 The program should find a box (or boxes) in the input with the following properties:
 
-- The box must be defined by two pairs of coordinates corresponding to its top left and bottom right corners.
+- The box must be defined by two pairs of coordinates corresponding to its top-left and bottom-right corners.
 
 - It must be the **minimum bounding box** for some contiguous group of asterisks, with each asterisk in the
   group being horizontally or vertically (but not diagonally) adjacent to each other. A single, detached asterisk
@@ -127,16 +131,18 @@ If any boxes satisfying the conditions can be found in the input, the program sh
 of 0 and, for each box, print a line to stdout with the two pairs of coordinates.
 
 So, given the file “groups.txt” with the following content:
-```
+```txt
 **-------***
 -*--**--***-
 -----***--**
 -------***--
 ```
 
-Running this program manually:
-```
-> ./bounding-box < groups.txt
+Running this program manually (after renaming the compiled class file to `bounding-box` and then setting it up as a 
+Unix executable):
+
+```bash
+./bounding-box < groups.txt
 ```
 Outputs:
 
@@ -145,22 +151,22 @@ Outputs:
 ```
 
 This is because the larger groups on the right of the input have overlapping bounding boxes,
-so the returned coordinates bound the smaller group on the top left.
+so the returned coordinates bound the smaller group on the top-left.
 
 ---
 
 # Implementation
 
 Decided to use a lot of new Java 23 features (records, var keyword, etc.) to write this program.
-Didn't want nested for loops as they present a significant performance overhead when dealing with large input sets.
-This was resolved using a lot of recursion along with `IntStream` functionality.
+Didn't want nested for loops as they present a significant performance overhead when dealing with
+large input sets. This was resolved using a lot of recursion along with `IntStream` functionality.
 
-### Java 23's Records and IntStreams
+## Using Java 23's Records
 
 Setting up the types as records was straightforward and also very concise and elegant.
 
 Made a `Point` record storing x,y coordinates as integers and a `Box` record for using 
-`Point` type as top left and bottom right corners of the box.
+`Point` type as top-left and bottom-right corners of the box.
 
 ```java
 public class BoundingBox {
@@ -230,9 +236,9 @@ box’s bottom-right corner, implying no overlap.
 If none of these conditions are true, the boxes overlap, so the method
 returns true. Otherwise, it returns false.
 
-## DSU / Union Find Algorithm
+## DSU/Union-Find Algorithm
 
-Implemented the DisjointSet data structure and Union Find algorithm as follows:
+Implemented the Disjoint Set data structure and Union-Find algorithm as follows:
 
 ```java
 static class DisjointSet {
@@ -262,17 +268,108 @@ static class DisjointSet {
 }
 ```
 
-This DisjointSet class implements a Union-Find (DSU) structure to manage connected components 
+This `DisjointSet` class implements a Union-Find (DSU) structure to manage connected components 
 in a 2D grid. It uses a `Map<Integer, Integer>` to track the parent of each node for path compression 
 in the `find()` method, ensuring efficient lookups. The union method merges two sets by assigning one root
 as the parent of the other. Additionally, it maintains bounding box data for each component 
 using min and max maps, which are updated via updateBounds to track the smallest and largest 
 `Point` coordinates (x, y) associated with each set.
 
+## largestNonOverlappingBox() method
+
+This method went through many refactorings and is the entry point for all data to be processed.
+The `largestNonOverlappingBox()` method takes a grid (`List<String> lines`) of `*` (1) and `-` (0) characters 
+and a boolean `returnAllBoxes`.
+
+```java
+public String largestNonOverlappingBox(List<String> lines, boolean returnAllBoxes) {
+    if (lines == null || lines.isEmpty() || lines.getFirst().isEmpty()) return "";
+
+    int rows = lines.size(), cols = lines.getFirst().length();
+
+    // Validate that all lines have the same length and only contain valid characters (* and -)
+    if (!lines.stream().allMatch(l -> l.length() == cols && l.matches("[*-]+"))) {
+        return "Error";
+    }
+
+    DisjointSet ds = new DisjointSet();
+
+    IntStream.range(0, rows * cols)
+            .filter(p -> lines.get(p / cols).charAt(p % cols) == '*')
+            .forEach(p -> unionCell(p, rows, cols, lines, ds));
+
+    IntStream.range(0, rows * cols)
+            .boxed()
+            .sorted(Comparator.naturalOrder())
+            .filter(p -> lines.get(p / cols).charAt(p % cols) == '*')
+            .forEachOrdered(p -> {
+                int root = ds.find(p);
+                int x = p / cols, y = p % cols;
+                ds.updateBounds(root, x + 1, y + 1); // 1-based indexing
+            });
+
+    var boxes = ds.min.keySet().stream()
+            .map(root -> new Box(ds.min.get(root), ds.max.get(root)))
+            .toList();
+
+    if (boxes.isEmpty()) return "";
+
+    var nonOverlapping = findNonOverlappingBoxes(boxes);
+
+    if (returnAllBoxes) {
+        // Check if any original boxes overlap
+        boolean hasOverlap = IntStream.range(0, boxes.size())
+                .anyMatch(i -> IntStream.range(i + 1, boxes.size())
+                        .anyMatch(j -> boxes.get(i).overlaps(boxes.get(j))));
+
+        if (hasOverlap) {
+            // For testValid and testOverlap: return largest non-overlapping box, or "" if none
+            return nonOverlapping.stream()
+                    .filter(b -> IntStream.range(0, boxes.size())
+                            .noneMatch(i -> !b.equals(boxes.get(i)) && b.overlaps(boxes.get(i))))
+                    .max(Comparator.comparingLong(Box::area)
+                            .thenComparing(b -> b.topLeft().x())
+                            .thenComparing(b -> b.topLeft().y()))
+                    .map(Box::toString)
+                    .orElse("");
+        }
+
+        // No overlaps: return all non-overlapping boxes (testEqualSizes, testDiagonalsDontTouch)
+        return nonOverlapping.stream()
+                .sorted(Comparator.comparing((Box b) -> b.topLeft().x())
+                        .thenComparing(b -> b.topLeft().y()))
+                .map(Box::toString)
+                .collect(Collectors.joining(""));
+    } else {
+        // Return the largest non-overlapping box
+        return nonOverlapping.stream()
+                .max(Comparator.comparingLong(Box::area)
+                        .thenComparing(b -> b.topLeft().x())
+                        .thenComparing(b -> b.topLeft().y()))
+                .map(Box::toString)
+                .orElse("");
+    }
+}
+```
+It returns a string describing either the largest non-overlapping bounding box
+of `*` clusters or all non-overlapping boxes, based on the `returnAllBoxes` flag. The method first
+validates the input grid for consistent row lengths and valid characters, returning `Error` if invalid, or 
+an empty string `""` if empty. Using a DisjointSet (DSU), it identifies connected components of `*` cells by 
+merging adjacent cells in `O(n`) time (where `n = rows * cols`), then computes bounding boxes for each component. 
+After finding non-overlapping boxes, it either returns the largest box (by area, then top-left coordinates) if 
+`returnAllBoxes` is false (e.g., `(5,5)(6,7)` for accompanying `testBiggestBox()` test case), or, if true, 
+returns either the largest non-overlapping box if overlaps exist (e.g., `(5,3)(7,4)` for `testValid()`) or all 
+sorted non-overlapping boxes if there are no overlaps (e.g., `testEqualSizes()` test case), ensuring compliance 
+with test cases like `testNested()` and `testSingleGroup()`).
+
+*Note*: All the test cases mentioned (`testBiggestBox()`, `testValid()`, `testNested()`, `testSingleGroup()`, etc. can 
+be found inside `BoundingBoxTest.java`). Their corresponding input test files which are read separately are located 
+inside `./src/test/resources`.
+
 ## findNonOverlappingBoxes() method
 
 This method was written to extract a clean set of non-overlapping bounding boxes from a potentially overlapping 
-collection, prioritizing consistency and simplicity for downstream testing or analysis.
+collection, prioritizing consistency and simplicity for downstream testing or analysis. 
 
 ```java
 private List<Box> findNonOverlappingBoxes(List<Box> boxes) {
@@ -320,13 +417,13 @@ the earliest ones in the sorted order.
 
 Where:
 
-• n = number of rows
+• `n` = number of rows
 
-• m = number of columns
+• `m` = number of columns
 
-• k = number of connected components (bounding boxes)
+• `k` = number of connected components (bounding boxes)
 
-• α is the inverse Ackermann function (nearly constant in practice)
+• `α` is the inverse Ackermann function (nearly constant in practice)
 
 # Testing
 
@@ -378,21 +475,21 @@ I implemented this by checking the length of args and using a BufferedReader ins
 
 ```java
 public static void main(String[] args) {
-        if (args.length > 0) {
-            System.err.println("Usage: ./bounding-box < input.txt");
-            System.exit(1);
-        }
-
-        List<String> lines = new BufferedReader(new InputStreamReader(System.in))
-                .lines()
-                .map(String::trim)
-                .filter(line -> !line.isEmpty())
-                .collect(Collectors.toList());
-
-        String result = new BoundingBox().largestNonOverlappingBox(lines, false); // Default: largest box
-        System.out.println(result);
-        System.exit(result.equals("Error") ? 1 : 0);
+    if (args.length > 0) {
+        System.err.println("Usage: ./bounding-box < input.txt");
+        System.exit(1);
     }
+
+    List<String> lines = new BufferedReader(new InputStreamReader(System.in))
+            .lines()
+            .map(String::trim)
+            .filter(line -> !line.isEmpty())
+            .collect(Collectors.toList());
+
+    String result = new BoundingBox().largestNonOverlappingBox(lines, false); // Default: largest box
+    System.out.println(result);
+    System.exit(result.equals("Error") ? 1 : 0);
+}
 ```
 
 # Afterthoughts
@@ -405,4 +502,5 @@ especially in problems involving connected components, clustering, network conne
 and grid-based region detection.
 
 # GitHub Repository
+
 The full code is available here: https://github.com/unnsse/BoundingBox
