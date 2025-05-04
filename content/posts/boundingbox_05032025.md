@@ -49,8 +49,8 @@ repost:
 
 Using a Test Driven Development (TDD) approach, I wrote a Java 23 program called `BoundingBox` that reads 
 a 2D ASCII grid from standard input and detects the largest or all non-overlapping bounding boxes enclosing 
-contiguous regions of asterisks (`*`). It is designed to handle large inputs efficiently and uses a [Disjoint Set()
-Union-Find)](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) data structure algorithm to identify 
+contiguous regions of asterisks (`*`). It is designed to handle large inputs efficiently and uses a 
+[Disjoint Set Union-Find (DSU)](https://en.wikipedia.org/wiki/Disjoint-set_data_structure) data structure algorithm to identify 
 connected components. Each bounding box is defined by the minimum and maximum `x` and `y` coordinates 
 (with 1-based indexing) that surround a connected group of * characters. 
 
@@ -399,7 +399,7 @@ public static void main(String[] args) {
 
 Very rewarding experience tackling all the various edge cases as presented in the unit tests. Being provided the input
 test files and using a Test First approach really helped refine the codebase by tackling one unit test at time. The 
-outcome was rather favorable with an extensible and organized codebase. The scalability of this program was also evident.
+outcome resulted in an extensible and well-organized codebase. The scalability of this program was also evident.
 The DSU data structure with the Union-Find algorithm is essential for efficiently managing and merging disjoint sets, 
 especially in problems involving connected components, clustering, network connectivity, image segmentation, 
 and grid-based region detection.
