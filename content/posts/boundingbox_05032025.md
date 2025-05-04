@@ -33,8 +33,7 @@ resources:
     src: featured-image.jpg
   - name: featured-image-preview
     src: featured-image-preview.jpg
-#toc: true
-tableOfContents: true
+toc: true
 math: false
 lightgallery: false
 password:
@@ -56,7 +55,8 @@ connected components. Each bounding box is defined by the minimum and maximum `x
 (with 1-based indexing) that surround a connected group of * characters. 
 
 Test-Driven Development was facilitated by reading prewritten input files from my unit tests. The goal was that the
-`BoundingBox` would be able to accommodate all of these test cases. Lots of refactoring(s) took place as a result.
+`BoundingBox` would be able to accommodate all of these test cases. Lots of refactoring(s) took place as a result. The
+final result was a well-organized and extensible codebase with comprehensive test coverage.
 
 `BoundingBox` can be used for identifying and isolating distinct rectangular regions within a 2D grid,
 making it useful in applications such as image processing, object detection, map region analysis, 
