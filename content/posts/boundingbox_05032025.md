@@ -1,10 +1,10 @@
 ---
-title: 2D Matrix Bounding Box Checker using DSU and Union-Find in Java 23 using TDD
-subtitle: High level overview of using Disjoint Set Union-Find (DSU) algorithm to efficiently detect bounding boxes in a 2D matrix using Java 23.
+title: 2D Matrix Bounding Box Checker using Disjoint Set Union-Find (DSU) Algorithm in Java 23
+subtitle: High level overview of using Disjoint Set Union-Find (DSU) algorithm to efficiently detect bounding boxes in a 2D matrix
 date: 2025-05-03T14:45:04-07:00
 slug: 0cc3279
 draft: false
-author:
+author: 
   name: Unnsse Khan
   link: https://github.com/unnsse
   email: contact@unnsse.io
