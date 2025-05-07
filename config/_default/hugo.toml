@@ -1,11 +1,14 @@
 title = "Modern-Day Software Engineering"
 baseURL = 'https://unnsse.io/'
 languageCode = 'en-us'
-theme = 'FixIt'
 canonifyURLs = true
 enableRobotsTXT = true
 enableEmoji = true
 enableGitInfo = false
+
+[module]
+  [[module.imports]]
+    path = "github.com/hugo-fixit/FixIt"
 
 # -------------------------------------------------------------------------------------
 # Theme Core Configuration
