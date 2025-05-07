@@ -68,7 +68,7 @@ before writing this article.
 
 # Features
 
-• Detects all connected components of `*` characters using Disjoint Set Union-Find.
+• Detects all connected components of `*` characters using DSU.
 
 • Computes the minimum bounding box for each component.
 
