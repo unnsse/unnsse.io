@@ -150,6 +150,8 @@ enable = true
 keepStatic = false
 auto = true
 position = "left"
+startLevel = 1
+endLevel = 6
 
 # Code config
 [page.code]
