@@ -1,2 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=JetBrains+Mono:400,700&display=swap&subset=latin-ext');
-$code-font-family: JetBrains Mono, Fira Mono, Source Code Pro, Menlo, Consolas, Monaco, monospace;
+
+/* Center-align all titles by default */
+.single .single-title {
+  text-align: center !important;
+}
+
+/* Left-align Articles title on Home page */
+.home .single-title {
+  text-align: left !important;
+}
+
+/* Keep other pages with centered titles */
+.page-title {
+  text-align: center !important;
+}
