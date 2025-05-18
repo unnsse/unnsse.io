@@ -229,3 +229,7 @@ link = ""
 [compatibility]
 polyfill = true
 objectFit = true
+
+[assets]
+customCSS = ["css/custom.css"]
+customSCSS = ["css/_custom.scss"]

@@ -66,20 +66,6 @@ connected component labeling, and spatial clustering in large datasets or grid-b
 of "faking till you make" with a broken test and then fix in its context. Its how I chose to approach the development
 before writing this article.
 
-# Features
-
-• Detects all connected components of `*` characters using DSU.
-
-• Computes the minimum bounding box for each component.
-
-• Filters for the largest non-overlapping bounding box.
-
-• Optionally returns all non-overlapping boxes in sorted order.
-
-• Handles malformed input with a clear `Error` output.
-
-• Efficient for large grids (10,000 × 10,000).
-
 # Acceptance Criteria
 
 This console app takes input from stdin with the following properties:
@@ -100,7 +86,7 @@ The program should find a box (or boxes) in the input with the following propert
 
 - The box must be defined by two pairs of coordinates corresponding to its top-left and bottom-right corners.
 
-- It must be the **minimum bounding box** for some contiguous group of asterisks, with each asterisk in the
+- Computes the minimum bounding box for each component. It must be the **minimum bounding box** for some contiguous group of asterisks, with each asterisk in the
   group being horizontally or vertically (but not diagonally) adjacent to each other. A single, detached asterisk
   is considered to be a valid box. The box should not _strictly_ bound the group, so the coordinates for the box
   in the following input should be `(2,2)(3,3)` not `(1,1)(4,4)`.
@@ -125,7 +111,7 @@ e.g. Given this input:
 
 Result should be an empty string.
 
-- Of all the non-overlapping, minimum bounding boxes in the input, _return the largest by area_.
+- Filters for the largest non-overlapping bounding box. Of all the non-overlapping, minimum bounding boxes in the input, _return the largest by area_.
 
 If any boxes satisfying the conditions can be found in the input, the program should return an exit code
 of 0 and, for each box, print a line to stdout with the two pairs of coordinates.
@@ -152,6 +138,8 @@ Outputs:
 
 This is because the larger groups on the right of the input have overlapping bounding boxes,
 so the returned coordinates bound the smaller group on the top-left.
+
+- Handles malformed input with a clear `Error` output.
 
 ---
 
