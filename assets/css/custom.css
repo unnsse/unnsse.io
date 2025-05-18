@@ -1,25 +1,3 @@
-.social-links {
-    text-align: center;
-    padding: 0.5rem;
-    font-size: 1.5rem;
-}
-
-.social-links a {
-    vertical-align: middle;
-    text-decoration: none;
-    color: inherit;
-}
-
-.social-links a:hover {
-    text-decoration: underline;
-}
-
-/* Force blue background for header and footer regardless of theme */
-.site-header, .site-footer {
-    background-color: #1e40af !important;  /* Tailwind's blue-800, adjust as needed */
-}
-
-/* Optional: white text for contrast */
-.site-header *, .site-footer * {
-    color: white !important;
+.site-header {
+    background-color: #33b3ff !important;  /* Tailwind's blue-800, adjust as needed */
 }
