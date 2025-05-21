@@ -1,4 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=JetBrains+Mono:400,700&display=swap&subset=latin-ext');
+@font-face {
+  font-family: 'Cascadia Code';
+  src: url('/fonts/cascadia/CascadiaCode.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+code, pre, tt {
+  font-family: 'Cascadia Code', $code-font-family;
+  font-variant-ligatures: normal;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
 
 /* Center-align all titles by default */
 .single .single-title {
