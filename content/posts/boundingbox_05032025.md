@@ -168,20 +168,21 @@ public class BoundingBox {
     
     record Box(Point topLeft, Point bottomRight) {
         long area() {
-            return (long)(bottomRight.x() - topLeft.x() + 1) * (bottomRight.y() - topLeft.y() + 1);
+            return (long) (bottomRight.x() - topLeft.x() + 1) * (bottomRight.y() - topLeft.y() + 1);
         }
-    
-    @Override
-    public String toString() {
-        return topLeft.toString() + bottomRight.toString();
-    }
-    
-    boolean overlaps(Box other) {
-        return !(bottomRight.x() < other.topLeft.x() ||
-                topLeft.x() > other.bottomRight.x() ||
-                bottomRight.y() < other.topLeft.y() ||
-                topLeft.y() > other.bottomRight.y());
-    }
+
+        @Override
+        public String toString() {
+            return topLeft.toString() + bottomRight.toString();
+        }
+
+        boolean overlaps(Box other) {
+            return !(bottomRight.x() < other.topLeft.x() ||
+                    topLeft.x() > other.bottomRight.x() ||
+                    bottomRight.y() < other.topLeft.y() ||
+                    topLeft.y() > other.bottomRight.y());
+        }
+    }  
 }
 ```
 ## overlaps() method
