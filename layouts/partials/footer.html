@@ -27,6 +27,8 @@
         </div>
         {{- end -}}
 
+        {{ partial "custom/social-links" . }}
+
         {{- if $footerConfig.copyright | or $footerConfig.author | or $footerConfig.license -}}
         <div class="footer-line copyright{{ with $footerConfig.order.copyright }} order-{{ . }}{{ end }}" itemscope itemtype="http://schema.org/CreativeWork">
             {{- /* Copyright year */ -}}
@@ -45,7 +47,6 @@
             {{- if ne $footerConfig.author false -}}
             <span class="author" itemprop="copyrightHolder">
               {{ partial "plugin/link.html" (dict "Destination" ($.Site.Params.author.link | default (.Scratch.Get "homeRelPermalink")) "Content" .Site.Params.author.name) -}}
-              {{ partial "custom/social-links" . }}
             </span>
             {{- end -}}
 
