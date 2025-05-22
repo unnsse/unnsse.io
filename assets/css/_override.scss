@@ -12,6 +12,11 @@ code, pre, tt {
   font-feature-settings: "liga" 1, "calt" 1;
 }
 
+code.language-txt, pre code.language-txt {
+  font-feature-settings: "liga" 0, "calt" 0;
+  font-variant-ligatures: none;
+}
+
 /* Center-align all titles by default */
 .single .single-title {
   text-align: center !important;
