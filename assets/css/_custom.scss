@@ -1,15 +1,69 @@
-// ==============================
-// Custom style
-// 自定义样式
-// ==============================
 .social-links {
-  text-align: center;
-  padding: 0.5rem;
-  font-size: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem; // use this instead of margin
+}
 
-  a {
-    vertical-align: middle;
+.social-links a {
+  margin: 0; // reset any old margin
+}
+
+.footer-line {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.footer-inline-group,
+.powered-inline-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.footer-spacer {
+  width: 2rem;
+}
+
+.clicky-badge img {
+  vertical-align: middle;
+  max-height: 1.25rem;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .footer-inline-group,
+  .powered-inline-group {
+    flex-direction: column;
+    gap: 0.25rem;
   }
 
-  @include link(true, true);
+  .footer-spacer {
+    display: none;
+  }
+
+  .social-links {
+    text-align: center;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;           /* allow icons to wrap on small screens */
+    justify-content: center;   /* center align wrapped icons */
+  }
+
+  .social-links a {
+    margin: 0 0.15rem;          /* add slight horizontal margin between icons */
+  }
+
+  .footer-line {
+    white-space: normal;       /* allow line breaks in footer text */
+    font-size: 1rem;           /* slightly bigger font on mobile */
+    padding: 0.25rem 1rem;     /* padding so text doesn't touch edges */
+  }
 }
