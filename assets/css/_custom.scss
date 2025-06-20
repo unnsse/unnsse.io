@@ -13,3 +13,102 @@
 
   @include link(true, true);
 }
+
+/* Custom styling for inline code elements (text wrapped in backticks) */
+/* This targets only markdown content areas to avoid header conflicts */
+
+/* Light theme inline code styling - only in content areas */
+body:not([data-theme="dark"]) .content code:not(pre code),
+body:not([data-theme="dark"]) .post-content code:not(pre code),
+body:not([data-theme="dark"]) .markdown code:not(pre code),
+[data-theme="light"] .content code:not(pre code),
+[data-theme="light"] .post-content code:not(pre code),
+[data-theme="light"] .markdown code:not(pre code) {
+  background-color: #f8f9fa !important; /* Light gray background - no transparency */
+  border: 1px solid #e9ecef !important;
+  border-radius: 3px !important;
+  padding: 2px 4px !important;
+  font-size: 0.9em !important;
+  color: #212529 !important; /* Dark text for light theme readability */
+}
+
+/* Dark theme inline code styling - only in content areas */
+[data-theme="dark"] .content code:not(pre code),
+[data-theme="dark"] .post-content code:not(pre code),
+[data-theme="dark"] .markdown code:not(pre code) {
+  background-color: rgba(45, 55, 72, 0.8) !important; /* Dark background */
+  border: 1px solid rgba(74, 85, 104, 0.8) !important;
+  color: #48bb78 !important; /* Green text for dark theme */
+}
+
+/* Auto theme - follows system preference - only in content areas */
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .content code:not(pre code),
+  [data-theme="auto"] .post-content code:not(pre code),
+  [data-theme="auto"] .markdown code:not(pre code) {
+    background-color: rgba(45, 55, 72, 0.8) !important;
+    border: 1px solid rgba(74, 85, 104, 0.8) !important;
+    color: #48bb78 !important; /* Green text for dark theme */
+  }
+}
+
+/* Force only the main header navigation area to maintain blue background */
+header.header,
+.header-wrapper,
+#header {
+  background-color: #007bff !important; /* Keep blue background always */
+}
+
+/* Ensure header navigation text remains readable */
+header.header *,
+.header-wrapper *,
+#header * {
+  color: white !important;
+}
+
+/* Fix breadcrumb visibility - let it follow theme colors naturally */
+.breadcrumb,
+.breadcrumb * {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* Light theme breadcrumb text */
+.breadcrumb,
+.breadcrumb a,
+.breadcrumb span {
+  color: #495057 !important; /* Dark gray for light theme */
+}
+
+/* Dark theme breadcrumb text */
+[data-theme="dark"] .breadcrumb,
+[data-theme="dark"] .breadcrumb a,
+[data-theme="dark"] .breadcrumb span {
+  color: #e2e8f0 !important; /* Light gray for dark theme */
+}
+
+/* Auto theme breadcrumb */
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .breadcrumb,
+  [data-theme="auto"] .breadcrumb a,
+  [data-theme="auto"] .breadcrumb span {
+    color: #e2e8f0 !important;
+  }
+}
+
+/* Explicitly preserve header navigation elements from code styling interference */
+header.header code,
+.header-wrapper code,
+#header code {
+  background-color: inherit !important;
+  border: none !important;
+  color: inherit !important;
+  padding: 0 !important;
+}
+
+/* Ensure code blocks (multi-line code) are not affected */
+pre code {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+}
