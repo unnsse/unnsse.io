@@ -106,9 +106,590 @@ header.header code,
   padding: 0 !important;
 }
 
-/* Ensure code blocks (multi-line code) are not affected */
+/* FIX: Code blocks (multi-line code in ``` backticks) background colors */
+/* Light theme code blocks - white background */
+body:not([data-theme="dark"]) pre,
+body:not([data-theme="dark"]) pre code,
+[data-theme="light"] pre,
+[data-theme="light"] pre code {
+  background-color: #ffffff !important; /* White background for light theme */
+  color: #24292f !important; /* Dark text for light theme */
+}
+
+/* Dark theme code blocks - dark background */
+[data-theme="dark"] pre,
+[data-theme="dark"] pre code {
+  background-color: #2d333b !important; /* Dark background for dark theme */
+  color: #adbac7 !important; /* Light text for dark theme */
+}
+
+/* Auto theme code blocks */
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] pre,
+  [data-theme="auto"] pre code {
+    background-color: #ffffff !important;
+    color: #24292f !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] pre,
+  [data-theme="auto"] pre code {
+    background-color: #2d333b !important;
+    color: #adbac7 !important;
+  }
+}
+
+/* Ensure syntax highlighting containers also follow theme */
+body:not([data-theme="dark"]) .highlight,
+body:not([data-theme="dark"]) .highlight pre,
+[data-theme="light"] .highlight,
+[data-theme="light"] .highlight pre {
+  background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .highlight,
+[data-theme="dark"] .highlight pre {
+  background-color: #2d333b !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .highlight,
+  [data-theme="auto"] .highlight pre {
+    background-color: #ffffff !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .highlight,
+  [data-theme="auto"] .highlight pre {
+    background-color: #2d333b !important;
+  }
+}
+
+/* Reset any conflicting styles that might interfere */
 pre code {
-  background-color: transparent !important;
   border: none !important;
   padding: 0 !important;
+}
+
+/* FIX: Code block headers (language labels and fold/collapse functionality) */
+/* Light theme code headers */
+body:not([data-theme="dark"]) .code-header,
+body:not([data-theme="dark"]) .highlight-header,
+body:not([data-theme="dark"]) .code-title,
+body:not([data-theme="dark"]) .highlight .code-header,
+body:not([data-theme="dark"]) .chroma .code-header,
+[data-theme="light"] .code-header,
+[data-theme="light"] .highlight-header,
+[data-theme="light"] .code-title,
+[data-theme="light"] .highlight .code-header,
+[data-theme="light"] .chroma .code-header {
+  background-color: #f8f9fa !important; /* Light gray header for light theme */
+  color: #495057 !important; /* Dark text for light theme */
+  border-bottom: 1px solid #e9ecef !important;
+}
+
+/* Light theme code header buttons/controls */
+body:not([data-theme="dark"]) .code-header button,
+body:not([data-theme="dark"]) .code-header .fold-button,
+body:not([data-theme="dark"]) .highlight-header button,
+[data-theme="light"] .code-header button,
+[data-theme="light"] .code-header .fold-button,
+[data-theme="light"] .highlight-header button {
+  background-color: transparent !important;
+  color: #495057 !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+/* Dark theme code headers */
+[data-theme="dark"] .code-header,
+[data-theme="dark"] .highlight-header,
+[data-theme="dark"] .code-title,
+[data-theme="dark"] .highlight .code-header,
+[data-theme="dark"] .chroma .code-header {
+  background-color: #1f2329 !important; /* Dark header for dark theme */
+  color: #e2e8f0 !important; /* Light text for dark theme */
+  border-bottom: 1px solid #374151 !important;
+}
+
+/* Dark theme code header buttons/controls */
+[data-theme="dark"] .code-header button,
+[data-theme="dark"] .code-header .fold-button,
+[data-theme="dark"] .highlight-header button {
+  background-color: transparent !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4b5563 !important;
+}
+
+/* Auto theme code headers */
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .code-header,
+  [data-theme="auto"] .highlight-header,
+  [data-theme="auto"] .code-title,
+  [data-theme="auto"] .highlight .code-header,
+  [data-theme="auto"] .chroma .code-header {
+    background-color: #f8f9fa !important;
+    color: #495057 !important;
+    border-bottom: 1px solid #e9ecef !important;
+  }
+
+  [data-theme="auto"] .code-header button,
+  [data-theme="auto"] .code-header .fold-button,
+  [data-theme="auto"] .highlight-header button {
+    background-color: transparent !important;
+    color: #495057 !important;
+    border: 1px solid #dee2e6 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .code-header,
+  [data-theme="auto"] .highlight-header,
+  [data-theme="auto"] .code-title,
+  [data-theme="auto"] .highlight .code-header,
+  [data-theme="auto"] .chroma .code-header {
+    background-color: #1f2329 !important;
+    color: #e2e8f0 !important;
+    border-bottom: 1px solid #374151 !important;
+  }
+
+  [data-theme="auto"] .code-header button,
+  [data-theme="auto"] .code-header .fold-button,
+  [data-theme="auto"] .highlight-header button {
+    background-color: transparent !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #4b5563 !important;
+  }
+}
+
+/* Additional FixIt theme specific selectors for code headers */
+body:not([data-theme="dark"]) .highlight-chroma .code-header,
+body:not([data-theme="dark"]) div[class*="language-"] .code-header,
+[data-theme="light"] .highlight-chroma .code-header,
+[data-theme="light"] div[class*="language-"] .code-header {
+  background-color: #f8f9fa !important;
+  color: #495057 !important;
+}
+
+[data-theme="dark"] .highlight-chroma .code-header,
+[data-theme="dark"] div[class*="language-"] .code-header {
+  background-color: #1f2329 !important;
+  color: #e2e8f0 !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .highlight-chroma .code-header,
+  [data-theme="auto"] div[class*="language-"] .code-header {
+    background-color: #f8f9fa !important;
+    color: #495057 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .highlight-chroma .code-header,
+  [data-theme="auto"] div[class*="language-"] .code-header {
+    background-color: #1f2329 !important;
+    color: #e2e8f0 !important;
+  }
+}
+
+/* FIX: Markdown tables (| | syntax) styling */
+/* Light theme tables */
+body:not([data-theme="dark"]) table,
+body:not([data-theme="dark"]) .content table,
+body:not([data-theme="dark"]) .post-content table,
+body:not([data-theme="dark"]) .markdown table,
+[data-theme="light"] table,
+[data-theme="light"] .content table,
+[data-theme="light"] .post-content table,
+[data-theme="light"] .markdown table {
+  background-color: #ffffff !important; /* White background for light theme */
+  color: #212529 !important; /* Dark text for light theme */
+  border: 1px solid #dee2e6 !important;
+}
+
+/* Light theme table headers */
+body:not([data-theme="dark"]) table th,
+body:not([data-theme="dark"]) .content table th,
+body:not([data-theme="dark"]) .post-content table th,
+body:not([data-theme="dark"]) .markdown table th,
+[data-theme="light"] table th,
+[data-theme="light"] .content table th,
+[data-theme="light"] .post-content table th,
+[data-theme="light"] .markdown table th {
+  background-color: #f8f9fa !important; /* Light gray header background */
+  color: #495057 !important; /* Dark text for headers */
+  border-bottom: 2px solid #dee2e6 !important;
+}
+
+/* Light theme table cells */
+body:not([data-theme="dark"]) table td,
+body:not([data-theme="dark"]) .content table td,
+body:not([data-theme="dark"]) .post-content table td,
+body:not([data-theme="dark"]) .markdown table td,
+[data-theme="light"] table td,
+[data-theme="light"] .content table td,
+[data-theme="light"] .post-content table td,
+[data-theme="light"] .markdown table td {
+  background-color: #ffffff !important; /* White cell background */
+  color: #212529 !important; /* Dark text for cells */
+  border: 1px solid #dee2e6 !important;
+}
+
+/* Dark theme tables */
+[data-theme="dark"] table,
+[data-theme="dark"] .content table,
+[data-theme="dark"] .post-content table,
+[data-theme="dark"] .markdown table {
+  background-color: #272c34 !important; /* Dark background for dark theme */
+  color: #e2e8f0 !important; /* Light text for dark theme */
+  border: 1px solid #4b5563 !important;
+}
+
+/* Dark theme table headers */
+[data-theme="dark"] table th,
+[data-theme="dark"] .content table th,
+[data-theme="dark"] .post-content table th,
+[data-theme="dark"] .markdown table th {
+  background-color: #20252b !important; /* Darker header background */
+  color: #f8fafc !important; /* Light text for headers */
+  border-bottom: 2px solid #4b5563 !important;
+}
+
+/* Dark theme table cells */
+[data-theme="dark"] table td,
+[data-theme="dark"] .content table td,
+[data-theme="dark"] .post-content table td,
+[data-theme="dark"] .markdown table td {
+  background-color: #272c34 !important; /* Dark cell background */
+  color: #e2e8f0 !important; /* Light text for cells */
+  border: 1px solid #4b5563 !important;
+}
+
+/* Auto theme tables */
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] table,
+  [data-theme="auto"] .content table,
+  [data-theme="auto"] .post-content table,
+  [data-theme="auto"] .markdown table {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #dee2e6 !important;
+  }
+
+  [data-theme="auto"] table th,
+  [data-theme="auto"] .content table th,
+  [data-theme="auto"] .post-content table th,
+  [data-theme="auto"] .markdown table th {
+    background-color: #f8f9fa !important;
+    color: #495057 !important;
+    border-bottom: 2px solid #dee2e6 !important;
+  }
+
+  [data-theme="auto"] table td,
+  [data-theme="auto"] .content table td,
+  [data-theme="auto"] .post-content table td,
+  [data-theme="auto"] .markdown table td {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #dee2e6 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] table,
+  [data-theme="auto"] .content table,
+  [data-theme="auto"] .post-content table,
+  [data-theme="auto"] .markdown table {
+    background-color: #272c34 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #4b5563 !important;
+  }
+
+  [data-theme="auto"] table th,
+  [data-theme="auto"] .content table th,
+  [data-theme="auto"] .post-content table th,
+  [data-theme="auto"] .markdown table th {
+    background-color: #20252b !important;
+    color: #f8fafc !important;
+    border-bottom: 2px solid #4b5563 !important;
+  }
+
+  [data-theme="auto"] table td,
+  [data-theme="auto"] .content table td,
+  [data-theme="auto"] .post-content table td,
+  [data-theme="auto"] .markdown table td {
+    background-color: #272c34 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #4b5563 !important;
+  }
+}
+
+/* FIX: Syntax highlighting - improve Java object reference types visibility */
+/* Light theme syntax highlighting improvements */
+body:not([data-theme="dark"]) .highlight .nc,
+body:not([data-theme="dark"]) .highlight .nn,
+body:not([data-theme="dark"]) .highlight .nt,
+body:not([data-theme="dark"]) .chroma .nc,
+body:not([data-theme="dark"]) .chroma .nn,
+body:not([data-theme="dark"]) .chroma .nt,
+[data-theme="light"] .highlight .nc,
+[data-theme="light"] .highlight .nn,
+[data-theme="light"] .highlight .nt,
+[data-theme="light"] .chroma .nc,
+[data-theme="light"] .chroma .nn,
+[data-theme="light"] .chroma .nt {
+  color: #0969da !important; /* Blue for class names and types */
+  font-weight: 600 !important; /* Make them bolder */
+}
+
+/* Java-specific improvements for light theme */
+body:not([data-theme="dark"]) .highlight .k,
+body:not([data-theme="dark"]) .chroma .k,
+[data-theme="light"] .highlight .k,
+[data-theme="light"] .chroma .k {
+  color: #cf222e !important; /* Red for keywords like 'public', 'class', 'return' */
+  font-weight: 600 !important;
+}
+
+/* Method names and function calls */
+body:not([data-theme="dark"]) .highlight .nf,
+body:not([data-theme="dark"]) .chroma .nf,
+[data-theme="light"] .highlight .nf,
+[data-theme="light"] .chroma .nf {
+  color: #8250df !important; /* Purple for method names */
+  font-weight: 500 !important;
+}
+
+/* Variable names */
+body:not([data-theme="dark"]) .highlight .n,
+body:not([data-theme="dark"]) .chroma .n,
+[data-theme="light"] .highlight .n,
+[data-theme="light"] .chroma .n {
+  color: #24292f !important; /* Dark color for variables */
+}
+
+/* Strings */
+body:not([data-theme="dark"]) .highlight .s,
+body:not([data-theme="dark"]) .highlight .s1,
+body:not([data-theme="dark"]) .highlight .s2,
+body:not([data-theme="dark"]) .chroma .s,
+body:not([data-theme="dark"]) .chroma .s1,
+body:not([data-theme="dark"]) .chroma .s2,
+[data-theme="light"] .highlight .s,
+[data-theme="light"] .highlight .s1,
+[data-theme="light"] .highlight .s2,
+[data-theme="light"] .chroma .s,
+[data-theme="light"] .chroma .s1,
+[data-theme="light"] .chroma .s2 {
+  color: #0a3069 !important; /* Dark blue for strings */
+}
+
+/* Comments */
+body:not([data-theme="dark"]) .highlight .c1,
+body:not([data-theme="dark"]) .highlight .cm,
+body:not([data-theme="dark"]) .chroma .c1,
+body:not([data-theme="dark"]) .chroma .cm,
+[data-theme="light"] .highlight .c1,
+[data-theme="light"] .highlight .cm,
+[data-theme="light"] .chroma .c1,
+[data-theme="light"] .chroma .cm {
+  color: #6a737d !important; /* Gray for comments */
+  font-style: italic !important;
+}
+
+/* Dark theme syntax highlighting (keep existing good contrast) */
+[data-theme="dark"] .highlight .nc,
+[data-theme="dark"] .highlight .nn,
+[data-theme="dark"] .highlight .nt,
+[data-theme="dark"] .chroma .nc,
+[data-theme="dark"] .chroma .nn,
+[data-theme="dark"] .chroma .nt {
+  color: #79c0ff !important; /* Light blue for class names */
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .highlight .k,
+[data-theme="dark"] .chroma .k {
+  color: #ff7b72 !important; /* Light red for keywords */
+  font-weight: 600 !important;
+}
+
+[data-theme="dark"] .highlight .nf,
+[data-theme="dark"] .chroma .nf {
+  color: #d2a8ff !important; /* Light purple for method names */
+  font-weight: 500 !important;
+}
+
+/* Auto theme syntax highlighting */
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .highlight .nc,
+  [data-theme="auto"] .highlight .nn,
+  [data-theme="auto"] .highlight .nt,
+  [data-theme="auto"] .chroma .nc,
+  [data-theme="auto"] .chroma .nn,
+  [data-theme="auto"] .chroma .nt {
+    color: #0969da !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .k,
+  [data-theme="auto"] .chroma .k {
+    color: #cf222e !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .nf,
+  [data-theme="auto"] .chroma .nf {
+    color: #8250df !important;
+    font-weight: 500 !important;
+  }
+
+  [data-theme="auto"] .highlight .n,
+  [data-theme="auto"] .chroma .n {
+    color: #24292f !important;
+  }
+
+  [data-theme="auto"] .highlight .s,
+  [data-theme="auto"] .highlight .s1,
+  [data-theme="auto"] .highlight .s2,
+  [data-theme="auto"] .chroma .s,
+  [data-theme="auto"] .chroma .s1,
+  [data-theme="auto"] .chroma .s2 {
+    color: #0a3069 !important;
+  }
+
+  [data-theme="auto"] .highlight .c1,
+  [data-theme="auto"] .highlight .cm,
+  [data-theme="auto"] .chroma .c1,
+  [data-theme="auto"] .chroma .cm {
+    color: #6a737d !important;
+    font-style: italic !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .highlight .nc,
+  [data-theme="auto"] .highlight .nn,
+  [data-theme="auto"] .highlight .nt,
+  [data-theme="auto"] .chroma .nc,
+  [data-theme="auto"] .chroma .nn,
+  [data-theme="auto"] .chroma .nt {
+    color: #79c0ff !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .k,
+  [data-theme="auto"] .chroma .k {
+    color: #ff7b72 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .nf,
+  [data-theme="auto"] .chroma .nf {
+    color: #d2a8ff !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* FIX 1: Strong/Bold text styling for proper contrast in both themes */
+/* Light theme - strong text should be bold black */
+body:not([data-theme="dark"]) strong,
+body:not([data-theme="dark"]) b,
+[data-theme="light"] strong,
+[data-theme="light"] b {
+  color: #000000 !important; /* Pure black for maximum contrast in light mode */
+  font-weight: 700 !important; /* Bold weight */
+}
+
+/* Dark theme - strong text should be bold white */
+[data-theme="dark"] strong,
+[data-theme="dark"] b {
+  color: #ffffff !important; /* Pure white for maximum contrast in dark mode */
+  font-weight: 700 !important; /* Bold weight */
+}
+
+/* Auto theme - follows system preference */
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] strong,
+  [data-theme="auto"] b {
+    color: #000000 !important;
+    font-weight: 700 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] strong,
+  [data-theme="auto"] b {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* FIX 2: Home page article links should be black in light mode */
+/* Target the home page article list links specifically */
+.home .posts .post-title a,
+.home .summary .summary-title a,
+.posts-list .post-title a,
+.post-preview .post-title a {
+  color: #000000 !important; /* Black text for light theme */
+  text-decoration: none;
+}
+
+/* Hover state for home page article links */
+.home .posts .post-title a:hover,
+.home .summary .summary-title a:hover,
+.posts-list .post-title a:hover,
+.post-preview .post-title a:hover {
+  color: #2983bb !important; /* Use your defined hover color */
+  text-decoration: underline;
+}
+
+/* Dark theme article links */
+[data-theme="dark"] .home .posts .post-title a,
+[data-theme="dark"] .home .summary .summary-title a,
+[data-theme="dark"] .posts-list .post-title a,
+[data-theme="dark"] .post-preview .post-title a {
+  color: #ffffff !important; /* White text for dark theme */
+}
+
+[data-theme="dark"] .home .posts .post-title a:hover,
+[data-theme="dark"] .home .summary .summary-title a:hover,
+[data-theme="dark"] .posts-list .post-title a:hover,
+[data-theme="dark"] .post-preview .post-title a:hover {
+  color: #33b3ff !important; /* Blue hover for dark theme */
+}
+
+/* Auto theme article links */
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .home .posts .post-title a,
+  [data-theme="auto"] .home .summary .summary-title a,
+  [data-theme="auto"] .posts-list .post-title a,
+  [data-theme="auto"] .post-preview .post-title a {
+    color: #000000 !important;
+  }
+
+  [data-theme="auto"] .home .posts .post-title a:hover,
+  [data-theme="auto"] .home .summary .summary-title a:hover,
+  [data-theme="auto"] .posts-list .post-title a:hover,
+  [data-theme="auto"] .post-preview .post-title a:hover {
+    color: #2983bb !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .home .posts .post-title a,
+  [data-theme="auto"] .home .summary .summary-title a,
+  [data-theme="auto"] .posts-list .post-title a,
+  [data-theme="auto"] .post-preview .post-title a {
+    color: #ffffff !important;
+  }
+
+  [data-theme="auto"] .home .posts .post-title a:hover,
+  [data-theme="auto"] .home .summary .summary-title a:hover,
+  [data-theme="auto"] .posts-list .post-title a:hover,
+  [data-theme="auto"] .post-preview .post-title a:hover {
+    color: #33b3ff !important;
+  }
 }

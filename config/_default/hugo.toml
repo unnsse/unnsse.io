@@ -24,3 +24,32 @@ position = "right" # ["left", "right"]
 
 [footer]
 since = 2024
+
+
+[params]
+# Theme configuration
+defaultTheme = "auto"
+# Enable theme switch
+[params.header]
+[params.header.title]
+# your existing title config
+themeChangeMode = "switch" # or "select"
+
+# Page configuration
+[params.page]
+# Enable theme persistence
+[params.page.library]
+[params.page.library.css]
+# your existing CSS config
+[params.page.library.js]
+# Enable FixIt's built-in theme persistence
+cookieConsent = false
+
+# App configuration for PWA-like behavior
+[params.app]
+title = "Modern-Day Software Engineering"
+noFavicon = false
+svgFavicon = ""
+themeColor = "#33b3ff"
+iconColor = "#33b3ff"
+tileColor = "#33b3ff"
