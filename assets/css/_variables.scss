@@ -169,3 +169,7 @@ $github-corner-fill-dark: #33b3ff !default; // Use blue for dark theme
 @import '_partials/_maps/code-type';
 @import '_partials/_maps/colors';
 @import '_partials/_maps/utilities';
+
+// Color of the header background
+$header-background-color: #007bff !default; /* Blue */
+$header-background-color-dark: #007bff !default; /* Blue for dark mode */
