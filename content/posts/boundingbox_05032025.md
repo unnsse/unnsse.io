@@ -450,11 +450,11 @@ Was rather straightforward:
 
 ```java
 @Test
-  void testMultipleNonOverlapping() throws Exception {
-      BoundingBox boundingBox = new BoundingBox();
-      List<String> lines = readInput("multiple-non-overlapping.txt");
-      assertEquals("(1,1)(2,2)", boundingBox.largestNonOverlappingBox(lines, false));
-  }
+void testMultipleNonOverlapping() throws Exception {
+    BoundingBox boundingBox = new BoundingBox();
+    List<String> lines = readInput("multiple-non-overlapping.txt");
+    assertEquals("(1,1)(2,2)", boundingBox.largestNonOverlappingBox(lines, false));
+}
 ```
 # Running from Command Line
 
