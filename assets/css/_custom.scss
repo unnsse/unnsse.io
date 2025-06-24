@@ -1,15 +1,993 @@
 // ==============================
 // Custom style
-// 自定义样式
 // ==============================
+
+// Social links styling
 .social-links {
+  // Center the social links
   text-align: center;
   padding: 0.5rem;
   font-size: 1.5rem;
 
   a {
+    // Align the social link icons vertically
     vertical-align: middle;
   }
 
+  // Include a link mixin
   @include link(true, true);
+}
+
+/* Fallback: Force nav styles even when no theme is set */
+header.header {
+  background-color: #f8f9fa !important;
+}
+
+header.header .menu .menu-item a {
+  color: #212529 !important;
+}
+
+header.header .menu .menu-item a:hover {
+  color: #007bff !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Now reinforce again AFTER theme is loaded */
+[data-theme="light"] header.header,
+[data-theme="auto"] header.header {
+  background-color: #f8f9fa !important;
+}
+
+[data-theme="light"] header.header .menu .menu-item a,
+[data-theme="auto"] header.header .menu .menu-item a {
+  color: #212529 !important;
+}
+
+[data-theme="dark"] header.header {
+  background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] header.header .menu .menu-item a {
+  color: #f8f9fa !important;
+}
+
+/* Custom styling for inline code elements (text wrapped in backticks) */
+/* This targets only markdown content areas to avoid header conflicts */
+body:not([data-theme="dark"]) .content code:not(pre code),
+body:not([data-theme="dark"]) .post-content code:not(pre code),
+body:not([data-theme="dark"]) .markdown code:not(pre code),
+[data-theme="light"] .content code:not(pre code),
+[data-theme="light"] .post-content code:not(pre code),
+[data-theme="light"] .markdown code:not(pre code) {
+  background-color: #f8f9fa !important;
+  border: 1px solid #e9ecef !important;
+  border-radius: 3px !important;
+  padding: 2px 4px !important;
+  font-size: 0.9em !important;
+  color: #212529 !important;
+}
+
+[data-theme="dark"] .content code:not(pre code),
+[data-theme="dark"] .post-content code:not(pre code),
+[data-theme="dark"] .markdown code:not(pre code) {
+  background-color: rgba(45, 55, 72, 0.8) !important;
+  border: 1px solid rgba(74, 85, 104, 0.8) !important;
+  color: #48bb78 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .content code:not(pre code),
+  [data-theme="auto"] .post-content code:not(pre code),
+  [data-theme="auto"] .markdown code:not(pre code) {
+    background-color: rgba(45, 55, 72, 0.8) !important;
+    border: 1px solid rgba(74, 85, 104, 0.8) !important;
+    color: #48bb78 !important;
+  }
+}
+
+// Header styling
+header.header,
+.header-wrapper,
+#header {
+  background-color: #007bff !important;
+}
+
+header.header *,
+.header-wrapper *,
+#header * {
+  color: white !important;
+}
+
+header.header .menu .menu-item a {
+  color: #333 !important;
+  background-color: transparent !important;
+}
+
+header.header .menu .menu-item a:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: #333 !important;
+}
+
+// Breadcrumb styling
+.breadcrumb,
+.breadcrumb * {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+.breadcrumb,
+.breadcrumb a,
+.breadcrumb span {
+  color: #495057 !important;
+}
+
+[data-theme="dark"] .breadcrumb,
+[data-theme="dark"] .breadcrumb a,
+[data-theme="dark"] .breadcrumb span {
+  color: #e2e8f0 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .breadcrumb,
+  [data-theme="auto"] .breadcrumb a,
+  [data-theme="auto"] .breadcrumb span {
+    color: #e2e8f0 !important;
+  }
+}
+
+// Code block styling
+body:not([data-theme="dark"]) pre,
+body:not([data-theme="dark"]) pre code,
+[data-theme="light"] pre,
+[data-theme="light"] pre code {
+  background-color: #ffffff !important;
+  color: #24292f !important;
+}
+
+[data-theme="dark"] pre,
+[data-theme="dark"] pre code {
+  background-color: #2d333b !important;
+  color: #adbac7 !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] pre,
+  [data-theme="auto"] pre code {
+    background-color: #ffffff !important;
+    color: #24292f !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] pre,
+  [data-theme="auto"] pre code {
+    background-color: #2d333b !important;
+    color: #adbac7 !important;
+  }
+}
+
+// Code header styling
+body:not([data-theme="dark"]) .code-header,
+body:not([data-theme="dark"]) .highlight-header,
+body:not([data-theme="dark"]) .code-title,
+body:not([data-theme="dark"]) .highlight .code-header,
+body:not([data-theme="dark"]) .chroma .code-header,
+[data-theme="light"] .code-header,
+[data-theme="light"] .highlight-header,
+[data-theme="light"] .code-title,
+[data-theme="light"] .highlight .code-header,
+[data-theme="light"] .chroma .code-header {
+  background-color: #f8f9fa !important;
+  color: #495057 !important;
+  border-bottom: 1px solid #e9ecef !important;
+}
+
+body:not([data-theme="dark"]) .code-header button,
+body:not([data-theme="dark"]) .code-header .fold-button,
+body:not([data-theme="dark"]) .highlight-header button,
+[data-theme="light"] .code-header button,
+[data-theme="light"] .code-header .fold-button,
+[data-theme="light"] .highlight-header button {
+  background-color: transparent !important;
+  color: #495057 !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+[data-theme="dark"] .code-header,
+[data-theme="dark"] .highlight-header,
+[data-theme="dark"] .code-title,
+[data-theme="dark"] .highlight .code-header,
+[data-theme="dark"] .chroma .code-header {
+  background-color: #1f2329 !important;
+  color: #e2e8f0 !important;
+  border-bottom: 1px solid #374151 !important;
+}
+
+[data-theme="dark"] .code-header button,
+[data-theme="dark"] .code-header .fold-button,
+[data-theme="dark"] .highlight-header button {
+  background-color: transparent !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4b5563 !important;
+}
+
+pre code {
+  border: none !important;
+  padding: 0 !important;
+}
+
+body:not([data-theme="dark"]) .highlight,
+body:not([data-theme="dark"]) .highlight pre,
+[data-theme="light"] .highlight,
+[data-theme="light"] .highlight pre {
+  background-color: #ffffff !important;
+}
+
+[data-theme="dark"] .highlight,
+[data-theme="dark"] .highlight pre {
+  background-color: #2d333b !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .highlight,
+  [data-theme="auto"] .highlight pre {
+    background-color: #ffffff !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .highlight,
+  [data-theme="auto"] .highlight pre {
+    background-color: #2d333b !important;
+  }
+}
+
+// Table styling
+body:not([data-theme="dark"]) table,
+body:not([data-theme="dark"]) .content table,
+body:not([data-theme="dark"]) .post-content table,
+body:not([data-theme="dark"]) .markdown table,
+[data-theme="light"] table,
+[data-theme="light"] .content table,
+[data-theme="light"] .post-content table,
+[data-theme="light"] .markdown table {
+  background-color: #ffffff !important;
+  color: #212529 !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+body:not([data-theme="dark"]) table th,
+body:not([data-theme="dark"]) .content table th,
+body:not([data-theme="dark"]) .post-content table th,
+body:not([data-theme="dark"]) .markdown table th,
+[data-theme="light"] table th,
+[data-theme="light"] .content table th,
+[data-theme="light"] .post-content table th,
+[data-theme="light"] .markdown table th {
+  background-color: #f0f0f0 !important;
+  color: #161209 !important;
+  border: none !important;
+  border-right: 1px solid #dee2e6 !important;
+}
+
+body:not([data-theme="dark"]) table th:last-child,
+body:not([data-theme="dark"]) .content table th:last-child,
+body:not([data-theme="dark"]) .post-content table th:last-child,
+body:not([data-theme="dark"]) .markdown table th:last-child,
+[data-theme="light"] table th:last-child,
+[data-theme="light"] .content table th:last-child,
+[data-theme="light"] .post-content table th:last-child,
+[data-theme="light"] .markdown table th:last-child {
+  border-right: none !important;
+}
+
+body:not([data-theme="dark"]) table td,
+body:not([data-theme="dark"]) .content table td,
+body:not([data-theme="dark"]) .post-content table td,
+body:not([data-theme="dark"]) .markdown table td,
+[data-theme="light"] table td,
+[data-theme="light"] .content table td,
+[data-theme="light"] .post-content table td,
+[data-theme="light"] .markdown table td {
+  background-color: #ffffff !important;
+  color: #212529 !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+[data-theme="dark"] table,
+[data-theme="dark"] .content table,
+[data-theme="dark"] .post-content table,
+[data-theme="dark"] .markdown table {
+  background-color: #272c34 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4b5563 !important;
+}
+
+[data-theme="dark"] table th,
+[data-theme="dark"] .content table th,
+[data-theme="dark"] .post-content table th,
+[data-theme="dark"] .markdown table th {
+  background-color: #363636 !important;
+  color: #b1b1ba !important;
+  border: none !important;
+  border-right: 1px solid #4b5563 !important;
+}
+
+[data-theme="dark"] table th:last-child,
+[data-theme="dark"] .content table th:last-child,
+[data-theme="dark"] .post-content table th:last-child,
+[data-theme="dark"] .markdown table th:last-child {
+  border-right: none !important;
+}
+
+[data-theme="dark"] table td,
+[data-theme="dark"] .content table td,
+[data-theme="dark"] .post-content table td,
+[data-theme="dark"] .markdown table td {
+  background-color: #272c34 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #4b5563 !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] table,
+  [data-theme="auto"] .content table,
+  [data-theme="auto"] .post-content table,
+  [data-theme="auto"] .markdown table {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #dee2e6 !important;
+  }
+
+  [data-theme="auto"] table th,
+  [data-theme="auto"] .content table th,
+  [data-theme="auto"] .post-content table th,
+  [data-theme="auto"] .markdown table th {
+    background-color: #f0f0f0 !important;
+    color: #161209 !important;
+    border: none !important;
+    border-right: 1px solid #dee2e6 !important;
+  }
+
+  [data-theme="auto"] table th:last-child,
+  [data-theme="auto"] .content table th:last-child,
+  [data-theme="auto"] .post-content table th:last-child,
+  [data-theme="auto"] .markdown table th:last-child {
+    border-right: none !important;
+  }
+
+  [data-theme="auto"] table td,
+  [data-theme="auto"] .content table td,
+  [data-theme="auto"] .post-content table td,
+  [data-theme="auto"] .markdown table td {
+    background-color: #ffffff !important;
+    color: #212529 !important;
+    border: 1px solid #dee2e6 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] table,
+  [data-theme="auto"] .content table,
+  [data-theme="auto"] .post-content table,
+  [data-theme="auto"] .markdown table {
+    background-color: #272c34 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #4b5563 !important;
+  }
+
+  [data-theme="auto"] table th,
+  [data-theme="auto"] .content table th,
+  [data-theme="auto"] .post-content table th,
+  [data-theme="auto"] .markdown table th {
+    background-color: #363636 !important;
+    color: #b1b1ba !important;
+    border: none !important;
+    border-right: 1px solid #4b5563 !important;
+  }
+
+  [data-theme="auto"] table th:last-child,
+  [data-theme="auto"] .content table th:last-child,
+  [data-theme="auto"] .post-content table th:last-child,
+  [data-theme="auto"] .markdown table th:last-child {
+    border-right: none !important;
+  }
+
+  [data-theme="auto"] table td,
+  [data-theme="auto"] .content table td,
+  [data-theme="auto"] .post-content table td,
+  [data-theme="auto"] .markdown table td {
+    background-color: #272c34 !important;
+    color: #e2e8f0 !important;
+    border: 1px solid #4b5563 !important;
+  }
+}
+
+code, pre {
+  font-family: 'Cascadia Code', monospace !important;
+}
+
+// Strong/Bold text styling
+body:not([data-theme="dark"]) .content strong,
+body:not([data-theme="dark"]) .post-content strong,
+body:not([data-theme="dark"]) .markdown strong,
+body:not([data-theme="dark"]) strong,
+[data-theme="light"] .content strong,
+[data-theme="light"] .post-content strong,
+[data-theme="light"] .markdown strong,
+[data-theme="light"] strong {
+  color: #1a1a1a !important;
+  font-weight: 700 !important;
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .content strong,
+  [data-theme="auto"] .post-content strong,
+  [data-theme="auto"] .markdown strong,
+  [data-theme="auto"] strong {
+    color: #1a1a1a !important;
+    font-weight: 700 !important;
+  }
+}
+
+// ==============================
+// Enhanced Dracula-inspired Syntax Highlighting
+// ==============================
+
+// LIGHT THEME SYNTAX HIGHLIGHTING
+// Classes, interfaces, types (darker, more prominent)
+body:not([data-theme="dark"]) .highlight .kt,
+body:not([data-theme="dark"]) .highlight .nc,
+body:not([data-theme="dark"]) .highlight .nn,
+body:not([data-theme="dark"]) .highlight .nt,
+body:not([data-theme="dark"]) .highlight .kd,
+body:not([data-theme="dark"]) .chroma .kt,
+body:not([data-theme="dark"]) .chroma .nc,
+body:not([data-theme="dark"]) .chroma .nn,
+body:not([data-theme="dark"]) .chroma .nt,
+body:not([data-theme="dark"]) .chroma .kd,
+[data-theme="light"] .highlight .kt,
+[data-theme="light"] .highlight .nc,
+[data-theme="light"] .highlight .nn,
+[data-theme="light"] .highlight .nt,
+[data-theme="light"] .highlight .kd,
+[data-theme="light"] .chroma .kt,
+[data-theme="light"] .chroma .nc,
+[data-theme="light"] .chroma .nn,
+[data-theme="light"] .chroma .nt,
+[data-theme="light"] .chroma .kd {
+  color: #8b1538 !important; // Dark red/maroon for types
+  font-weight: 700 !important;
+}
+
+// Keywords (if, else, for, etc.) - dark purple
+body:not([data-theme="dark"]) .highlight .k,
+body:not([data-theme="dark"]) .highlight .kp,
+body:not([data-theme="dark"]) .highlight .kr,
+body:not([data-theme="dark"]) .highlight .kn,
+body:not([data-theme="dark"]) .chroma .k,
+body:not([data-theme="dark"]) .chroma .kp,
+body:not([data-theme="dark"]) .chroma .kr,
+body:not([data-theme="dark"]) .chroma .kn,
+[data-theme="light"] .highlight .k,
+[data-theme="light"] .highlight .kp,
+[data-theme="light"] .highlight .kr,
+[data-theme="light"] .highlight .kn,
+[data-theme="light"] .chroma .k,
+[data-theme="light"] .chroma .kp,
+[data-theme="light"] .chroma .kr,
+[data-theme="light"] .chroma .kn {
+  color: #6f42c1 !important; // Dark purple for keywords
+  font-weight: 600 !important;
+}
+
+// Variable names and identifiers
+body:not([data-theme="dark"]) .highlight .nv,
+body:not([data-theme="dark"]) .highlight .nb,
+body:not([data-theme="dark"]) .highlight .n,
+body:not([data-theme="dark"]) .chroma .nv,
+body:not([data-theme="dark"]) .chroma .nb,
+body:not([data-theme="dark"]) .chroma .n,
+[data-theme="light"] .highlight .nv,
+[data-theme="light"] .highlight .nb,
+[data-theme="light"] .highlight .n,
+[data-theme="light"] .chroma .nv,
+[data-theme="light"] .chroma .nb,
+[data-theme="light"] .chroma .n {
+  color: #032f62 !important; // Dark blue for variables
+  font-weight: 500 !important;
+}
+
+// Function names
+body:not([data-theme="dark"]) .highlight .nf,
+body:not([data-theme="dark"]) .chroma .nf,
+[data-theme="light"] .highlight .nf,
+[data-theme="light"] .chroma .nf {
+  color: #6f42c1 !important; // Purple for functions
+  font-weight: 600 !important;
+}
+
+// Strings
+body:not([data-theme="dark"]) .highlight .s,
+body:not([data-theme="dark"]) .highlight .s1,
+body:not([data-theme="dark"]) .highlight .s2,
+body:not([data-theme="dark"]) .highlight .sb,
+body:not([data-theme="dark"]) .highlight .sc,
+body:not([data-theme="dark"]) .chroma .s,
+body:not([data-theme="dark"]) .chroma .s1,
+body:not([data-theme="dark"]) .chroma .s2,
+body:not([data-theme="dark"]) .chroma .sb,
+body:not([data-theme="dark"]) .chroma .sc,
+[data-theme="light"] .highlight .s,
+[data-theme="light"] .highlight .s1,
+[data-theme="light"] .highlight .s2,
+[data-theme="light"] .highlight .sb,
+[data-theme="light"] .highlight .sc,
+[data-theme="light"] .chroma .s,
+[data-theme="light"] .chroma .s1,
+[data-theme="light"] .chroma .s2,
+[data-theme="light"] .chroma .sb,
+[data-theme="light"] .chroma .sc {
+  color: #22863a !important; // Dark green for strings
+  font-weight: 500 !important;
+}
+
+// Numbers
+body:not([data-theme="dark"]) .highlight .m,
+body:not([data-theme="dark"]) .highlight .mi,
+body:not([data-theme="dark"]) .highlight .mf,
+body:not([data-theme="dark"]) .chroma .m,
+body:not([data-theme="dark"]) .chroma .mi,
+body:not([data-theme="dark"]) .chroma .mf,
+[data-theme="light"] .highlight .m,
+[data-theme="light"] .highlight .mi,
+[data-theme="light"] .highlight .mf,
+[data-theme="light"] .chroma .m,
+[data-theme="light"] .chroma .mi,
+[data-theme="light"] .chroma .mf {
+  color: #b31d28 !important; // Dark red for numbers
+  font-weight: 600 !important;
+}
+
+// Annotations (@Override, @Deprecated, etc.)
+body:not([data-theme="dark"]) .highlight .na,
+body:not([data-theme="dark"]) .chroma .na,
+[data-theme="light"] .highlight .na,
+[data-theme="light"] .chroma .na {
+  color: #6f42c1 !important; // Purple for annotations
+  font-weight: 600 !important;
+}
+
+// Comments
+body:not([data-theme="dark"]) .highlight .c,
+body:not([data-theme="dark"]) .highlight .c1,
+body:not([data-theme="dark"]) .highlight .cm,
+body:not([data-theme="dark"]) .chroma .c,
+body:not([data-theme="dark"]) .chroma .c1,
+body:not([data-theme="dark"]) .chroma .cm,
+[data-theme="light"] .highlight .c,
+[data-theme="light"] .highlight .c1,
+[data-theme="light"] .highlight .cm,
+[data-theme="light"] .chroma .c,
+[data-theme="light"] .chroma .c1,
+[data-theme="light"] .chroma .cm {
+  color: #6a737d !important; // Gray for comments
+  font-style: italic !important;
+}
+
+// DARK THEME SYNTAX HIGHLIGHTING (Dracula-inspired)
+// Classes, interfaces, types - Dracula pink/red
+[data-theme="dark"] .highlight .kt,
+[data-theme="dark"] .highlight .nc,
+[data-theme="dark"] .highlight .nn,
+[data-theme="dark"] .highlight .nt,
+[data-theme="dark"] .highlight .kd,
+[data-theme="dark"] .chroma .kt,
+[data-theme="dark"] .chroma .nc,
+[data-theme="dark"] .chroma .nn,
+[data-theme="dark"] .chroma .nt,
+[data-theme="dark"] .chroma .kd {
+  color: #ff79c6 !important; // Dracula pink for types
+  font-weight: 700 !important;
+}
+
+// Keywords - Dracula purple
+[data-theme="dark"] .highlight .k,
+[data-theme="dark"] .highlight .kp,
+[data-theme="dark"] .highlight .kr,
+[data-theme="dark"] .highlight .kn,
+[data-theme="dark"] .chroma .k,
+[data-theme="dark"] .chroma .kp,
+[data-theme="dark"] .chroma .kr,
+[data-theme="dark"] .chroma .kn {
+  color: #bd93f9 !important; // Dracula purple for keywords
+  font-weight: 600 !important;
+}
+
+// Variable names - Dracula cyan
+[data-theme="dark"] .highlight .nv,
+[data-theme="dark"] .highlight .nb,
+[data-theme="dark"] .highlight .n,
+[data-theme="dark"] .chroma .nv,
+[data-theme="dark"] .chroma .nb,
+[data-theme="dark"] .chroma .n {
+  color: #8be9fd !important; // Dracula cyan for variables
+  font-weight: 500 !important;
+}
+
+// Function names - Dracula green
+[data-theme="dark"] .highlight .nf,
+[data-theme="dark"] .chroma .nf {
+  color: #50fa7b !important; // Dracula green for functions
+  font-weight: 600 !important;
+}
+
+// Strings - Dracula yellow
+[data-theme="dark"] .highlight .s,
+[data-theme="dark"] .highlight .s1,
+[data-theme="dark"] .highlight .s2,
+[data-theme="dark"] .highlight .sb,
+[data-theme="dark"] .highlight .sc,
+[data-theme="dark"] .chroma .s,
+[data-theme="dark"] .chroma .s1,
+[data-theme="dark"] .chroma .s2,
+[data-theme="dark"] .chroma .sb,
+[data-theme="dark"] .chroma .sc {
+  color: #f1fa8c !important; // Dracula yellow for strings
+  font-weight: 500 !important;
+}
+
+// Numbers - Dracula orange
+[data-theme="dark"] .highlight .m,
+[data-theme="dark"] .highlight .mi,
+[data-theme="dark"] .highlight .mf,
+[data-theme="dark"] .chroma .m,
+[data-theme="dark"] .chroma .mi,
+[data-theme="dark"] .chroma .mf {
+  color: #ffb86c !important; // Dracula orange for numbers
+  font-weight: 600 !important;
+}
+
+// Annotations - Dracula pink
+[data-theme="dark"] .highlight .na,
+[data-theme="dark"] .chroma .na {
+  color: #ff79c6 !important; // Dracula pink for annotations
+  font-weight: 600 !important;
+}
+
+// Comments - Dracula comment gray
+[data-theme="dark"] .highlight .c,
+[data-theme="dark"] .highlight .c1,
+[data-theme="dark"] .highlight .cm,
+[data-theme="dark"] .chroma .c,
+[data-theme="dark"] .chroma .c1,
+[data-theme="dark"] .chroma .cm {
+  color: #6272a4 !important; // Dracula comment color
+  font-style: italic !important;
+}
+
+// AUTO THEME SUPPORT
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .highlight .kt,
+  [data-theme="auto"] .highlight .nc,
+  [data-theme="auto"] .highlight .nn,
+  [data-theme="auto"] .highlight .nt,
+  [data-theme="auto"] .highlight .kd,
+  [data-theme="auto"] .chroma .kt,
+  [data-theme="auto"] .chroma .nc,
+  [data-theme="auto"] .chroma .nn,
+  [data-theme="auto"] .chroma .nt,
+  [data-theme="auto"] .chroma .kd {
+    color: #8b1538 !important;
+    font-weight: 700 !important;
+  }
+
+  [data-theme="auto"] .highlight .k,
+  [data-theme="auto"] .highlight .kp,
+  [data-theme="auto"] .highlight .kr,
+  [data-theme="auto"] .highlight .kn,
+  [data-theme="auto"] .chroma .k,
+  [data-theme="auto"] .chroma .kp,
+  [data-theme="auto"] .chroma .kr,
+  [data-theme="auto"] .chroma .kn {
+    color: #6f42c1 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .nv,
+  [data-theme="auto"] .highlight .nb,
+  [data-theme="auto"] .highlight .n,
+  [data-theme="auto"] .chroma .nv,
+  [data-theme="auto"] .chroma .nb,
+  [data-theme="auto"] .chroma .n {
+    color: #032f62 !important;
+    font-weight: 500 !important;
+  }
+
+  [data-theme="auto"] .highlight .nf,
+  [data-theme="auto"] .chroma .nf {
+    color: #6f42c1 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .s,
+  [data-theme="auto"] .highlight .s1,
+  [data-theme="auto"] .highlight .s2,
+  [data-theme="auto"] .highlight .sb,
+  [data-theme="auto"] .highlight .sc,
+  [data-theme="auto"] .chroma .s,
+  [data-theme="auto"] .chroma .s1,
+  [data-theme="auto"] .chroma .s2,
+  [data-theme="auto"] .chroma .sb,
+  [data-theme="auto"] .chroma .sc {
+    color: #22863a !important;
+    font-weight: 500 !important;
+  }
+
+  [data-theme="auto"] .highlight .m,
+  [data-theme="auto"] .highlight .mi,
+  [data-theme="auto"] .highlight .mf,
+  [data-theme="auto"] .chroma .m,
+  [data-theme="auto"] .chroma .mi,
+  [data-theme="auto"] .chroma .mf {
+    color: #b31d28 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .na,
+  [data-theme="auto"] .chroma .na {
+    color: #6f42c1 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .c,
+  [data-theme="auto"] .highlight .c1,
+  [data-theme="auto"] .highlight .cm,
+  [data-theme="auto"] .chroma .c,
+  [data-theme="auto"] .chroma .c1,
+  [data-theme="auto"] .chroma .cm {
+    color: #6a737d !important;
+    font-style: italic !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .highlight .kt,
+  [data-theme="auto"] .highlight .nc,
+  [data-theme="auto"] .highlight .nn,
+  [data-theme="auto"] .highlight .nt,
+  [data-theme="auto"] .highlight .kd,
+  [data-theme="auto"] .chroma .kt,
+  [data-theme="auto"] .chroma .nc,
+  [data-theme="auto"] .chroma .nn,
+  [data-theme="auto"] .chroma .nt,
+  [data-theme="auto"] .chroma .kd {
+    color: #ff79c6 !important;
+    font-weight: 700 !important;
+  }
+
+  [data-theme="auto"] .highlight .k,
+  [data-theme="auto"] .highlight .kp,
+  [data-theme="auto"] .highlight .kr,
+  [data-theme="auto"] .highlight .kn,
+  [data-theme="auto"] .chroma .k,
+  [data-theme="auto"] .chroma .kp,
+  [data-theme="auto"] .chroma .kr,
+  [data-theme="auto"] .chroma .kn {
+    color: #bd93f9 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .nv,
+  [data-theme="auto"] .highlight .nb,
+  [data-theme="auto"] .highlight .n,
+  [data-theme="auto"] .chroma .nv,
+  [data-theme="auto"] .chroma .nb,
+  [data-theme="auto"] .chroma .n {
+    color: #8be9fd !important;
+    font-weight: 500 !important;
+  }
+
+  [data-theme="auto"] .highlight .nf,
+  [data-theme="auto"] .chroma .nf {
+    color: #50fa7b !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .s,
+  [data-theme="auto"] .highlight .s1,
+  [data-theme="auto"] .highlight .s2,
+  [data-theme="auto"] .highlight .sb,
+  [data-theme="auto"] .highlight .sc,
+  [data-theme="auto"] .chroma .s,
+  [data-theme="auto"] .chroma .s1,
+  [data-theme="auto"] .chroma .s2,
+  [data-theme="auto"] .chroma .sb,
+  [data-theme="auto"] .chroma .sc {
+    color: #f1fa8c !important;
+    font-weight: 500 !important;
+  }
+
+  [data-theme="auto"] .highlight .m,
+  [data-theme="auto"] .highlight .mi,
+  [data-theme="auto"] .highlight .mf,
+  [data-theme="auto"] .chroma .m,
+  [data-theme="auto"] .chroma .mi,
+  [data-theme="auto"] .chroma .mf {
+    color: #ffb86c !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .na,
+  [data-theme="auto"] .chroma .na {
+    color: #ff79c6 !important;
+    font-weight: 600 !important;
+  }
+
+  [data-theme="auto"] .highlight .c,
+  [data-theme="auto"] .highlight .c1,
+  [data-theme="auto"] .highlight .cm,
+  [data-theme="auto"] .chroma .c,
+  [data-theme="auto"] .chroma .c1,
+  [data-theme="auto"] .chroma .cm {
+    color: #6272a4 !important;
+    font-style: italic !important;
+  }
+}
+
+// Light theme navigation menu fix
+body:not([data-theme="dark"]) header.header,
+[data-theme="light"] header.header {
+  background-color: #f8f9fa !important; // Light gray background
+}
+
+body:not([data-theme="dark"]) header.header .menu .menu-item a,
+[data-theme="light"] header.header .menu .menu-item a {
+  color: #343a40 !important; // Dark readable text
+}
+
+body:not([data-theme="dark"]) header.header .menu .menu-item a:hover,
+[data-theme="light"] header.header .menu .menu-item a:hover {
+  color: #007bff !important; // Bootstrap blue hover
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+// === FIX: Apply default light theme nav styling even before JS runs ===
+
+header.header {
+  background-color: #f8f9fa !important;
+}
+
+header.header .menu .menu-item a {
+  color: #212529 !important; // Dark text for light background
+}
+
+header.header .menu .menu-item a:hover {
+  color: #007bff !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+// Then keep your theme-specific overrides for robustness
+[data-theme="light"] header.header,
+body:not([data-theme="dark"]) header.header {
+  background-color: #f8f9fa !important;
+}
+
+[data-theme="light"] header.header .menu .menu-item a,
+body:not([data-theme="dark"]) header.header .menu .menu-item a {
+  color: #212529 !important;
+}
+
+// Force "Articles" section title to black in light mode
+body:not([data-theme="dark"]) .section-title,
+[data-theme="light"] .section-title,
+body:not([data-theme="dark"]) .archive-title,
+[data-theme="light"] .archive-title {
+  color: #000000 !important;
+}
+
+// Optional: Black title for auto-light theme
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] .section-title,
+  [data-theme="auto"] .archive-title {
+    color: #000000 !important;
+  }
+}
+
+// Optional: Make sure it's readable in dark mode too
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .archive-title {
+  color: #ffffff !important;
+}
+
+// Force "Articles" title on home page to be black in light mode
+body:not([data-theme="dark"]) #posts .section-title,
+[data-theme="light"] #posts .section-title {
+  color: #000000 !important;
+}
+
+// Optional: Set dark mode color for contrast
+[data-theme="dark"] #posts .section-title {
+  color: #ffffff !important;
+}
+
+// Optional: For auto theme with light preference
+@media (prefers-color-scheme: light) {
+  [data-theme="auto"] #posts .section-title {
+    color: #000000 !important;
+  }
+}
+
+// Re-apply proper navigation menu background and text color in light mode
+body:not([data-theme="dark"]) header.header,
+[data-theme="light"] header.header {
+  background-color: #f8f9fa !important; // Light gray for contrast
+}
+
+body:not([data-theme="dark"]) header.header .menu .menu-item a,
+[data-theme="light"] header.header .menu .menu-item a {
+  color: #212529 !important; // Dark readable text
+}
+
+body:not([data-theme="dark"]) header.header .menu .menu-item a:hover,
+[data-theme="light"] header.header .menu .menu-item a:hover {
+  color: #007bff !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+// Optional: dark mode override
+[data-theme="dark"] header.header {
+  background-color: #1a1a1a !important;
+}
+
+[data-theme="dark"] header.header .menu .menu-item a {
+  color: #f8f9fa !important;
+}
+
+/* =============================
+   ✅ FINAL FORCED NAV STYLING
+   ============================= */
+
+/* Fallback when no data-theme is set (pre-JS render) */
+header.header {
+  background-color: #f8f9fa !important;
+}
+
+header.header .menu .menu-item a {
+  color: #212529 !important;
+}
+
+header.header .menu .menu-item a:hover {
+  color: #007bff !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Light theme mode explicitly */
+[data-theme="light"] header.header,
+body:not([data-theme="dark"]) header.header {
+  background-color: #f8f9fa !important;
+}
+
+[data-theme="light"] header.header .menu .menu-item a,
+body:not([data-theme="dark"]) header.header .menu .menu-item a {
+  color: #212529 !important;
+}
+
+[data-theme="light"] header.header .menu .menu-item a:hover,
+body:not([data-theme="dark"]) header.header .menu .menu-item a:hover {
+  color: #007bff !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Dark mode styling */
+[data-theme="dark"] header.header {
+  background-color: #1f1f1f !important;
+}
+
+[data-theme="dark"] header.header .menu .menu-item a {
+  color: #f8f9fa !important;
+}
+
+[data-theme="dark"] header.header .menu .menu-item a:hover {
+  color: #66bfff !important;
 }

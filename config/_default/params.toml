@@ -4,8 +4,20 @@ version = "0.3.20"
 # site description
 description = "Modern-Day Software Engineer is Unnsse Khan's modernistic outlook on the current software engineering landscape."
 # site keywords
-keywords = ["Unnsse Khan", "unnsse.io", "untz", "untzkhan", "Unnsse", "SDKotlin", "Kotlin", "San Diego Java", "San Diego Kotlin",
-    "Java", "Java Expert", "Kotlin Expert"]
+keywords = [
+    "Unnsse Khan",
+    "unnsse.io",
+    "untz",
+    "untzkhan",
+    "Unnsse",
+    "SDKotlin",
+    "Kotlin",
+    "San Diego Java",
+    "San Diego Kotlin",
+    "Java",
+    "Java Expert",
+    "Kotlin Expert",
+]
 # site default theme ["light", "dark", "auto"]
 defaultTheme = "auto"
 titleDelimiter = "|"
@@ -15,7 +27,21 @@ dateFormat = "01/02/2006"
 disableThemeInject = false
 enablePWA = true
 externalIcon = true
-withSiteTitle=true
+withSiteTitle = true
+
+[app]
+# whether to disable no-JS warning
+noJavaScriptWarning = false
+# whether to disable tips on the first visit
+iconChangeAnimation = true
+# whether to keep the original menu in the top left corner
+keepOriginalMenu = false
+# whether to enable PWA
+pwa = true
+# whether to enable local storage for theme
+# THIS IS THE KEY SETTING - make sure it's set to true
+themeStorage = true
+
 
 [header]
 desktopMode = "sticky"
@@ -45,8 +71,8 @@ avatar = ""
 [home]
 [home.profile]
 enable = false
-title="foo"
-subtitle="bar baz"
+title = "foo"
+subtitle = "bar baz"
 social = true
 
 [home.posts]

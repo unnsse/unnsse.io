@@ -61,8 +61,8 @@ $selection-color-dark: rgba(50, 112, 194, 0.4) !default;
 // Height of the header
 $header-height: 3.5rem !default;
 
-// Color of the header background
-$header-background-color: #33b3ff !default;
+// Color of the header background - FIXED: Keep blue for header only
+$header-background-color: #ffffff !default; // WHITE - Let custom.scss handle header color
 $header-background-color-dark: #252627 !default;
 
 // Font style of the header title
@@ -80,10 +80,10 @@ $search-background-color-dark: #363636 !default;
 
 // ========== Tag Cloud ========== //
 // Color range of tag cloud
-$tag-cloud-start: $global-font-secondary-color!default;
-$tag-cloud-end: $global-font-color!default;
-$tag-cloud-start-dark: $global-font-secondary-color-dark!default;
-$tag-cloud-end-dark: $global-font-color-dark!default;
+$tag-cloud-start: $global-font-secondary-color !default;
+$tag-cloud-end: $global-font-color !default;
+$tag-cloud-start-dark: $global-font-secondary-color-dark !default;
+$tag-cloud-end-dark: $global-font-color-dark !default;
 // ========== Tag Cloud ========== //
 
 // ========== Single Content ========== //
@@ -92,12 +92,12 @@ $toc-title-font-size: 1.2rem !default;
 $toc-content-font-size: 1rem !default;
 
 // Color of the single link
-$single-link-color: #2376b7 !default; // 花青
-$single-link-color-dark: #1781b5 !default; // 釉蓝
+$single-link-color: #2376b7 !default; // 花青 (Blue)
+$single-link-color-dark: #1781b5 !default; // 釉蓝 (Blue for dark)
 
 // Color of the hover single link
-$single-link-hover-color: #ea517f !default; // 莲瓣红
-$single-link-hover-color-dark: #cc5595 !default; // 龙须红
+$single-link-hover-color: #ea517f !default; // 莲瓣红 (Pink)
+$single-link-hover-color-dark: #cc5595 !default; // 龙须红 (Pink for dark)
 
 // Color of the table background
 $table-background-color: #fff !default;
@@ -161,7 +161,7 @@ $github-corner-color-dark: black !default;
 
 // Color of the GitHub Corners background
 $github-corner-fill: $header-background-color-dark !default;
-$github-corner-fill-dark: $header-background-color !default;
+$github-corner-fill-dark: #33b3ff !default; // Use blue for dark theme
 // ========== GitHub Corners ========== //
 
 @import '_partials/_maps/admonition';
@@ -169,3 +169,7 @@ $github-corner-fill-dark: $header-background-color !default;
 @import '_partials/_maps/code-type';
 @import '_partials/_maps/colors';
 @import '_partials/_maps/utilities';
+
+// Color of the header background
+$header-background-color: #007bff !default; /* Blue */
+$header-background-color-dark: #007bff !default; /* Blue for dark mode */
