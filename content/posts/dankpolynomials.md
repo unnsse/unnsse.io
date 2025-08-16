@@ -101,13 +101,6 @@ Deliverables
 - Execution time must not exceed one minute
 - Include commentary on potential performance optimizations
 
-Success Metrics
-- **Correctness** of the prime-generating polynomial identification
-- **Performance** within the one-minute constraint
-- **Maintainability and readability** of the Kotlin codebase
-
----
-
 # Implementation
 
 The solution employs a modular design with clear separation of concerns:
