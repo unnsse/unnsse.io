@@ -1,0 +1,213 @@
+---
+title: Finding the Optimal Prime-Generating Polynomial -- A Journey Through Euler's Mathematical Legacy
+subtitle: A high-performance implementation for discovering quadratic polynomials that generate the longest sequences of consecutive prime numbers.
+date: 2025-08-15T19:03:44-07:00
+slug: c810d00
+draft: false
+author:
+  name: Unnsse Khan
+  link: https://github.com/unnsse
+  email: contact@unnsse.io
+  avatar:
+description: Optimizing an algorithm to find quadratic polynomials that produce the longest sequences of consecutive primes involves efficiently testing polynomial outputs for primality and strategically exploring polynomial coefficients.
+keywords:  Unnsse Khan, untz, Kotlin, Kotlin Expert, Kotest, Dank Polynomials, Algorithms, DSA
+license:
+comment: false
+weight: 0
+tags:
+  - Kotlin
+  - Kotest
+  - Dank Polynomials
+  - Algorithms
+  - Mathematical Programming
+categories:
+  - Kotlin
+hiddenFromHomePage: false
+hiddenFromSearch: false
+hiddenFromRelated: false
+hiddenFromFeed: false
+summary:
+resources:
+  - name: featured-image
+    src: featured-image.jpg
+  - name: featured-image-preview
+    src: featured-image-preview.jpg
+toc: true
+math: false
+lightgallery: false
+password:
+message:
+repost:
+  enable: true
+  url:
+
+# See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
+---
+
+# Finding the Optimal Prime-Generating Polynomial: A Journey Through Euler's Mathematical Legacy
+
+## Introduction
+In the fascinating intersection of number theory and computational optimization lies a problem that has captivated mathematicians since Euler's time: finding polynomials that generate consecutive prime numbers. This challenge, playfully dubbed **"Dank Polynomials,"** presents an excellent case study in algorithmic design, performance optimization, and the practical application of mathematical concepts in software engineering.
+
+The problem centers around quadratic polynomials of the form: n² + an + b
+
+that generate streams of prime numbers for consecutive integer values of n. Euler famously discovered that:
+
+- `n² + n + 41` produces 40 consecutive primes for `0 ≤ n < 40`
+- `n² - 79n + 1601` generates 80 consecutive primes.
+
+My task was to find the optimal values of `a` and `b` within specific constraints that produce the longest possible stream of consecutive primes.
+
+---
+
+## Acceptance Criteria
+
+### Constraints
+- **n ≥ 0** (non-negative integers)
+- **|a| < 1000** (coefficient a between -999 and 999)
+- **|b| ≤ 1000** (coefficient b between -1000 and 1000)
+
+### Deliverables
+- Find the values of `a` and `b` that generate the longest consecutive prime stream
+- Output the optimal `a`, `b`, and the length of the prime stream
+- Execution time must not exceed one minute
+- Include commentary on potential performance optimizations
+
+### Success Metrics
+- **Correctness** of the prime-generating polynomial identification
+- **Performance** within the one-minute constraint
+- **Maintainability and readability** of the Kotlin codebase
+
+---
+
+# Implementation
+
+## Architecture Overview
+The solution employs a modular design with clear separation of concerns:
+
+```kotlin
+class DankPolynomials(private val finder: PolynomialFinder)
+```
+
+Key Components:
+•	`PrimeChecker` — Efficient primality testing
+•	`PolynomialFinder` — Exhaustive search across the parameter space
+•	`PolynomialResult` — Immutable result data structure
+
+--- 
+
+## Core Algorithm
+
+The heart of the solution lies in the `findBestPolynomial()` method, which employs a brute-force approach with parallel processing:
+
+```kotlin
+fun findBestPolynomial(): PolynomialResult {
+    return (-999..999)
+        .toList()
+        .parallelStream()
+        .map { a -> (-1000..1000)
+        .map { b -> PolynomialResult(a, b, getPrimeStreamLength(a, b)) }
+        .maxByOrNull { it.length }!!
+        }
+        .maxByOrNull { it.length }!!
+}
+```
+
+Primality Testing
+
+The `isPrime()` method implements optimized trial division:
+
+```kotlin
+fun isPrime(num: Int): Boolean {
+    if (num <= 1) return false
+    if (num == 2) return true
+    if (num % 2 == 0) return false
+    val sqrtNum = kotlin.math.sqrt(num.toDouble()).toInt() + 1
+    for (i in 3 until sqrtNum step 2) {
+        if (num % i == 0) return false
+    }
+    return true
+}
+```
+
+Optimizations Applied:
+•	Early termination for ≤ 1 and even numbers
+•	Testing only odd divisors
+•	Limiting checks to √n
+
+Performance Considerations
+
+Time Complexity:
+`O(n² × m × k × √k)` where:
+•	`n²` → Parameter space (2000 × 2001 combinations)
+•	`m` → Average prime stream length
+•	`k` → Largest tested prime candidate
+•	`√k` → Trial division complexity
+
+Space Complexity:
+`O(1)` constant space with streaming operations.
+
+⸻
+
+## Testing
+
+We implemented tests using Kotest, which provided a highly expressive, declarative, and powerful testing experience.
+
+Key Kotest Features Used:
+
+1.	StringSpec — Allowed natural-language style test definitions
+2.	Matchers (shouldBe, shouldNotBe) — Clean, readable assertions
+3.	Data-driven testing with forAll — Efficiently checked multiple input-output cases for primality
+4.	Property Testing (checkAll) — Verified properties hold over large random inputs
+
+```kotlin
+class DankPolynomialsTest : StringSpec({
+
+    "should correctly identify prime numbers" {
+        isPrime(2) shouldBe true
+        isPrime(997) shouldBe true
+        isPrime(1000) shouldBe false
+    }
+
+    "should find polynomial producing longest prime sequence" {
+        val result = DankPolynomials().findBestPolynomial()
+        result.length shouldBeGreaterThan 70
+    }
+})
+```
+
+## Performance Validation
+
+We included an integration test that ensures:
+
+• The algorithm finds the same optimal polynomial consistently
+• Execution time remains under one minute in typical conditions
+
+The main identified optimization:
+
+Use a Sieve of Eratosthenes to precompute primes for O(1) lookup.
+
+Benefits:
+
+• Time Complexity Reduction from O(√n) per primality check to O(1)
+• Memory Trade-off: O(max_value) space
+• Scalability: Linear improvement with problem size
+
+⸻
+
+# Afterthoughts
+
+The “Dank Polynomials” problem elegantly combines mathematical theory with modern Kotlin software engineering practices. By leveraging modular design, parallel processing, and expressive testing with Kotest, we met strict performance goals while maintaining clean, readable code.
+
+From Euler’s hand calculations to today’s multi-core Kotlin solutions, this journey underscores the enduring beauty of prime-generating polynomials — and the joy of chasing them.
+
+Lessons Learned:
+
+• Kotlin’s collection and stream APIs make parallel brute-force exploration straightforward.
+• Kotest’s expressive syntax improves both readability and maintainability of tests.
+• Profiling and tight performance constraints force careful consideration of algorithmic choices.
+• Mathematical insight can significantly narrow search space before coding.
+
+# GitHub Repository
+
+The full code is available here: https://github.com/unnsse/DankPolynomials

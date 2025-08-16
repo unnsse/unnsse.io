@@ -10,13 +10,12 @@ author:
   email: contact@unnsse.io
   avatar:
 description: High level overview of using Disjoint Set Union-Find (DSU) algorithm to efficiently detect bounding boxes in a 2D matrix using Java 23.
-keywords:  Unnsse Khan, untz, Java, Java Expert, Disjoint Set Union-Find (DSU), Union-Find algorithm, Java 23, 2D Matrix, Test Driven Development (TDD)
+keywords:  Unnsse Khan, untz, Java, Java Expert, Disjoint Set Union-Find (DSU), Union-Find algorithm, Java, Java 23, Algorithms, 2D Matrix, Test Driven Development (TDD)
 license:
 comment: false
 weight: 0
 tags:
   - java
-  - java23
   - Disjoint Set
   - Union-Find
   - DSU
@@ -63,7 +62,7 @@ making it useful in applications such as image processing, object detection, map
 connected component labeling, and spatial clustering in large datasets or grid-based simulations.
 
 *Note*: This article is no means a TDD tutorial... This article doesn't delve step-by-step regarding the TDD paradigm
-of "faking till you make" with a broken test and then fix in its context. Its how I chose to approach the development
+of "faking till you make it" with a broken test and then fix in its context. Its how I chose to approach the development
 before writing this article.
 
 # Acceptance Criteria
@@ -225,7 +224,7 @@ box’s bottom-right corner, implying no overlap.
 If none of these conditions are true, the boxes overlap, so the method
 returns true. Otherwise, it returns false.
 
-## Disjoint Set Union-Find (DSU) algorithm
+## Disjoint Set Union-Find (DSU) Algorithm
 
 Implemented the Disjoint Set data structure and Union-Find algorithm as follows:
 
