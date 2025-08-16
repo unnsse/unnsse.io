@@ -177,10 +177,8 @@ We implemented tests using Kotest, which provided a highly expressive, declarati
 
 Key Kotest Features Used:
 
-1.	StringSpec — Allowed natural-language style test definitions
-2.	Matchers (shouldBe, shouldNotBe) — Clean, readable assertions
-3.	Data-driven testing with forAll — Efficiently checked multiple input-output cases for primality
-4.	Property Testing (checkAll) — Verified properties hold over large random inputs
+1. StringSpec — Allowed natural-language style test definitions
+2. Matchers (`shouldBe`, `shouldNotBe`) — Clean, readable assertions
 
 ```kotlin
 package com.dankpolynomials
