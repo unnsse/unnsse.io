@@ -98,8 +98,6 @@ Constraints
 Deliverables
 - Find the values of `a` and `b` that generate the longest consecutive prime stream
 - Output the optimal `a`, `b`, and the length of the prime stream
-- Execution time must not exceed one minute
-- Include commentary on potential performance optimizations
 
 # Implementation
 
