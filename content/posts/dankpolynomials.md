@@ -122,9 +122,9 @@ data class PolynomialResult(val a: Int, val b: Int, val length: Int)
 ```
 
 Key Components:
-• `PrimeChecker` — Efficient primality testing
-• `PolynomialFinder` — Exhaustive search across the parameter space
-• `PolynomialResult` — Immutable result data structure
+* `PrimeChecker` — Efficient primality testing
+* `PolynomialFinder` — Exhaustive search across the parameter space
+* `PolynomialResult` — Immutable result data structure
 
 ## Core Algorithm
 
