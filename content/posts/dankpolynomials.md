@@ -175,13 +175,13 @@ The implementation includes several key optimizations:
 ## Time and Space Complexity
 
 Time Complexity:
-**O(n × p × m × √k)** where:
+`O(n × p × m × √k)` where:
 
-`n` → Range of a values (1999 combinations)
-`p` → Number of prime `b` values (much smaller than full `b` range)
-`m` → Average prime stream length
-`k` → Largest tested prime candidate
-`√k` → Trial division complexity
+* `n` → Range of a values (1999 combinations)
+* `p` → Number of prime `b` values (much smaller than full `b` range)
+* `m` → Average prime stream length
+* `k` → Largest tested prime candidate
+* `√k` → Trial division complexity
 
 Space Complexity:
 `O(p)` for storing the filtered prime `b` values, where `p` is the number of primes in the `b` range.
