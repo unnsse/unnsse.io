@@ -68,8 +68,6 @@ Euler famously discovered that:
 
 My task was to find the optimal values of `a` and `b` within specific constraints that produce the longest possible stream of consecutive primes.
 
----
-
 # Acceptance Criteria
 
 Suppose `n`, `a`, and `b` are integers and `n ≥ 0`. A dank polynomial is a polynomial of the form:
@@ -120,8 +118,6 @@ Key Components:
 • `PrimeChecker` — Efficient primality testing
 • `PolynomialFinder` — Exhaustive search across the parameter space
 • `PolynomialResult` — Immutable result data structure
-
---- 
 
 ## Core Algorithm
 
@@ -190,9 +186,6 @@ and $b$ ranges from `MIN_B` to `MAX_B`.
 - **Validation Approach**: The tests provided verify correctness of `isPrime` for various cases and ensure `getBestPolynomial` returns 
 a result with a length greater than 0.
 
-
---- 
-
 ## Testing
 
 We implemented tests using Kotest, which provided a highly expressive, declarative, and powerful testing experience.
@@ -239,8 +232,6 @@ class DankPolynomialsTest : StringSpec({
 // Infix extension function for readability
 infix fun Int.shouldBeGreaterThan(other: Int) = (this > other).shouldBeTrue()
 ```
-
-
 
 ## Display Test Results via Gradle Task in stdout
 
@@ -295,8 +286,6 @@ com.dankpolynomials.DankPolynomialsTest > getBestPolynomial should return expect
 Results: SUCCESS (4 tests, 4 passed, 0 failed, 0 skipped)
 ```
 
---- 
-
 # Running from Command Line
 
 To run from the command line to see the results using hardcoded constant bounding values from the `main()` method as the entry point:
@@ -309,8 +298,6 @@ Output:
 Task :app:run
 Best Polynomial: n² + -61n + 971, Consecutive Primes: 71
 ```
-
---- 
 
 # Afterthoughts
 
