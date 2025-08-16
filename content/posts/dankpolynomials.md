@@ -196,9 +196,11 @@ The search space includes `(MAX - MIN + 1)` values of `a` and only prime values 
 * **Validation Approach**: The tests verify correctness of `isPrime()` for various cases and ensure `getBestPolynomial()` returns
 a result with a length greater than 0.
 
-## Testing
+# Testing
 
-We implemented tests using Kotest, which provided a highly expressive, declarative, and powerful testing experience.
+We implemented tests using [Kotest](https://kotest.io), which provided a highly expressive, declarative, and powerful testing experience.
+
+## Kotest 
 
 Key Kotest Features Used:
 
