@@ -60,6 +60,24 @@ My task was to find the optimal values of `a` and `b` within specific constraint
 
 # Acceptance Criteria
 
+Suppose `n`, `a`, and `b` are integers and `n ≥ 0`. A dank polynomial is a polynomial of the form:
+
+`n² + an + b`
+
+that generates a stream of primes for consecutive values of `n`. Euler discovered the first
+dank polynomial:
+
+`n² + n + 41`
+
+This formula will produce 40 consecutive primes for 0 ≤ n < 40. Sadly, when `n = 40`,
+
+(`40² + 40 + 41`) is divisible by `41`. Alas, we thought we were close to killing off RSA! An 
+even more dank polynomial is the following:
+
+`n² − 79n + 1601`
+
+This produces 80 consecutive primes for `0 ≤ n < 80`.
+
 # Constraints
 - **n ≥ 0** (non-negative integers)
 - **|a| < 1000** (coefficient a between -999 and 999)
