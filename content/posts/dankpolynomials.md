@@ -272,6 +272,39 @@ tasks.test {
 }
 ```
 
+By doing this, one can see all logged test results via `stdout` when invoking the tests via gradle: `./gradlew clean test`:
+
+```zsh
+ Task :app:test
+
+com.dankpolynomials.DankPolynomialsTest > isPrime should return true for prime numbers PASSED
+
+com.dankpolynomials.DankPolynomialsTest > isPrime should return false for non-prime numbers PASSED
+
+com.dankpolynomials.DankPolynomialsTest > isPrime should handle edge cases PASSED
+
+com.dankpolynomials.DankPolynomialsTest > getBestPolynomial should return expected result STANDARD_OUT
+    Best Polynomial: n² + -61n + 971, Consecutive Primes: 71
+
+com.dankpolynomials.DankPolynomialsTest > getBestPolynomial should return expected result PASSED
+Results: SUCCESS (4 tests, 4 passed, 0 failed, 0 skipped)
+```
+
+--- 
+
+# Running from Command Line
+
+To run from the command line to see the results using hardcoded constant bounding values from the `main()` method as the entry point:
+
+`./gradlew run`
+
+Output:
+
+```zsh
+Task :app:run
+Best Polynomial: n² + -61n + 971, Consecutive Primes: 71
+```
+
 --- 
 
 # Afterthoughts
