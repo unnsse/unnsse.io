@@ -157,6 +157,10 @@ fun isPrime(n: Int): Boolean = when {
 }
 ```
 
+## Dank Polynomials Chart
+
+![Dank Polynomials Chart](/images/DankPolynomials.png)
+
 ## Optimizations Applied
 
 The implementation includes several key optimizations:
