@@ -42,6 +42,28 @@ pwa = true
 # THIS IS THE KEY SETTING - make sure it's set to true
 themeStorage = true
 
+[page.math]
+enable = true
+# default inline delimiter is $ ... $ and \( ... \)
+inlineLeftDelimiter = "$"
+inlineRightDelimiter = "$"
+# default block delimiter is $$ ... $$, \[ ... \], \begin{equation} ... \end{equation} and some other functions
+blockLeftDelimiter = "$$"
+blockRightDelimiter = "$$"
+# KaTeX extension copy_tex
+copyTex = true
+# KaTeX extension mhchem
+mhchem = true
+[page.math.mathjax.packages]
+"[+]" = ["physics", "xypic"]
+[page.math.mathjax.loader]
+load = ["ui/safe", "[tex]/physics", "[custom]/xypic.js"]
+[page.math.mathjax.loader.paths]
+custom = "https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/"
+[page.math.mathjax.tex]
+[page.math.mathjax.tex.physics]
+italicdiff = false
+arrowdel = false
 
 [header]
 desktopMode = "sticky"
@@ -202,6 +224,8 @@ h3 = "{h2}.{h3} {title}"
 h4 = "{h2}.{h3}.{h4} {title}"
 h5 = "{h2}.{h3}.{h4}.{h5} {title}"
 h6 = "{h2}.{h3}.{h4}.{h5}.{h6} {title}"
+
+
 
 # social share links in post page
 [page.share]

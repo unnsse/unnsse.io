@@ -20,6 +20,11 @@ strikethrough = true
 table = true
 taskList = true
 typographer = true
+[goldmark.extensions.passthrough]
+enable = true
+[goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)']]
 [goldmark.renderer]
 # whether to use HTML tags directly in the document
 unsafe = true
