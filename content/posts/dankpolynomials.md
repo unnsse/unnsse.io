@@ -45,9 +45,19 @@ repost:
 ---
 
 # Introduction
-In the fascinating intersection of number theory and computational optimization lies a problem that has captivated mathematicians since Euler's time: finding polynomials that generate consecutive prime numbers. This challenge, playfully dubbed **"Dank Polynomials,"** presents an excellent case study in algorithmic design, performance optimization, and the practical application of mathematical concepts in software engineering.
 
-The problem centers around quadratic polynomials of the form: n² + an + b
+[Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) was an influential Swiss mathematician who made 
+significant contributions to various fields. For polynomials, Euler developed methods for solving infinite polynomials,
+expressed functions as power series, and introduced Eulerian polynomials. He popularized the notation `f(x)` to describe 
+functions and discovered power series expansions for e and the inverse tangent function. Euler's work in mathematics, including calculus, number theory, and algebra, has had a lasting impact on the field. 
+His books, such as [Introductio in analysin infinitorum](https://en.wikipedia.org/wiki/Introductio_in_analysin_infinitorum) and [Institutiones calculi differentialis](https://en.wikipedia.org/wiki/Institutiones_calculi_differentialis), remain foundational texts in mathematics.
+
+In the fascinating intersection of number theory and computational optimization lies a problem that has captivated mathematicians since Euler's time: 
+finding polynomials that generate consecutive prime numbers. This challenge, playfully dubbed **"Dank Polynomials,"** presents 
+an excellent case study in algorithmic design, performance optimization, and the practical application of mathematical
+concepts in software engineering.
+
+The problem centers around quadratic polynomials of the form: `n² + an + b`
 
 that generate streams of prime numbers for consecutive integer values of n. Euler famously discovered that:
 
@@ -78,18 +88,18 @@ even more dank polynomial is the following:
 
 This produces 80 consecutive primes for `0 ≤ n < 80`.
 
-# Constraints
+Constraints
 - **n ≥ 0** (non-negative integers)
 - **|a| < 1000** (coefficient a between -999 and 999)
 - **|b| ≤ 1000** (coefficient b between -1000 and 1000)
-
-#  Deliverables
+ 
+Deliverables
 - Find the values of `a` and `b` that generate the longest consecutive prime stream
 - Output the optimal `a`, `b`, and the length of the prime stream
 - Execution time must not exceed one minute
 - Include commentary on potential performance optimizations
 
-# Success Metrics
+Success Metrics
 - **Correctness** of the prime-generating polynomial identification
 - **Performance** within the one-minute constraint
 - **Maintainability and readability** of the Kotlin codebase
