@@ -49,17 +49,18 @@ repost:
 [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) was an influential Swiss mathematician who made 
 significant contributions to various fields. For polynomials, Euler developed methods for solving infinite polynomials,
 expressed functions as power series, and introduced Eulerian polynomials. He popularized the notation `f(x)` to describe 
-functions and discovered power series expansions for e and the inverse tangent function. Euler's work in mathematics, including calculus, number theory, and algebra, has had a lasting impact on the field. 
+functions and discovered power series expansions for e and the inverse tangent function. Euler's work in mathematics,
+including calculus, number theory, and algebra, has had a lasting impact on the field. 
 His books, such as [Introductio in analysin infinitorum](https://en.wikipedia.org/wiki/Introductio_in_analysin_infinitorum) and [Institutiones calculi differentialis](https://en.wikipedia.org/wiki/Institutiones_calculi_differentialis), remain foundational texts in mathematics.
 
-In the fascinating intersection of number theory and computational optimization lies a problem that has captivated mathematicians since Euler's time: 
-finding polynomials that generate consecutive prime numbers. This challenge, playfully dubbed **"Dank Polynomials,"** presents 
-an excellent case study in algorithmic design, performance optimization, and the practical application of mathematical
-concepts in software engineering.
+In the fascinating intersection of number theory and computational optimization lies a problem that has captivated 
+mathematicians since Euler's time: finding polynomials that generate consecutive prime numbers. 
+This challenge, playfully dubbed **"Dank Polynomials,"** presents an excellent case study in algorithmic design, 
+performance optimization, and the practical application of mathematical concepts in software engineering.
 
-The problem centers around quadratic polynomials of the form: `n² + an + b`
+The problem centers around quadratic polynomials of the form: `n² + an + b` that generate streams of prime numbers for consecutive integer values of `n`.
 
-that generate streams of prime numbers for consecutive integer values of n. Euler famously discovered that:
+Euler famously discovered that:
 
 - `n² + n + 41` produces 40 consecutive primes for `0 ≤ n < 40`
 - `n² - 79n + 1601` generates 80 consecutive primes.
@@ -153,7 +154,7 @@ fun isPrime(num: Int): Boolean {
 }
 ```
 
-## Optimizations Applied:
+## Optimizations Applied
 
 • Early termination for ≤ 1 and even numbers
 • Testing only odd divisors
@@ -163,15 +164,15 @@ fun isPrime(num: Int): Boolean {
 
 Time Complexity:
 `O(n² × m × k × √k)` where:
-•	`n²` → Parameter space (2000 × 2001 combinations)
-•	`m` → Average prime stream length
-•	`k` → Largest tested prime candidate
-•	`√k` → Trial division complexity
+• `n²` → Parameter space (2000 × 2001 combinations)
+• `m` → Average prime stream length
+• `k` → Largest tested prime candidate
+• `√k` → Trial division complexity
 
 Space Complexity:
 `O(1)` constant space with streaming operations.
 
-⸻
+--- 
 
 ## Testing
 
@@ -274,7 +275,7 @@ tasks.test {
 }
 ```
 
-⸻
+--- 
 
 # Afterthoughts
 
