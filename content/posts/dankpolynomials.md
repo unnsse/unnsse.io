@@ -121,11 +121,6 @@ const val MAX_B = 1000
 data class PolynomialResult(val a: Int, val b: Int, val length: Int)
 ```
 
-Key Components:
-* `PrimeChecker` — Efficient primality testing
-* `PolynomialFinder` — Exhaustive search across the parameter space
-* `PolynomialResult` — Immutable result data structure
-
 ## Core Algorithm
 
 The heart of the solution lies in the `getBestPolynomial()` function, which employs an optimized approach using sequences and filtering:
