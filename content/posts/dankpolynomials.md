@@ -1,5 +1,5 @@
 ---
-title: Finding the Optimal Prime-Generating Polynomial -- A Journey Through Euler's Mathematical Legacy
+title: "Finding the Optimal Prime-Generating Polynomial: A Journey Through Euler's Mathematical Legacy"
 subtitle: A high-performance implementation for discovering quadratic polynomials that generate the longest sequences of consecutive prime numbers.
 date: 2025-08-15T19:03:44-07:00
 slug: c810d00
@@ -44,9 +44,7 @@ repost:
 # See details front matter: https://fixit.lruihao.cn/documentation/content-management/introduction/#front-matter
 ---
 
-# Finding the Optimal Prime-Generating Polynomial: A Journey Through Euler's Mathematical Legacy
-
-## Introduction
+# Introduction
 In the fascinating intersection of number theory and computational optimization lies a problem that has captivated mathematicians since Euler's time: finding polynomials that generate consecutive prime numbers. This challenge, playfully dubbed **"Dank Polynomials,"** presents an excellent case study in algorithmic design, performance optimization, and the practical application of mathematical concepts in software engineering.
 
 The problem centers around quadratic polynomials of the form: n² + an + b
@@ -60,20 +58,20 @@ My task was to find the optimal values of `a` and `b` within specific constraint
 
 ---
 
-## Acceptance Criteria
+# Acceptance Criteria
 
-### Constraints
+# Constraints
 - **n ≥ 0** (non-negative integers)
 - **|a| < 1000** (coefficient a between -999 and 999)
 - **|b| ≤ 1000** (coefficient b between -1000 and 1000)
 
-### Deliverables
+#  Deliverables
 - Find the values of `a` and `b` that generate the longest consecutive prime stream
 - Output the optimal `a`, `b`, and the length of the prime stream
 - Execution time must not exceed one minute
 - Include commentary on potential performance optimizations
 
-### Success Metrics
+# Success Metrics
 - **Correctness** of the prime-generating polynomial identification
 - **Performance** within the one-minute constraint
 - **Maintainability and readability** of the Kotlin codebase
@@ -82,7 +80,6 @@ My task was to find the optimal values of `a` and `b` within specific constraint
 
 # Implementation
 
-## Architecture Overview
 The solution employs a modular design with clear separation of concerns:
 
 ```kotlin
@@ -90,9 +87,9 @@ class DankPolynomials(private val finder: PolynomialFinder)
 ```
 
 Key Components:
-•	`PrimeChecker` — Efficient primality testing
-•	`PolynomialFinder` — Exhaustive search across the parameter space
-•	`PolynomialResult` — Immutable result data structure
+• `PrimeChecker` — Efficient primality testing
+• `PolynomialFinder` — Exhaustive search across the parameter space
+• `PolynomialResult` — Immutable result data structure
 
 --- 
 
@@ -113,9 +110,7 @@ fun findBestPolynomial(): PolynomialResult {
 }
 ```
 
-Primality Testing
-
-The `isPrime()` method implements optimized trial division:
+The `isPrime()` method implements optimized trial division for primality testing:
 
 ```kotlin
 fun isPrime(num: Int): Boolean {
@@ -130,12 +125,13 @@ fun isPrime(num: Int): Boolean {
 }
 ```
 
-Optimizations Applied:
-•	Early termination for ≤ 1 and even numbers
-•	Testing only odd divisors
-•	Limiting checks to √n
+## Optimizations Applied:
 
-Performance Considerations
+• Early termination for ≤ 1 and even numbers
+• Testing only odd divisors
+• Limiting checks to √n
+
+## Time and Space Complexity
 
 Time Complexity:
 `O(n² × m × k × √k)` where:
@@ -161,19 +157,41 @@ Key Kotest Features Used:
 4.	Property Testing (checkAll) — Verified properties hold over large random inputs
 
 ```kotlin
+package com.dankpolynomials
+
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.booleans.shouldBeFalse
+
 class DankPolynomialsTest : StringSpec({
 
-    "should correctly identify prime numbers" {
-        isPrime(2) shouldBe true
-        isPrime(997) shouldBe true
-        isPrime(1000) shouldBe false
+    "isPrime should return true for prime numbers" {
+        isPrime(2).shouldBeTrue()
+        isPrime(997).shouldBeTrue()
+        isPrime(7919).shouldBeTrue()
     }
 
-    "should find polynomial producing longest prime sequence" {
-        val result = DankPolynomials().findBestPolynomial()
-        result.length shouldBeGreaterThan 70
+    "isPrime should return false for non-prime numbers" {
+        isPrime(1000).shouldBeFalse()
+        isPrime(984).shouldBeFalse()
+    }
+
+    "isPrime should handle edge cases" {
+        isPrime(-100).shouldBeFalse()
+        isPrime(-1).shouldBeFalse()
+        isPrime(0).shouldBeFalse()
+        isPrime(1).shouldBeFalse()
+    }
+
+    "getBestPolynomial should return expected result" {
+        val result = getBestPolynomial(MIN, MAX, MIN_B, MAX_B)
+        println("Best Polynomial: n² + ${result.a}n + ${result.b}, Consecutive Primes: ${result.length}")
+        result.length shouldBeGreaterThan 0
     }
 })
+
+// Infix extension function for readability
+infix fun Int.shouldBeGreaterThan(other: Int) = (this > other).shouldBeTrue()
 ```
 
 ## Performance Validation
@@ -192,6 +210,41 @@ Benefits:
 • Time Complexity Reduction from O(√n) per primality check to O(1)
 • Memory Trade-off: O(max_value) space
 • Scalability: Linear improvement with problem size
+
+## Display Test Results via Gradle Task in stdout
+
+In order, to see the Kotest results via `stdout`, I had to setup test logging and wrote the `addTestListener()` function as a Gradle KTS task.
+
+This was used inside the `tasks.test` section:
+
+```kotlin
+tasks.test {
+    useJUnitPlatform()
+    systemProperty("kotest.framework.classpath.scanning.autoscan.disable", "true")
+    
+    // Add test logging to see Kotest output
+    testLogging {
+        events("passed", "skipped", "failed", "standardOut", "standardError")
+        showExceptions = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        showCauses = true
+        showStackTraces = true
+        showStandardStreams = true
+    }
+    
+    // Show test results summary
+    addTestListener(object : TestListener {
+        override fun beforeSuite(suite: TestDescriptor) {}
+        override fun afterSuite(suite: TestDescriptor, result: TestResult) {
+            if (suite.parent == null) { // will match the outermost suite
+                println("Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)")
+            }
+        }
+        override fun beforeTest(testDescriptor: TestDescriptor) {}
+        override fun afterTest(testDescriptor: TestDescriptor, result: TestResult) {}
+    })
+}
+```
 
 ⸻
 
