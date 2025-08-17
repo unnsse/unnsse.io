@@ -198,7 +198,7 @@ a result with a length greater than 0.
 
 # Testing
 
-We implemented tests using [Kotest](https://kotest.io), which provided a highly expressive, declarative, and powerful testing experience.
+Decided to use [Kotest](https://kotest.io), for test coverage, which provided a highly expressive, declarative, and powerful testing experience.
 
 ## Kotest 
 
@@ -319,10 +319,10 @@ From Euler’s hand calculations to today’s multi-core Kotlin solutions, this 
 
 Lessons Learned:
 
-* Kotlin’s collection and stream APIs make parallel brute-force exploration straightforward.
-* Kotest’s expressive syntax improves both readability and maintainability of tests.
-* Profiling and tight performance constraints force careful consideration of algorithmic choices.
-* Mathematical insight can significantly narrow search space before coding.
+* Kotlin’s sequence API enables efficient lazy brute-force exploration without unnecessary allocations.
+* Kotest’s fluent syntax makes tests concise, readable, and easy to maintain.
+* Profiling under performance constraints highlights how algorithmic choices directly affect scalability. 
+* Mathematical reasoning can drastically reduce the search space, saving compute time before writing code.
 
 # GitHub Repository
 
