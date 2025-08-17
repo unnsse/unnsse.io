@@ -80,7 +80,7 @@ dank polynomial:
 
 `n² + n + 41`
 
-This formula will produce 40 consecutive primes for 0 ≤ n < 40. Sadly, when `n = 40`,
+This formula will produce `40` consecutive primes for `0 ≤ n < 40`. Sadly, when `n = 40`,
 
 (`40² + 40 + 41`) is divisible by `41`. 
 
