@@ -317,7 +317,7 @@ The **Dank Polynomials** problem elegantly combines mathematical theory with mod
 
 From Euler’s hand calculations to today’s multi-core Kotlin solutions, this journey underscores the enduring beauty of prime-generating polynomials — and the joy of chasing them.
 
-Lessons Learned:
+Lessons learned:
 
 * Kotlin’s sequence API enables efficient lazy brute-force exploration without unnecessary allocations.
 * Kotest’s fluent syntax makes tests concise, readable, and easy to maintain.
