@@ -88,12 +88,12 @@ An even more dank polynomial is the following:
 
 `n² − 79n + 1601`
 
-This produces 80 consecutive primes for `0 ≤ n < 80`.
+This produces `80` consecutive primes for `0 ≤ n < 80`.
 
 Constraints
 - **n ≥ 0** (non-negative integers)
-- **|a| < 1000** (coefficient a between -999 and 999)
-- **|b| ≤ 1000** (coefficient b between -1000 and 1000)
+- **|a| < 1000** (coefficient a between `-999` and `999`)
+- **|b| ≤ 1000** (coefficient b between `-1000` and `1000`)
  
 Deliverables
 - Find the values of `a` and `b` that generate the longest consecutive prime stream
