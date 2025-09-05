@@ -1,0 +1,29 @@
+User-agent: *
+
+Disallow: /images/
+Disallow: /js/
+Disallow: /css/
+
+Disallow: /*offline/
+Disallow: /*404.html$
+Disallow: /*.md$
+
+User-agent: MJ12bot
+Disallow: /
+
+# Allow access to CSS and JS files for proper rendering
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+
+# Sitemap location
+Sitemap: https://unnsse.io/sitemap.xml
+
+# Block access to admin and private areas
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /config/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
