@@ -5,6 +5,7 @@ canonifyURLs = true
 enableRobotsTXT = true
 enableEmoji = true
 enableGitInfo = false
+relativeURLs = false
 
 [module]
   [[module.imports]]

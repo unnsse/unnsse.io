@@ -205,7 +205,7 @@ Decided to use [Kotest](https://kotest.io), for test coverage, which provided a 
 Key Kotest Features Used:
 
 1. StringSpec — Allowed natural-language style test definitions
-2. Matchers (`shouldBe`, `shouldNotBe`) — Clean, readable assertions
+2. Matchers (`shouldBeTrue`, `shouldBeFalse`) — Clean, readable assertions
 
 ```kotlin
 package com.dankpolynomials
