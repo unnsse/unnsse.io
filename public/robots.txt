@@ -1,0 +1,21 @@
+User-agent: *
+# Allow critical assets for rendering
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+
+# Block sensitive or non-public areas
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /config/
+Disallow: /*offline/
+Disallow: /*404.html$
+Disallow: /*.md$
+
+# Sitemap location
+Sitemap: https://unnsse.io/sitemap.xml
+
+# Bot-specific rule
+User-agent: MJ12bot
+Disallow: /

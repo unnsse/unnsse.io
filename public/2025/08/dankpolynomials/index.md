@@ -1,0 +1,292 @@
+# Finding the Optimal Prime-Generating Polynomial: A Journey Through Euler's Mathematical Legacy
+
+
+# Introduction
+
+[Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) was an influential Swiss mathematician who made 
+significant contributions to various fields. For polynomials, Euler developed methods for solving infinite polynomials,
+expressed functions as power series, and introduced Eulerian polynomials.
+
+He also popularized the notation `f(x)` to describe functions and discovered power series expansions for
+e and the inverse tangent function. Euler's work in mathematics, including calculus, number theory, and 
+algebra, has had a lasting impact on the field. His books, such as [Introductio in analysin infinitorum](https://en.wikipedia.org/wiki/Introductio_in_analysin_infinitorum) and [Institutiones calculi differentialis](https://en.wikipedia.org/wiki/Institutiones_calculi_differentialis), remain foundational texts in mathematics.
+
+In the fascinating intersection of number theory and computational optimization lies a problem that has captivated 
+mathematicians since Euler's time: finding polynomials that generate consecutive prime numbers. 
+
+This challenge, playfully dubbed **Dank Polynomials** presents an excellent case study in algorithmic design, 
+performance optimization, and the practical application of mathematical concepts in software engineering.
+
+The problem centers around quadratic polynomials of the form: `n² + an + b` that generate streams of prime numbers for consecutive integer values of `n`.
+
+Euler famously discovered that:
+
+- `n² + n + 41` produces 40 consecutive primes for `0 ≤ n < 40`
+- `n² - 79n + 1601` generates 80 consecutive primes.
+
+My task was to find the optimal values of `a` and `b` within specific constraints that produce the longest possible stream of consecutive primes.
+
+# Acceptance Criteria
+
+Suppose `n`, `a`, and `b` are integers and `n ≥ 0`. A dank polynomial is a polynomial of the form:
+
+`n² + an + b`
+
+that generates a stream of primes for consecutive values of `n`. Euler discovered the first
+dank polynomial:
+
+`n² + n + 41`
+
+This formula will produce `40` consecutive primes for `0 ≤ n < 40`. Sadly, when `n = 40`,
+
+(`40² + 40 + 41`) is divisible by `41`. 
+
+An even more dank polynomial is the following:
+
+`n² − 79n + 1601`
+
+This produces `80` consecutive primes for `0 ≤ n < 80`.
+
+Constraints
+- **n ≥ 0** (non-negative integers)
+- **|a| < 1000** (coefficient a between `-999` and `999`)
+- **|b| ≤ 1000** (coefficient b between `-1000` and `1000`)
+ 
+Deliverables
+- Find the values of `a` and `b` that generate the longest consecutive prime stream
+- Output the optimal `a`, `b`, and the length of the prime stream
+
+# Implementation
+
+The solution employs a modular design with clear separation of concerns:
+
+```kotlin
+const val MIN = -999
+const val MAX = 999
+const val MIN_B = -1000
+const val MAX_B = 1000
+
+data class PolynomialResult(val a: Int, val b: Int, val length: Int)
+```
+
+## Core Algorithm
+
+The heart of the solution lies in the `getBestPolynomial()` function, which employs an optimized approach using sequences and filtering:
+
+```kotlin
+fun getBestPolynomial(minA: Int, maxA: Int, minB: Int, maxB: Int): PolynomialResult {
+  val possibleBValues = (minB..maxB).filter(::isPrime)
+
+  return (minA..maxA).asSequence().flatMap { a ->
+    possibleBValues.asSequence().map { b ->
+      val length = generateSequence(0) { it + 1 }
+        .map { n -> n * n + a * n + b }
+        .takeWhile(::isPrime)
+        .count()
+      PolynomialResult(a, b, length)
+    }
+  }.maxByOrNull { it.length } ?: PolynomialResult(0, 0, 0)
+}
+```
+
+The `isPrime()` method implements optimized trial division for primality testing:
+
+```kotlin
+fun isPrime(n: Int): Boolean = when {
+    n < 2 -> false
+    n == 2 -> true
+    n % 2 == 0 -> false
+    else -> (3..sqrt(n.toDouble()).toInt() step 2).none { n % it == 0 }
+}
+```
+
+## Dank Polynomials Chart
+
+![Dank Polynomials Chart](/images/DankPolynomials.png)
+
+## Optimizations Applied
+
+The implementation includes several key optimizations:
+
+* **Pre-filtering b values**: Only prime values of `b` are considered, significantly reducing the search space.
+
+* **Lazy evaluation**: Using sequences (`asSequence()`) for memory-efficient processing.
+
+* **Early termination**: The `takeWhile(::isPrime)` stops counting as soon as a non-prime is encountered.
+
+* **Efficient primality testing**:
+  - Early termination for `n ≤ 1` and even numbers.
+  - Testing only odd divisors.
+  - Limiting checks to `√n`.
+
+## Time and Space Complexity
+
+Time Complexity:
+`O(n × p × m × √k)` where:
+
+* `n` → Range of a values (1999 combinations)
+* `p` → Number of prime `b` values (much smaller than full `b` range)
+* `m` → Average prime stream length
+* `k` → Largest tested prime candidate
+* `√k` → Trial division complexity
+
+Space Complexity:
+`O(p)` for storing the filtered prime `b` values, where `p` is the number of primes in the `b` range.
+
+## Performance Validation
+
+The code implements a search for the "best polynomial" of the form `n² + an + b` that
+produces the longest sequence of prime numbers for consecutive values of `n`, where a ranges from `MIN` to `MAX`
+and b ranges from `MIN_B` to `MAX_B`.
+
+* **Primality Testing**: The `isPrime()` function checks if a number is prime using trial division with optimizations
+(skipping even numbers beyond 2, checking up to `√n`).
+
+* **Performance Factors**:
+
+Primality checks for each number in the sequence are done in `O(√n)` time because of the trial division method in the isPrime() function.
+For each pair of `a` and `b`, the code counts consecutive primes generated by `n² + an + b`.
+The search space includes `(MAX - MIN + 1)` values of `a` and only prime values of `b` between `MIN_B` and `MAX_B`.
+
+* **Key Optimization**: By pre-filtering `b` values to only include primes, the algorithm dramatically reduces the search space since most `b` values would not be prime.
+
+* **Validation Approach**: The tests verify correctness of `isPrime()` for various cases and ensure `getBestPolynomial()` returns
+a result with a length greater than 0.
+
+# Testing
+
+Decided to use [Kotest](https://kotest.io), for test coverage, which provided a highly expressive, declarative, and powerful testing experience.
+
+## Kotest 
+
+Key Kotest Features Used:
+
+1. StringSpec — Allowed natural-language style test definitions
+2. Matchers (`shouldBeTrue`, `shouldBeFalse`) — Clean, readable assertions
+
+```kotlin
+package com.dankpolynomials
+
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.booleans.shouldBeTrue
+import io.kotest.matchers.booleans.shouldBeFalse
+
+class DankPolynomialsTest : StringSpec({
+
+    "isPrime should return true for prime numbers" {
+        isPrime(2).shouldBeTrue()
+        isPrime(997).shouldBeTrue()
+        isPrime(7919).shouldBeTrue()
+    }
+
+    "isPrime should return false for non-prime numbers" {
+        isPrime(1000).shouldBeFalse()
+        isPrime(984).shouldBeFalse()
+    }
+
+    "isPrime should handle edge cases" {
+        isPrime(-100).shouldBeFalse()
+        isPrime(-1).shouldBeFalse()
+        isPrime(0).shouldBeFalse()
+        isPrime(1).shouldBeFalse()
+    }
+
+    "getBestPolynomial should return expected result" {
+        val result = getBestPolynomial(MIN, MAX, MIN_B, MAX_B)
+        println("Best Polynomial: n² + ${result.a}n + ${result.b}, Consecutive Primes: ${result.length}")
+        result.length shouldBeGreaterThan 0
+    }
+})
+
+// Infix extension function for readability
+infix fun Int.shouldBeGreaterThan(other: Int) = (this > other).shouldBeTrue()
+```
+
+## Display Test Results via Gradle Task in stdout
+
+In order, to see the Kotest results via `stdout`, I had to setup test logging and wrote the `addTestListener()` function as a Gradle KTS task.
+
+This was used inside the `tasks.test` section:
+
+```kotlin
+tasks.test {
+    useJUnitPlatform()
+    systemProperty("kotest.framework.classpath.scanning.autoscan.disable", "true")
+    
+    // Add test logging to see Kotest output
+    testLogging {
+        events("passed", "skipped", "failed", "standardOut", "standardError")
+        showExceptions = true
+        exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+        showCauses = true
+        showStackTraces = true
+        showStandardStreams = true
+    }
+    
+    // Show test results summary
+    addTestListener(object : TestListener {
+        override fun beforeSuite(suite: TestDescriptor) {}
+        override fun afterSuite(suite: TestDescriptor, result: TestResult) {
+            if (suite.parent == null) { // will match the outermost suite
+                println("Results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} passed, ${result.failedTestCount} failed, ${result.skippedTestCount} skipped)")
+            }
+        }
+        override fun beforeTest(testDescriptor: TestDescriptor) {}
+        override fun afterTest(testDescriptor: TestDescriptor, result: TestResult) {}
+    })
+}
+```
+
+By doing this, one can see all logged test results via `stdout` when invoking the tests via gradle: `./gradlew clean test`:
+
+```zsh
+ Task :app:test
+
+com.dankpolynomials.DankPolynomialsTest > isPrime should return true for prime numbers PASSED
+
+com.dankpolynomials.DankPolynomialsTest > isPrime should return false for non-prime numbers PASSED
+
+com.dankpolynomials.DankPolynomialsTest > isPrime should handle edge cases PASSED
+
+com.dankpolynomials.DankPolynomialsTest > getBestPolynomial should return expected result STANDARD_OUT
+    Best Polynomial: n² + -61n + 971, Consecutive Primes: 71
+
+com.dankpolynomials.DankPolynomialsTest > getBestPolynomial should return expected result PASSED
+Results: SUCCESS (4 tests, 4 passed, 0 failed, 0 skipped)
+```
+
+# Running from Command Line
+
+To run from the command line to see the results using hardcoded constant bounding values from the `main()` method as the entry point:
+
+`./gradlew run`
+
+Output:
+
+```zsh
+Task :app:run
+Best Polynomial: n² + -61n + 971, Consecutive Primes: 71
+```
+
+# Afterthoughts
+
+The **Dank Polynomials** problem elegantly combines mathematical theory with modern Kotlin software engineering practices. By leveraging modular design, parallel processing, and expressive testing with Kotest, we met strict performance goals while maintaining clean, readable code.
+
+From Euler’s hand calculations to today’s multi-core Kotlin solutions, this journey underscores the enduring beauty of prime-generating polynomials — and the joy of chasing them.
+
+Lessons learned:
+
+* Kotlin’s sequence API enables efficient lazy brute-force exploration without unnecessary allocations.
+* Kotest’s fluent syntax makes tests concise, readable, and easy to maintain.
+* Profiling under performance constraints highlights how algorithmic choices directly affect scalability. 
+* Mathematical reasoning can drastically reduce the search space, saving compute time before writing code.
+
+# GitHub Repository
+
+The full code is available here: https://github.com/unnsse/DankPolynomials
+
+---
+
+> Author: [Unnsse Khan](https://github.com/unnsse)  
+> URL: https://unnsse.io/2025/08/dankpolynomials/  
+

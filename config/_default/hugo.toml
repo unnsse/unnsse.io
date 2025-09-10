@@ -6,6 +6,7 @@ enableRobotsTXT = true
 enableEmoji = true
 enableGitInfo = false
 relativeURLs = false
+uglyURLs = false
 
 [module]
   [[module.imports]]
