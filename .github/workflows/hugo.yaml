@@ -33,9 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HUGO_VERSION: 0.147.1  # Update to the version you want to use
-      # Workaround: upload-pages-artifact@v4 internally pins upload-artifact@v4.6.2 (Node 20).
-      # Remove this once upload-pages-artifact releases a patch with Node 24 support.
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Install Hugo CLI
         run: |
@@ -71,7 +68,7 @@ jobs:
             --environment production \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./public
 
