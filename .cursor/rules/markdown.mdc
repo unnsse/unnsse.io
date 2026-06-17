@@ -1,0 +1,29 @@
+---
+description: Mandatory rules for creating and editing markdown files.
+globs: **/*
+alwaysApply: true
+---
+
+# Markdown Rules guide
+
+## Title 
+
+All markdown files created will be fully capitalized with kebab case delimiting individual words in the title.
+
+## Location
+
+All markdown file will be place inside docs folder with an appropriate sub directory.
+
+## Body 
+
+All body of markdown will adhere to markdown linting rules specified as.
+
+## Footer
+
+All markdown files need to have this specific footer at the bottom of each file:
+
+---
+
+> Modern-Day Software Engineering < https://unnsse.io > © 2026
+
+All new content or subsequent edits should always remain above this Footer (nothing comes below it).

@@ -1,3 +1,9 @@
-.site-header {
-    background-color: #33b3ff !important;  /* Tailwind's blue-800, adjust as needed */
-}
+/*
+ * static/css/custom.css
+ *
+ * NOTE: .site-header is not a FixIt theme selector and had no effect.
+ * Header bar color is now correctly controlled via #header-desktop and
+ * #header-mobile in assets/css/_custom.scss.
+ *
+ * This file can be used for any truly static/non-SCSS overrides if needed.
+ */
