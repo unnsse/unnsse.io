@@ -40,27 +40,41 @@
   background-color: #007bff !important;
 }
 
+// Specificity: (1,0,0) — sets all header children to white.
 #header-desktop *,
 #header-mobile * {
   color: #fff !important;
 }
 
-// Fix: dropdown/sub-menu items inherit the white !important above,
-// making them invisible against the white/light panel background.
-// Override specifically for sub-menu links and their child icons.
-.sub-menu .menu-link,
-.sub-menu .menu-link * {
+// Fix: sub-menu items are children of #header-desktop/#header-mobile so they
+// inherit white above, making them invisible on the white light-mode panel.
+//
+// Specificity breakdown — both rules carry !important, so specificity decides:
+//   #header-desktop *                       → (1,0,0)  ← loses
+//   #header-desktop .sub-menu .menu-link    → (1,2,0)  ← wins  (light)
+//   [data-theme="dark"] #header-desktop ... → (1,3,0)  ← wins  (dark)
+//
+// Light mode: dark text on white panel (#ffffff from --fi-header-background-color)
+#header-desktop .sub-menu .menu-link,
+#header-desktop .sub-menu .menu-link *,
+#header-mobile .sub-menu .menu-link,
+#header-mobile .sub-menu .menu-link * {
   color: #212529 !important;
 }
 
-[data-theme="dark"] .sub-menu .menu-link,
-[data-theme="dark"] .sub-menu .menu-link * {
+// Dark mode: light text on dark panel (#252627 from --fi-header-background-color-dark)
+[data-theme="dark"] #header-desktop .sub-menu .menu-link,
+[data-theme="dark"] #header-desktop .sub-menu .menu-link *,
+[data-theme="dark"] #header-mobile .sub-menu .menu-link,
+[data-theme="dark"] #header-mobile .sub-menu .menu-link * {
   color: #f8f9fa !important;
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-theme="auto"] .sub-menu .menu-link,
-  [data-theme="auto"] .sub-menu .menu-link * {
+  [data-theme="auto"] #header-desktop .sub-menu .menu-link,
+  [data-theme="auto"] #header-desktop .sub-menu .menu-link *,
+  [data-theme="auto"] #header-mobile .sub-menu .menu-link,
+  [data-theme="auto"] #header-mobile .sub-menu .menu-link * {
     color: #f8f9fa !important;
   }
 }
