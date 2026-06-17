@@ -61,8 +61,12 @@ $selection-color-dark: rgba(50, 112, 194, 0.4) !default;
 // Height of the header
 $header-height: 3.5rem !default;
 
-// Color of the header background - FIXED: Keep blue for header only
-$header-background-color: #ffffff !default; // WHITE - Let custom.scss handle header color
+// Color of the header background.
+// NOTE: The actual blue header bar color (#007bff) is applied via !important
+// in _custom.scss targeting #header-desktop and #header-mobile. This value
+// controls the dropdown panel (.sub-menu) background via the FixIt CSS variable
+// --fi-header-background-color, which should remain a neutral panel color.
+$header-background-color: #ffffff !default;
 $header-background-color-dark: #252627 !default;
 
 // Font style of the header title
@@ -161,7 +165,7 @@ $github-corner-color-dark: black !default;
 
 // Color of the GitHub Corners background
 $github-corner-fill: $header-background-color-dark !default;
-$github-corner-fill-dark: #33b3ff !default; // Use blue for dark theme
+$github-corner-fill-dark: #33b3ff !default;
 // ========== GitHub Corners ========== //
 
 @import '_partials/_maps/admonition';
@@ -169,7 +173,3 @@ $github-corner-fill-dark: #33b3ff !default; // Use blue for dark theme
 @import '_partials/_maps/code-type';
 @import '_partials/_maps/colors';
 @import '_partials/_maps/utilities';
-
-// Color of the header background
-$header-background-color: #007bff !default; /* Blue */
-$header-background-color-dark: #007bff !default; /* Blue for dark mode */

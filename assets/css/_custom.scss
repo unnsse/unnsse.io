@@ -2,57 +2,98 @@
 // Custom style
 // ==============================
 
-// Social links styling
+// =============================
+// Social links
+// =============================
+
 .social-links {
-  // Center the social links
   text-align: center;
   padding: 0.5rem;
   font-size: 1.5rem;
 
   a {
-    // Align the social link icons vertically
     vertical-align: middle;
   }
 
-  // Include a link mixin
   @include link(true, true);
 }
 
-/* Fallback: Force nav styles even when no theme is set */
-header.header {
-  background-color: #f8f9fa !important;
+// =============================
+// Header & Navigation
+//
+// FixIt's actual header elements are:
+//   #header-desktop  (class="desktop animate__faster")
+//   #header-mobile   (class="mobile animate__faster")
+//
+// There is NO element with class="header" in FixIt — all prior
+// "header.header" and ".header-wrapper *" rules were dead selectors.
+//
+// The dropdown panel (.sub-menu) uses the FixIt CSS variable
+// --fi-header-background-color for its background, which resolves to
+// $header-background-color (#ffffff light / #252627 dark) from
+// _variables.scss. We do NOT override that variable here so the panel
+// stays a neutral readable color. We only force the bar itself to blue.
+// =============================
+
+#header-desktop,
+#header-mobile {
+  background-color: #007bff !important;
 }
 
-header.header .menu .menu-item a {
+#header-desktop *,
+#header-mobile * {
+  color: #fff !important;
+}
+
+// Fix: dropdown/sub-menu items inherit the white !important above,
+// making them invisible against the white/light panel background.
+// Override specifically for sub-menu links and their child icons.
+.sub-menu .menu-link,
+.sub-menu .menu-link * {
   color: #212529 !important;
 }
 
-header.header .menu .menu-item a:hover {
-  color: #007bff !important;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Now reinforce again AFTER theme is loaded */
-[data-theme="light"] header.header,
-[data-theme="auto"] header.header {
-  background-color: #f8f9fa !important;
-}
-
-[data-theme="light"] header.header .menu .menu-item a,
-[data-theme="auto"] header.header .menu .menu-item a {
-  color: #212529 !important;
-}
-
-[data-theme="dark"] header.header {
-  background-color: #1a1a1a !important;
-}
-
-[data-theme="dark"] header.header .menu .menu-item a {
+[data-theme="dark"] .sub-menu .menu-link,
+[data-theme="dark"] .sub-menu .menu-link * {
   color: #f8f9fa !important;
 }
 
-/* Custom styling for inline code elements (text wrapped in backticks) */
-/* This targets only markdown content areas to avoid header conflicts */
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .sub-menu .menu-link,
+  [data-theme="auto"] .sub-menu .menu-link * {
+    color: #f8f9fa !important;
+  }
+}
+
+// =============================
+// Breadcrumb
+// =============================
+
+.breadcrumb,
+.breadcrumb a,
+.breadcrumb span {
+  background-color: transparent !important;
+  color: #495057 !important;
+}
+
+[data-theme="dark"] .breadcrumb,
+[data-theme="dark"] .breadcrumb a,
+[data-theme="dark"] .breadcrumb span {
+  color: #e2e8f0 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .breadcrumb,
+  [data-theme="auto"] .breadcrumb a,
+  [data-theme="auto"] .breadcrumb span {
+    color: #e2e8f0 !important;
+  }
+}
+
+// =============================
+// Inline code (backtick spans)
+// =============================
+
 body:not([data-theme="dark"]) .content code:not(pre code),
 body:not([data-theme="dark"]) .post-content code:not(pre code),
 body:not([data-theme="dark"]) .markdown code:not(pre code),
@@ -85,57 +126,10 @@ body:not([data-theme="dark"]) .markdown code:not(pre code),
   }
 }
 
-// Header styling
-header.header,
-.header-wrapper,
-#header {
-  background-color: #007bff !important;
-}
+// =============================
+// Code blocks (pre)
+// =============================
 
-header.header *,
-.header-wrapper *,
-#header * {
-  color: white !important;
-}
-
-header.header .menu .menu-item a {
-  color: #333 !important;
-  background-color: transparent !important;
-}
-
-header.header .menu .menu-item a:hover {
-  background-color: rgba(0, 0, 0, 0.1) !important;
-  color: #333 !important;
-}
-
-// Breadcrumb styling
-.breadcrumb,
-.breadcrumb * {
-  background-color: transparent !important;
-  color: inherit !important;
-}
-
-.breadcrumb,
-.breadcrumb a,
-.breadcrumb span {
-  color: #495057 !important;
-}
-
-[data-theme="dark"] .breadcrumb,
-[data-theme="dark"] .breadcrumb a,
-[data-theme="dark"] .breadcrumb span {
-  color: #e2e8f0 !important;
-}
-
-@media (prefers-color-scheme: dark) {
-  [data-theme="auto"] .breadcrumb,
-  [data-theme="auto"] .breadcrumb a,
-  [data-theme="auto"] .breadcrumb span {
-    color: #e2e8f0 !important;
-  }
-}
-
-// Code block styling
 body:not([data-theme="dark"]) pre,
 body:not([data-theme="dark"]) pre code,
 [data-theme="light"] pre,
@@ -166,7 +160,10 @@ body:not([data-theme="dark"]) pre code,
   }
 }
 
-// Code header styling
+// =============================
+// Code header bar
+// =============================
+
 body:not([data-theme="dark"]) .code-header,
 body:not([data-theme="dark"]) .highlight-header,
 body:not([data-theme="dark"]) .code-title,
@@ -216,6 +213,10 @@ pre code {
   padding: 0 !important;
 }
 
+// =============================
+// Highlight wrapper backgrounds
+// =============================
+
 body:not([data-theme="dark"]) .highlight,
 body:not([data-theme="dark"]) .highlight pre,
 [data-theme="light"] .highlight,
@@ -242,7 +243,10 @@ body:not([data-theme="dark"]) .highlight pre,
   }
 }
 
-// Table styling
+// =============================
+// Tables
+// =============================
+
 body:not([data-theme="dark"]) table,
 body:not([data-theme="dark"]) .content table,
 body:not([data-theme="dark"]) .post-content table,
@@ -403,11 +407,20 @@ body:not([data-theme="dark"]) .markdown table td,
   }
 }
 
+// =============================
+// Code font family
+// Note: _override.scss also declares font-family for code/pre with ligature
+// feature settings. This !important ensures Cascadia Code is always applied.
+// =============================
+
 code, pre {
   font-family: 'Cascadia Code', monospace !important;
 }
 
-// Strong/Bold text styling
+// =============================
+// Strong / bold text
+// =============================
+
 body:not([data-theme="dark"]) .content strong,
 body:not([data-theme="dark"]) .post-content strong,
 body:not([data-theme="dark"]) .markdown strong,
@@ -431,11 +444,12 @@ body:not([data-theme="dark"]) strong,
 }
 
 // ==============================
-// Enhanced Dracula-inspired Syntax Highlighting
+// Syntax highlighting
+// Dracula-inspired palette for dark, GitHub-inspired for light
 // ==============================
 
-// LIGHT THEME SYNTAX HIGHLIGHTING
-// Classes, interfaces, types (darker, more prominent)
+// --- Light theme ---
+
 body:not([data-theme="dark"]) .highlight .kt,
 body:not([data-theme="dark"]) .highlight .nc,
 body:not([data-theme="dark"]) .highlight .nn,
@@ -456,11 +470,10 @@ body:not([data-theme="dark"]) .chroma .kd,
 [data-theme="light"] .chroma .nn,
 [data-theme="light"] .chroma .nt,
 [data-theme="light"] .chroma .kd {
-  color: #8b1538 !important; // Dark red/maroon for types
+  color: #8b1538 !important;
   font-weight: 700 !important;
 }
 
-// Keywords (if, else, for, etc.) - dark purple
 body:not([data-theme="dark"]) .highlight .k,
 body:not([data-theme="dark"]) .highlight .kp,
 body:not([data-theme="dark"]) .highlight .kr,
@@ -477,11 +490,10 @@ body:not([data-theme="dark"]) .chroma .kn,
 [data-theme="light"] .chroma .kp,
 [data-theme="light"] .chroma .kr,
 [data-theme="light"] .chroma .kn {
-  color: #6f42c1 !important; // Dark purple for keywords
+  color: #6f42c1 !important;
   font-weight: 600 !important;
 }
 
-// Variable names and identifiers
 body:not([data-theme="dark"]) .highlight .nv,
 body:not([data-theme="dark"]) .highlight .nb,
 body:not([data-theme="dark"]) .highlight .n,
@@ -494,20 +506,18 @@ body:not([data-theme="dark"]) .chroma .n,
 [data-theme="light"] .chroma .nv,
 [data-theme="light"] .chroma .nb,
 [data-theme="light"] .chroma .n {
-  color: #032f62 !important; // Dark blue for variables
+  color: #032f62 !important;
   font-weight: 500 !important;
 }
 
-// Function names
 body:not([data-theme="dark"]) .highlight .nf,
 body:not([data-theme="dark"]) .chroma .nf,
 [data-theme="light"] .highlight .nf,
 [data-theme="light"] .chroma .nf {
-  color: #6f42c1 !important; // Purple for functions
+  color: #6f42c1 !important;
   font-weight: 600 !important;
 }
 
-// Strings
 body:not([data-theme="dark"]) .highlight .s,
 body:not([data-theme="dark"]) .highlight .s1,
 body:not([data-theme="dark"]) .highlight .s2,
@@ -528,11 +538,10 @@ body:not([data-theme="dark"]) .chroma .sc,
 [data-theme="light"] .chroma .s2,
 [data-theme="light"] .chroma .sb,
 [data-theme="light"] .chroma .sc {
-  color: #22863a !important; // Dark green for strings
+  color: #22863a !important;
   font-weight: 500 !important;
 }
 
-// Numbers
 body:not([data-theme="dark"]) .highlight .m,
 body:not([data-theme="dark"]) .highlight .mi,
 body:not([data-theme="dark"]) .highlight .mf,
@@ -545,20 +554,18 @@ body:not([data-theme="dark"]) .chroma .mf,
 [data-theme="light"] .chroma .m,
 [data-theme="light"] .chroma .mi,
 [data-theme="light"] .chroma .mf {
-  color: #b31d28 !important; // Dark red for numbers
+  color: #b31d28 !important;
   font-weight: 600 !important;
 }
 
-// Annotations (@Override, @Deprecated, etc.)
 body:not([data-theme="dark"]) .highlight .na,
 body:not([data-theme="dark"]) .chroma .na,
 [data-theme="light"] .highlight .na,
 [data-theme="light"] .chroma .na {
-  color: #6f42c1 !important; // Purple for annotations
+  color: #6f42c1 !important;
   font-weight: 600 !important;
 }
 
-// Comments
 body:not([data-theme="dark"]) .highlight .c,
 body:not([data-theme="dark"]) .highlight .c1,
 body:not([data-theme="dark"]) .highlight .cm,
@@ -571,12 +578,12 @@ body:not([data-theme="dark"]) .chroma .cm,
 [data-theme="light"] .chroma .c,
 [data-theme="light"] .chroma .c1,
 [data-theme="light"] .chroma .cm {
-  color: #6a737d !important; // Gray for comments
+  color: #6a737d !important;
   font-style: italic !important;
 }
 
-// DARK THEME SYNTAX HIGHLIGHTING (Dracula-inspired)
-// Classes, interfaces, types - Dracula pink/red
+// --- Dark theme (Dracula) ---
+
 [data-theme="dark"] .highlight .kt,
 [data-theme="dark"] .highlight .nc,
 [data-theme="dark"] .highlight .nn,
@@ -587,11 +594,10 @@ body:not([data-theme="dark"]) .chroma .cm,
 [data-theme="dark"] .chroma .nn,
 [data-theme="dark"] .chroma .nt,
 [data-theme="dark"] .chroma .kd {
-  color: #ff79c6 !important; // Dracula pink for types
+  color: #ff79c6 !important;
   font-weight: 700 !important;
 }
 
-// Keywords - Dracula purple
 [data-theme="dark"] .highlight .k,
 [data-theme="dark"] .highlight .kp,
 [data-theme="dark"] .highlight .kr,
@@ -600,29 +606,26 @@ body:not([data-theme="dark"]) .chroma .cm,
 [data-theme="dark"] .chroma .kp,
 [data-theme="dark"] .chroma .kr,
 [data-theme="dark"] .chroma .kn {
-  color: #bd93f9 !important; // Dracula purple for keywords
+  color: #bd93f9 !important;
   font-weight: 600 !important;
 }
 
-// Variable names - Dracula cyan
 [data-theme="dark"] .highlight .nv,
 [data-theme="dark"] .highlight .nb,
 [data-theme="dark"] .highlight .n,
 [data-theme="dark"] .chroma .nv,
 [data-theme="dark"] .chroma .nb,
 [data-theme="dark"] .chroma .n {
-  color: #8be9fd !important; // Dracula cyan for variables
+  color: #8be9fd !important;
   font-weight: 500 !important;
 }
 
-// Function names - Dracula green
 [data-theme="dark"] .highlight .nf,
 [data-theme="dark"] .chroma .nf {
-  color: #50fa7b !important; // Dracula green for functions
+  color: #50fa7b !important;
   font-weight: 600 !important;
 }
 
-// Strings - Dracula yellow
 [data-theme="dark"] .highlight .s,
 [data-theme="dark"] .highlight .s1,
 [data-theme="dark"] .highlight .s2,
@@ -633,40 +636,38 @@ body:not([data-theme="dark"]) .chroma .cm,
 [data-theme="dark"] .chroma .s2,
 [data-theme="dark"] .chroma .sb,
 [data-theme="dark"] .chroma .sc {
-  color: #f1fa8c !important; // Dracula yellow for strings
+  color: #f1fa8c !important;
   font-weight: 500 !important;
 }
 
-// Numbers - Dracula orange
 [data-theme="dark"] .highlight .m,
 [data-theme="dark"] .highlight .mi,
 [data-theme="dark"] .highlight .mf,
 [data-theme="dark"] .chroma .m,
 [data-theme="dark"] .chroma .mi,
 [data-theme="dark"] .chroma .mf {
-  color: #ffb86c !important; // Dracula orange for numbers
+  color: #ffb86c !important;
   font-weight: 600 !important;
 }
 
-// Annotations - Dracula pink
 [data-theme="dark"] .highlight .na,
 [data-theme="dark"] .chroma .na {
-  color: #ff79c6 !important; // Dracula pink for annotations
+  color: #ff79c6 !important;
   font-weight: 600 !important;
 }
 
-// Comments - Dracula comment gray
 [data-theme="dark"] .highlight .c,
 [data-theme="dark"] .highlight .c1,
 [data-theme="dark"] .highlight .cm,
 [data-theme="dark"] .chroma .c,
 [data-theme="dark"] .chroma .c1,
 [data-theme="dark"] .chroma .cm {
-  color: #6272a4 !important; // Dracula comment color
+  color: #6272a4 !important;
   font-style: italic !important;
 }
 
-// AUTO THEME SUPPORT
+// --- Auto theme (respects OS preference) ---
+
 @media (prefers-color-scheme: light) {
   [data-theme="auto"] .highlight .kt,
   [data-theme="auto"] .highlight .nc,
@@ -835,159 +836,37 @@ body:not([data-theme="dark"]) .chroma .cm,
   }
 }
 
-// Light theme navigation menu fix
-body:not([data-theme="dark"]) header.header,
-[data-theme="light"] header.header {
-  background-color: #f8f9fa !important; // Light gray background
-}
+// =============================
+// Section / archive titles
+// =============================
 
-body:not([data-theme="dark"]) header.header .menu .menu-item a,
-[data-theme="light"] header.header .menu .menu-item a {
-  color: #343a40 !important; // Dark readable text
-}
-
-body:not([data-theme="dark"]) header.header .menu .menu-item a:hover,
-[data-theme="light"] header.header .menu .menu-item a:hover {
-  color: #007bff !important; // Bootstrap blue hover
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-// === FIX: Apply default light theme nav styling even before JS runs ===
-
-header.header {
-  background-color: #f8f9fa !important;
-}
-
-header.header .menu .menu-item a {
-  color: #212529 !important; // Dark text for light background
-}
-
-header.header .menu .menu-item a:hover {
-  color: #007bff !important;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-// Then keep your theme-specific overrides for robustness
-[data-theme="light"] header.header,
-body:not([data-theme="dark"]) header.header {
-  background-color: #f8f9fa !important;
-}
-
-[data-theme="light"] header.header .menu .menu-item a,
-body:not([data-theme="dark"]) header.header .menu .menu-item a {
-  color: #212529 !important;
-}
-
-// Force "Articles" section title to black in light mode
 body:not([data-theme="dark"]) .section-title,
 [data-theme="light"] .section-title,
 body:not([data-theme="dark"]) .archive-title,
-[data-theme="light"] .archive-title {
-  color: #000000 !important;
-}
-
-// Optional: Black title for auto-light theme
-@media (prefers-color-scheme: light) {
-  [data-theme="auto"] .section-title,
-  [data-theme="auto"] .archive-title {
-    color: #000000 !important;
-  }
-}
-
-// Optional: Make sure it's readable in dark mode too
-[data-theme="dark"] .section-title,
-[data-theme="dark"] .archive-title {
-  color: #ffffff !important;
-}
-
-// Force "Articles" title on home page to be black in light mode
+[data-theme="light"] .archive-title,
 body:not([data-theme="dark"]) #posts .section-title,
 [data-theme="light"] #posts .section-title {
   color: #000000 !important;
 }
 
-// Optional: Set dark mode color for contrast
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .archive-title,
 [data-theme="dark"] #posts .section-title {
   color: #ffffff !important;
 }
 
-// Optional: For auto theme with light preference
 @media (prefers-color-scheme: light) {
+  [data-theme="auto"] .section-title,
+  [data-theme="auto"] .archive-title,
   [data-theme="auto"] #posts .section-title {
     color: #000000 !important;
   }
 }
 
-// Re-apply proper navigation menu background and text color in light mode
-body:not([data-theme="dark"]) header.header,
-[data-theme="light"] header.header {
-  background-color: #f8f9fa !important; // Light gray for contrast
-}
-
-body:not([data-theme="dark"]) header.header .menu .menu-item a,
-[data-theme="light"] header.header .menu .menu-item a {
-  color: #212529 !important; // Dark readable text
-}
-
-body:not([data-theme="dark"]) header.header .menu .menu-item a:hover,
-[data-theme="light"] header.header .menu .menu-item a:hover {
-  color: #007bff !important;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-// Optional: dark mode override
-[data-theme="dark"] header.header {
-  background-color: #1a1a1a !important;
-}
-
-[data-theme="dark"] header.header .menu .menu-item a {
-  color: #f8f9fa !important;
-}
-
-/* =============================
-   ✅ FINAL FORCED NAV STYLING
-   ============================= */
-
-/* Fallback when no data-theme is set (pre-JS render) */
-header.header {
-  background-color: #f8f9fa !important;
-}
-
-header.header .menu .menu-item a {
-  color: #212529 !important;
-}
-
-header.header .menu .menu-item a:hover {
-  color: #007bff !important;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Light theme mode explicitly */
-[data-theme="light"] header.header,
-body:not([data-theme="dark"]) header.header {
-  background-color: #f8f9fa !important;
-}
-
-[data-theme="light"] header.header .menu .menu-item a,
-body:not([data-theme="dark"]) header.header .menu .menu-item a {
-  color: #212529 !important;
-}
-
-[data-theme="light"] header.header .menu .menu-item a:hover,
-body:not([data-theme="dark"]) header.header .menu .menu-item a:hover {
-  color: #007bff !important;
-  background-color: rgba(0, 0, 0, 0.05) !important;
-}
-
-/* Dark mode styling */
-[data-theme="dark"] header.header {
-  background-color: #1f1f1f !important;
-}
-
-[data-theme="dark"] header.header .menu .menu-item a {
-  color: #f8f9fa !important;
-}
-
-[data-theme="dark"] header.header .menu .menu-item a:hover {
-  color: #66bfff !important;
+@media (prefers-color-scheme: dark) {
+  [data-theme="auto"] .section-title,
+  [data-theme="auto"] .archive-title,
+  [data-theme="auto"] #posts .section-title {
+    color: #ffffff !important;
+  }
 }

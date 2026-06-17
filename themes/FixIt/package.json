@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "auto-changelog": "^2.4.0"
+  },
+  "overrides": {
+    "handlebars": "~4.7.9"
   }
 }
